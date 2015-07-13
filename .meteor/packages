@@ -6,9 +6,10 @@
 
 meteor-platform
 autopublish
-insecure
 urigo:angular
 coffeescript
 civilframe:angular-jade
 mquandalle:jade
 less
+accounts-ui
+accounts-password

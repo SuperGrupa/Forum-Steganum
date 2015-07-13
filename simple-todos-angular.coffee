@@ -7,14 +7,48 @@ if Meteor.isClient
     '$scope', '$meteor'
     ($scope, $meteor) ->
       $scope.tasks = $meteor.collection( ->
-        Tasks.find {}, sort: createdAt: -1
+        Tasks.find $scope.getReactively('query'), sort: createdAt: -1
       )
 
+      $scope.incompleteCount = ->
+        Tasks.find(checked: $ne: true).count()
+
       $scope.addTask = (newTask) ->
-        $scope.tasks.push
-          text: newTask
-          createdAt: new Date
+        $meteor.call 'addTask', newTask
+
+      $scope.deleteTask = (task) ->
+        $meteor.call 'deleteTask', task._id
+
+      $scope.setChecked = (task) ->
+        $meteor.call 'setChecked', task._id, !task.checked
+
+
+      $scope.$watch 'hideCompleted', ->
+        if $scope.hideCompleted
+          $scope.query = checked: $ne: true
+        else
+          $scope.query = {}
   ]
+
+  Accounts.ui.config({
+    passwordSignupFields: "USERNAME_ONLY"
+  })
 if Meteor.isServer
   Meteor.startup ->
     # code to run on server at startup
+
+
+Meteor.methods
+  addTask: (text) ->
+    # Make sure the user is logged in before inserting a task
+    if !Meteor.userId()
+      throw new (Meteor.Error)('not-authorized')
+    Tasks.insert
+      text: text
+      createdAt: new Date
+      owner: Meteor.userId()
+      username: Meteor.user().username
+  deleteTask: (taskId) ->
+    Tasks.remove taskId
+  setChecked: (taskId, setChecked) ->
+    Tasks.update taskId, $set: checked: setChecked
