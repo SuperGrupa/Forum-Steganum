@@ -6,7 +6,14 @@ if Meteor.isClient
   angular.module('simple-todos').controller 'TodosListCtrl', [
     '$scope', '$meteor'
     ($scope, $meteor) ->
-      $scope.tasks = $meteor.collection(Tasks)
+      $scope.tasks = $meteor.collection( ->
+        Tasks.find {}, sort: createdAt: -1
+      )
+
+      $scope.addTask = (newTask) ->
+        $scope.tasks.push
+          text: newTask
+          createdAt: new Date
   ]
 if Meteor.isServer
   Meteor.startup ->

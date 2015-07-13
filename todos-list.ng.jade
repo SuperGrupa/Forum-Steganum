@@ -1,5 +1,11 @@
 .container
   header
     h1 Todo List
+    form.new-task(ng-submit="addTask(newTask); newTask='';")
+      input(ng-model='newTask', type='text', name='text', placeholder='Type to add new tasks')
   ul(ng-repeat='task in tasks')
-    li {{task.text}}
+    li(ng-class="{'checked': task.checked}")
+      button.delete(ng-click='tasks.remove(task)') &times;
+      input.toggle-checked(type='checkbox', ng-model='task.checked')
+      span.text {{task.text}}
+
