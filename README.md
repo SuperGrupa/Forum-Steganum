@@ -3,7 +3,7 @@ Implementacja przykładowego internetowego forum o 2 twarzach, ukrywającego pra
 
 http://forum-steganum.meteor.com/
 
-# Odpalenei aplikacji lokalnie
+# Odpalenie aplikacji lokalnie
 
     curl https://install.meteor.com/ | sh
     git clone https://github.com/Nitrooos/Forum-Steganum
