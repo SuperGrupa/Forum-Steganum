@@ -1,4 +1,6 @@
 head
+  base(href="/")
   title Todo List
-body(ng-app='forumSteganum', ng-include="'client/todos/todos-list.html'", ng-controller='TodosListCtrl')
+body(ng-app='forumSteganum')
+  div(ui-view='')
 

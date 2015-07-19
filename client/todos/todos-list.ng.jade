@@ -1,5 +1,6 @@
 .container
   header
+    a(ui-sref="home") Back to home
     h1 Todo List ( {{ incompleteCount() }} )
     label.hide-completed
       input(type='checkbox', ng-model='$parent.hideCompleted')
