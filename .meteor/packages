@@ -13,3 +13,4 @@ mquandalle:jade
 less
 accounts-ui
 accounts-password
+angularui:angular-ui-router
