@@ -1,6 +1,7 @@
 angular.module 'forumSteganum', [
   'angular-meteor'
   'ui.router'
+  'ngMaterial'
   'todos'
  ]
 

@@ -4,6 +4,9 @@ accounts-ui@1.1.5
 accounts-ui-unstyled@1.1.7
 amplify@1.0.0
 angular:angular@1.4.2
+angular:angular-animate@1.4.2
+angular:angular-aria@1.4.2
+angular:angular-material@0.10.0
 angular:angular-mocks@1.4.2
 angularui:angular-ui-router@0.2.15
 autopublish@1.0.3
@@ -48,6 +51,7 @@ npm-bcrypt@0.7.8_2
 observe-sequence@1.0.6
 ordered-dict@1.0.3
 package-version-parser@3.0.3
+planettraining:material-design-icons@2.0.0
 practicalmeteor:chai@1.9.2_3
 practicalmeteor:loglevel@1.1.0_3
 random@1.0.3

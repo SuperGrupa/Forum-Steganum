@@ -17,3 +17,5 @@ angularui:angular-ui-router
 angular:angular-mocks
 sanjo:jasmine
 velocity:html-reporter
+angular:angular-material
+planettraining:material-design-icons
