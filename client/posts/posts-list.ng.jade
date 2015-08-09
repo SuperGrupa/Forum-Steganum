@@ -1,0 +1,12 @@
+.container
+  header
+    a(ui-sref="home") Back to home
+    meteor-include(src='loginButtons')
+    form.new-post(ng-submit="addPost(newPost); newPost='';", ng-show="$root.currentUser")
+      input(ng-model='newPost', type='text', name='text', placeholder='Type to add new posts')
+  ul(ng-repeat='post in posts', ng-hide='$parent.hideCompleted && post.checked')
+    li
+      button.delete(ng-click="deletePost(post)") &times;
+      span.text
+        strong {{post.username}}
+        | - {{post.text}}
