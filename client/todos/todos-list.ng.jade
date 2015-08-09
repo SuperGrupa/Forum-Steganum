@@ -1,4 +1,4 @@
-.container
+#todos.container
   header
     a(ui-sref="home") Back to home
     h1 Todo List ( {{ incompleteCount() }} )
@@ -8,13 +8,10 @@
     meteor-include(src='loginButtons')
     form.new-task(ng-submit="addTask(newTask); newTask='';", ng-show="$root.currentUser")
       input(ng-model='newTask', type='text', name='text', placeholder='Type to add new tasks')
-  ul(ng-repeat='task in tasks')
+  ul(ng-repeat='task in tasks', ng-hide='$parent.hideCompleted && task.checked')
     li(ng-class="{'checked': task.checked}")
       button.delete(ng-click="deleteTask(task)") &times;
       input.toggle-checked(type="checkbox", ng-checked="task.checked", ng-click="setChecked(task)")
       span.text
         strong {{task.username}}
         | - {{task.text}}
-
-
-

@@ -3,6 +3,7 @@ angular.module 'forumSteganum', [
   'ui.router'
   'ngMaterial'
   'todos'
+  'posts'
  ]
 
 .config ($urlRouterProvider, $stateProvider, $locationProvider) ->
@@ -13,4 +14,3 @@ angular.module 'forumSteganum', [
     templateUrl: 'client/home.html'
 
   $urlRouterProvider.otherwise '/'
-

@@ -14,3 +14,6 @@ Meteor.methods
     Tasks.remove taskId
   setChecked: (taskId, setChecked) ->
     Tasks.update taskId, $set: checked: setChecked
+
+Meteor.publish 'tasks', () ->
+  Tasks.find()

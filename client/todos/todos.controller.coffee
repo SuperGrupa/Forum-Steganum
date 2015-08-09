@@ -2,9 +2,7 @@ Tasks = new Mongo.Collection("tasks")
 
 angular.module('todos')
 .controller 'TodosListCtrl', ($scope, $meteor) ->
-  $scope.tasks = $meteor.collection( ->
-    Tasks.find $scope.getReactively('query'), sort: createdAt: -1
-  )
+  $scope.tasks = $meteor.collection(Tasks).subscribe('tasks')
 
   $scope.incompleteCount = ->
     Tasks.find(checked: $ne: true).count()
@@ -17,9 +15,3 @@ angular.module('todos')
 
   $scope.setChecked = (task) ->
     $meteor.call 'setChecked', task._id, !task.checked
-
-  $scope.$watch 'hideCompleted', ->
-    if $scope.hideCompleted
-      $scope.query = checked: $ne: true
-    else
-      $scope.query = {}
