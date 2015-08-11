@@ -1,5 +1,5 @@
 angular.module('posts')
-.controller 'PostsListCtrl', (postsServ) ->
+.controller 'PostCtrl', (postsServ) ->
   vm = this
 
   vm.post = postsServ

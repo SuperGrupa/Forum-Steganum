@@ -5,5 +5,5 @@ angular.module 'posts', ['ui.router']
   $stateProvider.state 'posts',
     url: '/posts'
     templateUrl: 'client/posts/posts-list.html'
-    controller: 'PostsListCtrl'
+    controller: 'PostCtrl'
     controllerAs: 'postCtrl'
