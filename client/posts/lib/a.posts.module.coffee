@@ -6,3 +6,4 @@ angular.module 'posts', ['ui.router']
     url: '/posts'
     templateUrl: 'client/posts/posts-list.html'
     controller: 'PostsListCtrl'
+    controllerAs: 'postCtrl'
