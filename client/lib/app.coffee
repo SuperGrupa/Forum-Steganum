@@ -18,6 +18,7 @@ angular.module 'forumSteganum', [
     views:
       'header':
         templateUrl: 'client/header/header.html'
+        controller: 'HeaderCtrl as headCtrl'
       'footer':
         templateUrl: 'client/footer/footer.html'
   .state 'root.main',
