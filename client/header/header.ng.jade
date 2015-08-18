@@ -1,6 +1,16 @@
-div(style="background-color: red;")
-  md-icon(md-svg-icon="content:ic_clear_24px")
-  md-icon(md-svg-icon="communication:ic_clear_24px")
-  a(ui-sref="home") Home
-  a(ui-sref="todos") Go to todos
-  a(ui-sref="posts") Go to Forum
+md-toolbar.md-primary
+    div.md-toolbar-tools
+        md-button(ui-sref="home")
+            md-icon(md-svg-icon="action:ic_home_24px")
+            .title Home
+        md-button(ui-sref="posts")
+            md-icon(md-svg-icon="communication:ic_forum_24px")
+            .title Forum
+        md-button(ui-sref="todos")
+            md-icon(md-svg-icon="action:ic_assignment_24px")
+            .title Todos
+        span(flex)
+        .logo(ui-sref="home")
+            h1 Forum
+            md-icon(md-svg-icon="communication:ic_vpn_key_24px")
+            h1 Steganum
