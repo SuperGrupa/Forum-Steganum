@@ -2,13 +2,16 @@ Posts = new Mongo.Collection("posts")
 
 angular.module 'posts'
 .service 'postsServ', ($meteor) ->
-  all: $meteor.collection(Posts).subscribe('posts')
+    all: $meteor.collection(Posts).subscribe('posts')
 
-  add: (newPost) ->
-    $meteor.call 'addPost', newPost
+    add: (newPost) ->
+        $meteor.call 'addPost', newPost
 
-  delete: (post) ->
-    $meteor.call 'deletePost', post._id
+    delete: (post) ->
+        $meteor.call 'deletePost', post._id
 
-  update: (post) ->
-    $meteor.call 'updatePost', post._id, post.text
+    update: (post) ->
+        $meteor.call 'updatePost', post._id, post.text
+
+    findOwner: (post) ->
+        Meteor.users.findOne(post.userId)
