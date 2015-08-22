@@ -1,2 +1,42 @@
-div
-  span Footer
+md-whiteframe.md-whiteframe-z1(layout="row", layout-align="center center")
+    md-content(flex)
+        md-list
+            md-subheader.md-no-sticky Autorzy:
+            md-list-item.md-3-line
+                img.md-avatar(ng-src="https://s.gravatar.com/avatar/10a1100ff6a2b9143b0931f679f55a66?s=80",
+                        alt="Daniel Koza")
+                .md-list-item-text
+                    h3 Daniel Koza
+                    .email
+                        md-icon(md-svg-icon="content:ic_mail_24px")
+                        h4 Daniel.Koza@student.put.poznan.pl
+            md-list-item.md-3-line
+                img.md-avatar(ng-src="https://media.licdn.com/media/p/7/005/0b0/09b/3156ada.jpg",
+                        alt="Bartosz Kostaniak")
+                .md-list-item-text
+                    h3 Bartosz Kostaniak
+                    .email
+                        md-icon(md-svg-icon="content:ic_mail_24px")
+                        h4 Bartosz.Kostaniak@student.put.poznan.pl
+    md-content(flex)
+        md-list
+            md-subheader.md-no-sticky Promotor:
+            md-list-item.md-3-line
+                .md-list-item-text
+                    h3 prof. dr hab. inż. Jerzy.Brzezinski
+                    .email
+                        md-icon(md-svg-icon="content:ic_mail_24px")
+                        h4 Jerzy.Brzezinski@cs.put.poznan.pl
+            md-subheader.md-no-sticky Opiekun:
+            md-list-item.md-3-line
+                img.md-avatar(ng-src="https://avatars3.githubusercontent.com/u/376847?v=3&s=460",
+                        alt="Dariusz Dwornikowski")
+                .md-list-item-text
+                    h3 mgr. inż. Dariusz Dwornikowski
+                    .email
+                        md-icon(md-svg-icon="content:ic_mail_24px")
+                        h4 Dariusz.Dwornikowski@cs.put.poznan.pl
+      md-content(flex, layout="column", layout-align="center center")
+        img(src="http://fc.put.poznan.pl/themes/fcm/images/layout/footer.inst.logo.png")
+        img(src="http://www.fcm.put.poznan.pl/sites/default/files/fcm_logo.png")
+
