@@ -6,13 +6,22 @@
         height: 100%;
         margin: 0;
         padding: 10px 30px;
+        @media @phone {
+            padding: 10px
+        }
 
         md-icon {
             margin-right: 10px;
+            @media @phone {
+                margin-right: auto;
+            }
         }
 
         .title {
             display: inline-block;
+            @media @phone {
+                display: none;
+            }
         }
     }
 
@@ -31,6 +40,18 @@
             font-size: 48px;
             font-weight: 700;
             margin: 0;
+
+            &.big {
+                @media @phone,
+                @tablet {
+                    display: none;
+                }
+            }
+            &.small {
+                @media @desktop {
+                    display: none;
+                }
+            }
         }
     }
 }

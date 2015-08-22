@@ -9,7 +9,6 @@ urigo:angular
 coffeescript
 civilframe:angular-jade
 mquandalle:jade
-less
 accounts-ui
 accounts-password
 angularui:angular-ui-router
@@ -19,3 +18,4 @@ velocity:html-reporter
 angular:angular-material
 planettraining:material-design-icons
 reywood:publish-composite
+grove:less
