@@ -1,4 +1,4 @@
-md-whiteframe.md-whiteframe-z1(layout="row", layout-align="center center")
+md-whiteframe.md-whiteframe-z1(layout="row", layout-sm="column" layout-align="center center")
     md-content(flex)
         md-list
             md-subheader.md-no-sticky Autorzy:
@@ -7,36 +7,46 @@ md-whiteframe.md-whiteframe-z1(layout="row", layout-align="center center")
                         alt="Daniel Koza")
                 .md-list-item-text
                     h3 Daniel Koza
-                    .email
-                        md-icon(md-svg-icon="content:ic_mail_24px")
-                        h4 Daniel.Koza@student.put.poznan.pl
+                    .links(layout="row", layout-align="left center")
+                        a.email(href="mailto:Daniel.Koza@student.put.poznan.pl")
+                            md-icon(md-svg-icon="content:ic_mail_24px")
+                        a.github(href="http://github.com/dakolech")
+                            img.github(src="images/GitHub-Mark-32px.png")
             md-list-item.md-3-line
                 img.md-avatar(ng-src="https://media.licdn.com/media/p/7/005/0b0/09b/3156ada.jpg",
                         alt="Bartosz Kostaniak")
                 .md-list-item-text
                     h3 Bartosz Kostaniak
-                    .email
-                        md-icon(md-svg-icon="content:ic_mail_24px")
-                        h4 Bartosz.Kostaniak@student.put.poznan.pl
+                    .links(layout="row", layout-align="left center")
+                        a.email(href="mailto:Bartosz.Kostaniak@student.put.poznan.pl")
+                            md-icon(md-svg-icon="content:ic_mail_24px")
+                        a.github(href="https://github.com/Nitrooos")
+                            img.github(src="images/GitHub-Mark-32px.png")
     md-content(flex)
         md-list
             md-subheader.md-no-sticky Promotor:
             md-list-item.md-3-line
                 .md-list-item-text
                     h3 prof. dr hab. inż. Jerzy.Brzezinski
-                    .email
-                        md-icon(md-svg-icon="content:ic_mail_24px")
-                        h4 Jerzy.Brzezinski@cs.put.poznan.pl
+                    .links(layout="row", layout-align="left center")
+                        a.email(href="mailto:Jerzy.Brzezinski@cs.put.poznan.pl")
+                            md-icon(md-svg-icon="content:ic_mail_24px")
             md-subheader.md-no-sticky Opiekun:
             md-list-item.md-3-line
                 img.md-avatar(ng-src="https://avatars3.githubusercontent.com/u/376847?v=3&s=460",
                         alt="Dariusz Dwornikowski")
                 .md-list-item-text
                     h3 mgr. inż. Dariusz Dwornikowski
-                    .email
-                        md-icon(md-svg-icon="content:ic_mail_24px")
-                        h4 Dariusz.Dwornikowski@cs.put.poznan.pl
+                    .links(layout="row", layout-align="left center")
+                        a.email(href="mailto:Dariusz.Dwornikowski@cs.put.poznan.pl")
+                            md-icon(md-svg-icon="content:ic_mail_24px")
+                        a.github(href="https://github.com/tdi")
+                            img.github(src="images/GitHub-Mark-32px.png")
+                        a.home(href="www.cs.put.poznan.pl/ddwornikowski/")
+                            md-icon(md-svg-icon="action:ic_home_24px")
       md-content(flex, layout="column", layout-align="center center")
-        img(src="http://fc.put.poznan.pl/themes/fcm/images/layout/footer.inst.logo.png")
-        img(src="http://www.fcm.put.poznan.pl/sites/default/files/fcm_logo.png")
+        a.pp(href="http://fc.put.poznan.pl")
+            img(src="http://fc.put.poznan.pl/themes/fcm/images/layout/footer.inst.logo.png")
+        a.pp-fc(href="http://put.poznan.pl")
+            img(src="http://www.fcm.put.poznan.pl/sites/default/files/fcm_logo.png")
 

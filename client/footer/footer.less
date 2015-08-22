@@ -1,23 +1,29 @@
 footer {
-  md-whiteframe {
-    md-list {
-      md-list-item.md-3-line {
-        .md-list-item-text {
-          .email {
-            display: none;
-            font-size: 12px;
-            @media @phone,
-            @tablet {
-              h4 {
-                display: none;
-              }
+    md-whiteframe {
+        md-list {
+            md-list-item.md-3-line {
+                .md-list-item-text {
+                    font-size: 12px;
+                    h3 {
+                        line-height: 1em;
+                    }
+                    .links {
+                        a {
+                            margin: 0 5px;
+                        }
+                    }
+                }
             }
-          }
         }
-      }
+        img {
+            margin: 15px;
+
+            &.github {
+                margin: 0;
+                width: 20px;
+                height: 20px;
+                margin-left: 5px;
+            }
+        }
     }
-    img {
-      margin: 15px;
-    }
-  }
 }
