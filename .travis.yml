@@ -3,13 +3,14 @@ node_js:
   - "0.10"
 script:
   - meteor run --test
-  - .gulp/gulp test:unit
+  - "cd .gulp && gulp test:unit"
 before_script:
   - cd .gulp
   - npm install
   # - npm install -g codeclimate-test-reporter
   - gulp build
   - cd ../
+  - curl https://install.meteor.com/ | sh
 # after_script:
 #   - codeclimate < coverage/phantomjs/lcov.info
 # addons:
