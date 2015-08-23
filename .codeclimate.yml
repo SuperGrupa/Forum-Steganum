@@ -1,6 +1,5 @@
 languages:
   JavaScript: true
-  CoffeeScript: true
 engines:
   coffeelint:
     enabled: true
