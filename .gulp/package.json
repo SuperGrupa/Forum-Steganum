@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "gulp server",
-    "postinstall": "npm install -g bower && bower install"
+    "postinstall": "npm install bower && bower install && npm install gulp"
   },
   "name": "Forum-Steganum",
   "version": "0.1.0",
