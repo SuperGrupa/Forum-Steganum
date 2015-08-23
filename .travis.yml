@@ -13,7 +13,7 @@ before_script:
   - cd ../
   - curl https://install.meteor.com/ | sh
 after_script:
-  - codeclimate < ../tests/coverage/phantomjs/lcov.info
+  - "cd .gulp && codeclimate < ../tests/coverage/phantomjs/lcov.info"
 addons:
   code_climate:
     repo_token: 6ca72ca29fad172c4217d0f11b5254e433ac548258b4508c20b7db49b1e09d14
