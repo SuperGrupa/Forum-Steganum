@@ -1,5 +1,3 @@
-languages:
-  JavaScript: true
 engines:
   coffeelint:
     enabled: true
