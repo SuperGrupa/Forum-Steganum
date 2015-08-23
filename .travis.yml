@@ -8,15 +8,15 @@ script:
 before_script:
   - cd .gulp
   - npm install
-  # - npm install -g codeclimate-test-reporter
+  - npm install -g codeclimate-test-reporter
   - gulp build
   - cd ../
   - curl https://install.meteor.com/ | sh
-# after_script:
-#   - codeclimate < coverage/phantomjs/lcov.info
-# addons:
-#   code_climate:
-#     repo_token: 9bc93c16ae561b78e7f3933e6c0d25be1ea60cff3e101df657f70ded923a1333
+after_script:
+  - codeclimate < ../tests/coverage/phantomjs/lcov.info
+addons:
+  code_climate:
+    repo_token: 6ca72ca29fad172c4217d0f11b5254e433ac548258b4508c20b7db49b1e09d14
 services:
   - mongodb
 notifications:

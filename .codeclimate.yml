@@ -1,0 +1,7 @@
+languages:
+  JavaScript: true
+  CoffeeScript: true
+exclude_paths:
+  - "tests/jasmine/server/unit/packageMocksSpec.js"
+  - "tests/jasmine/server/unit/package-stubs.js"
+  - "tests/client/e2e/protractor.config.js"
