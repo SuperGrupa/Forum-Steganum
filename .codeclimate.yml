@@ -1,6 +1,13 @@
 languages:
   JavaScript: true
   CoffeeScript: true
+engines:
+  coffeelint:
+    enabled: true
+ratings:
+   paths:
+   - client/**
+   - server/**
 exclude_paths:
   - "tests/jasmine/server/unit/packageMocksSpec.js"
   - "tests/jasmine/server/unit/package-stubs.js"
