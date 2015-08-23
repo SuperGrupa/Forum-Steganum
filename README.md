@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/SuperGrupa/Forum-Steganum.svg)](https://travis-ci.org/SuperGrupa/Forum-Steganum)
+
 # Forum-Steganum
 Implementacja przykładowego internetowego forum o 2 twarzach, ukrywającego prawdziwe znaczenie zamieszczonych wpisów dzięki technice steganografii. Projekt realizowany w ramach pracy inżynierskiej na Politechnice Poznańskiej.
 
@@ -11,3 +13,14 @@ http://forum-steganum.meteor.com/
     meteor
 
     http://localhost:3000
+    
+# Odpalenie testów jednostkowych klienta
+
+    cd .gulp && npm install && gulp build
+    gulp test:unit
+    
+# Odpalenie testów serwera
+
+    meteor run --test
+    
+
