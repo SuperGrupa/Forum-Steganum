@@ -5,8 +5,8 @@ engines:
     enabled: true
 ratings:
    paths:
-   - client/**
-   - server/**
+   - client/**/*.coffee
+   - server/**.coffee
 exclude_paths:
   - "tests/jasmine/server/unit/packageMocksSpec.js"
   - "tests/jasmine/server/unit/package-stubs.js"
