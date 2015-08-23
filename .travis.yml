@@ -11,8 +11,8 @@ before_script:
   - gulp build
   - cd ../
   - curl https://install.meteor.com/ | sh
-after_script:
-  - "cd ../ && npm install -g codeclimate-test-reporter && codeclimate < tests/coverage/phantomjs/lcov.info"
+after_success:
+  - "cd ../ && npm install codeclimate-test-reporter && codeclimate-test-reporter < tests/coverage/phantomjs/lcov.info"
 addons:
   code_climate:
     repo_token: 6ca72ca29fad172c4217d0f11b5254e433ac548258b4508c20b7db49b1e09d14
