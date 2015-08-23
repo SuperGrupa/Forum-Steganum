@@ -1,6 +1,7 @@
 language: node_js
 node_js:
   - "0.10"
+sudo: required
 script:
   - meteor run --test
   - "cd .gulp && gulp test:unit"
@@ -16,5 +17,7 @@ before_script:
 # addons:
 #   code_climate:
 #     repo_token: 9bc93c16ae561b78e7f3933e6c0d25be1ea60cff3e101df657f70ded923a1333
+services:
+  - mongodb
 notifications:
   email: false
