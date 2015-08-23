@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/SuperGrupa/Forum-Steganum.svg)](https://travis-ci.org/SuperGrupa/Forum-Steganum)
+[![Code Climate](https://codeclimate.com/github/SuperGrupa/Forum-Steganum/badges/gpa.svg)](https://codeclimate.com/github/SuperGrupa/Forum-Steganum)
+[![Test Coverage](https://codeclimate.com/github/SuperGrupa/Forum-Steganum/badges/coverage.svg)](https://codeclimate.com/github/SuperGrupa/Forum-Steganum/coverage)
 
 # Forum-Steganum
 Implementacja przykładowego internetowego forum o 2 twarzach, ukrywającego prawdziwe znaczenie zamieszczonych wpisów dzięki technice steganografii. Projekt realizowany w ramach pracy inżynierskiej na Politechnice Poznańskiej.
