@@ -20,3 +20,6 @@ services:
   - mongodb
 notifications:
   email: false
+branches:
+  only:
+    - master
