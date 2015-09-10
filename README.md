@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/SuperGrupa/Forum-Steganum.svg)](https://travis-ci.org/SuperGrupa/Forum-Steganum)
+[![Build Status](https://travis-ci.org/SuperGrupa/Forum-Steganum.svg?branch=master)](https://travis-ci.org/SuperGrupa/Forum-Steganum)
 [![Code Climate](https://codeclimate.com/github/SuperGrupa/Forum-Steganum/badges/gpa.svg)](https://codeclimate.com/github/SuperGrupa/Forum-Steganum)
 [![Test Coverage](https://codeclimate.com/github/SuperGrupa/Forum-Steganum/badges/coverage.svg)](https://codeclimate.com/github/SuperGrupa/Forum-Steganum/coverage)
 ![Repo Size](https://reposs.herokuapp.com/?path=SuperGrupa/Forum-Steganum)
