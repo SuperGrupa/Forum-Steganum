@@ -1,3 +1,4 @@
+[![Stories in In Progress](https://badge.waffle.io/SuperGrupa/Forum-Steganum.svg?label=In%20Progress&title=In%20Progress)](http://waffle.io/SuperGrupa/Forum-Steganum)
 [![Build Status](https://travis-ci.org/SuperGrupa/Forum-Steganum.svg?branch=master)](https://travis-ci.org/SuperGrupa/Forum-Steganum)
 [![Code Climate](https://codeclimate.com/github/SuperGrupa/Forum-Steganum/badges/gpa.svg)](https://codeclimate.com/github/SuperGrupa/Forum-Steganum)
 [![Test Coverage](https://codeclimate.com/github/SuperGrupa/Forum-Steganum/badges/coverage.svg)](https://codeclimate.com/github/SuperGrupa/Forum-Steganum/coverage)
