@@ -1,7 +1,6 @@
 angular.module 'posts'
 .directive 'singlePost', ->
   restrict: 'AE'
-  replace: true
   scope: true
   bindToController:
     post: '='

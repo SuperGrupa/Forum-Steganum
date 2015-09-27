@@ -1,9 +1,15 @@
 @phone: ~"(max-width: 767px)";
 @tablet: ~"(min-width: 767px) and (max-width: 991px)";
-@desktop: ~"(min-width: 992px)";
+@laptop: ~"(min-width: 992px) and (max-width: 1199px)";
+@desktop: ~"(min-width: 1200px)";
 
 @import "client/layout.less";
 @import "client/header/header.less";
 @import "client/footer/footer.less";
 @import "client/posts/posts.less";
-@import "client/todos/todos.less";
+
+@import "client/posts/newPost/newPost.less";
+@import "client/forms.less";
+
+@import "client/posts/postsList/postList.less";
+@import "client/posts/postsList/singlePost/singlePost.less";

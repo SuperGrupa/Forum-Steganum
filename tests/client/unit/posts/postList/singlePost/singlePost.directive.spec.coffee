@@ -1,7 +1,7 @@
 'use strict'
 
 describe 'Directive: singlePost', ->
-    beforeEach module 'forumSteganum'
+    beforeEach module 'posts'
     beforeEach module 'templates'
 
     element = {}

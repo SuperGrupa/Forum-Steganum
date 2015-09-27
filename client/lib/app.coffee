@@ -4,7 +4,6 @@ angular.module 'forumSteganum', [
   'ngMaterial'
   'icons'
   'home'
-  'todos'
   'sections'
   'posts'
  ]

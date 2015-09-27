@@ -1,7 +1,7 @@
 'use strict'
 
 describe 'Directive: postList', ->
-    beforeEach module 'forumSteganum',
+    beforeEach module 'posts',
         singlePostDirective:
             restrict: 'AE'
     beforeEach module 'templates'
