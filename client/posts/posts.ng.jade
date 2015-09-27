@@ -1,6 +1,4 @@
 .container
-  header
-    meteor-include(src='loginButtons')
-    form.new-post(ng-submit="postCtrl.post.add(newPost); newPost='';", ng-show="$root.currentUser")
-      input(ng-model='newPost', type='text', name='text', placeholder='Type to add new posts')
-  posts-list(posts="postCtrl.post.all")
+    posts-list(posts="postCtrl.post.all")
+    new-post
+//- meteor-include(src='loginButtons')

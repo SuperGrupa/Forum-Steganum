@@ -1,7 +1,6 @@
 angular.module 'posts'
 .directive 'postsList', ->
   restrict: 'AE'
-  replace: true
   scope: true
   bindToController:
     posts: '='
