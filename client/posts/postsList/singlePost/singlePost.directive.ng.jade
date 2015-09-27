@@ -1,6 +1,6 @@
 .single-post
     md-whiteframe.md-whiteframe-z1(layout, layout-align="left center")
-        md-icon.delete(md-svg-icon="action:ic_delete_24px")
+        md-icon.delete(md-svg-icon="action:ic_delete_24px", ng-click="postCtrl.post.delete(post)")
         .container
             .author
                 strong {{ postCtrl.post.findOwner(singleDir.post).username }} 

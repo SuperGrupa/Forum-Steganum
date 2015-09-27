@@ -1,5 +1,5 @@
 md-toolbar.md-primary
-    div.md-toolbar-tools    
+    div.md-toolbar-tools
         .buttons-container
             md-button(ui-sref="home")
                 md-icon(md-svg-icon="action:ic_home_24px")
@@ -7,6 +7,12 @@ md-toolbar.md-primary
             md-button(ui-sref="sections")
                 md-icon(md-svg-icon="communication:ic_forum_24px")
                 .title Forum
+            md-button(ui-sref="login", ng-hide="currentUser")
+                md-icon(md-svg-icon="communication:ic_forum_24px")
+                .title Login
+            md-button(ng-click="headCtrl.logout()", ng-show="currentUser")
+                md-icon(md-svg-icon="communication:ic_forum_24px")
+                .title Logout
         span(flex)
         .logo(ui-sref="home")
             h1.big Forum

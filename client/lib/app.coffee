@@ -6,6 +6,7 @@ angular.module 'forumSteganum', [
   'home'
   'sections'
   'posts'
+  'users'
  ]
 
 .config ($urlRouterProvider, $stateProvider, $locationProvider) ->
