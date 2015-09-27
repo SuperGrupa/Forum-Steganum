@@ -5,6 +5,7 @@ angular.module 'forumSteganum', [
   'icons'
   'home'
   'todos'
+  'sections'
   'posts'
  ]
 

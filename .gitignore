@@ -3,3 +3,4 @@ tests/coverage
 .gulp/node_modules
 .gulp/components
 .gulp/www
+.vpn
