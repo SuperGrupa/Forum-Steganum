@@ -1,12 +1,21 @@
 html {
+  background-color: #EFEFEF;
+  body {
     background-color: #EFEFEF;
-    body {
-        background-color: #EFEFEF;
 
-        md-whiteframe {
-            background-color: white;
-            margin: 10px;
-            min-height: 50%;
-        }
+    .main, footer {
+      @media @laptop,
+      @desktop {
+        margin: 0 auto;
+        width: 1000px;
+      }
     }
+
+    md-whiteframe {
+      background-color: white;
+      margin: 10px;
+      min-height: 50%;
+      padding: 10px;
+    }
+  }
 }
