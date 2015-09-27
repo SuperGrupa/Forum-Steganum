@@ -16,6 +16,3 @@ describe 'App dependencies', ->
 
   it 'should have ui.router as a dependency', ->
     expect(hasModule('ui.router')).toEqual(true)
-
-  it 'should have todos as a dependency', ->
-    expect(hasModule('todos')).toEqual(true)
