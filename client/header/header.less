@@ -1,29 +1,37 @@
 .md-toolbar-tools {
     padding: 0;
 
-    .md-button {
-        display: flex;
-        height: 100%;
+    .buttons-container {
+        display: inherit;
         margin: 0;
-        padding: 10px 30px;
-        @media @phone {
-            padding: 10px;
-            display: block;
+        @media @desktop {
+            margin-left: 100px;
         }
 
-        md-icon {
-            margin-right: 10px;
+        .md-button {
+            display: flex;
+            height: 100%;
+            margin: 0;
+            padding: 10px 30px;
             @media @phone {
-                margin-right: auto;
-                margin-top: -10px;
-            }
-        }
-
-        .title {
-            display: inline-block;
-            @media @phone {
+                padding: 10px;
                 display: block;
-                margin-top: -15px;
+            }
+
+            md-icon {
+                margin-right: 10px;
+                @media @phone {
+                    margin-right: auto;
+                    margin-top: -10px;
+                }
+            }
+
+            .title {
+                display: inline-block;
+                @media @phone {
+                    display: block;
+                    margin-top: -15px;
+                }
             }
         }
     }
@@ -32,6 +40,9 @@
         cursor: pointer;
         display: flex;
         margin-right: 30px;
+        @media @desktop {
+            margin-right: 130px;
+        }
 
         md-icon {
             height: 48px;
@@ -51,7 +62,8 @@
                 }
             }
             &.small {
-                @media @desktop {
+                @media @laptop,
+                @desktop {
                     display: none;
                 }
             }
