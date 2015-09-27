@@ -1,3 +1,4 @@
-ul
-    li(ng-repeat='section in listDir.sections')
+md-list
+    md-subheader.md-no-sticky Dostępne działy
+    md-list-item.md-2-line(ng-repeat='section in listDir.sections' role="listitem")
         single-section(section="section")
