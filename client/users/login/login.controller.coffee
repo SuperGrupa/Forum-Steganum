@@ -10,7 +10,7 @@ angular.module('users')
 
     vm.login = ->
         $meteor.loginWithPassword(vm.credentials.email, vm.credentials.password).then (->
-            $state.go 'home'
+            $state.go $state.previous
             return
         ), (err) ->
             vm.error = 'Login error - ' + err
