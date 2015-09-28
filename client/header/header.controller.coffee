@@ -5,6 +5,5 @@ angular.module('forumSteganum')
     vm.logout = ->
         $meteor.logout().then ->
             $state.go 'home'
-            return
 
     return vm
