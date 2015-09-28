@@ -1,15 +1,12 @@
-md-whiteframe.md-whiteframe-z1(layout, layout-align="center center")
-    div(layout="row", layout-align="space-around center")
-        div.md-warn(ng-show="logCtrl.error")
-            small {{ logCtrl.error }}
-        form(layout="column")
-            md-input-container
-                md-icon(md-svg-icon="content:ic_mail_24px")
-                input(type="text" ng-model="logCtrl.credentials.email"
-                        placeholder="email" aria-label="email")
-            md-input-container
-                md-icon(md-svg-icon="action:ic_lock_open_24px")
-                input(type="password" ng-model="logCtrl.credentials.password"
-                        placeholder="password" aria-label="password")
-            md-button.md-raised.md-primary(ng-click="logCtrl.login()" aria-label="login") Sign In
-        div(layout="row" layout-align="space-around center")
+md-whiteframe.login-form.md-whiteframe-z1(layout="column", layout-align="center center")
+    h2.title Login or create an account
+    div.md-warn(ng-show="logCtrl.error")
+        small {{ logCtrl.error }}
+    form(layout="column")
+        md-input-container
+            input(type="text" ng-model="logCtrl.credentials.email"
+                    placeholder="email" aria-label="email")
+        md-input-container
+            input(type="password" ng-model="logCtrl.credentials.password"
+                    placeholder="password" aria-label="password")
+        md-button.md-raised.md-primary(ng-click="logCtrl.login()" aria-label="login") Sign In
