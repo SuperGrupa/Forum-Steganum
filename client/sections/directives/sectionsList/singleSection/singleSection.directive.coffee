@@ -5,7 +5,7 @@ angular.module 'sections'
       scope: true
       bindToController:
           section: '='
-      templateUrl: 'client/sections/sectionsList/singleSection/singleSection.directive.html'
+      templateUrl: 'client/sections/directives/sectionsList/singleSection/singleSection.directive.html'
       controllerAs: 'singleDir'
       controller: () ->
           vm = this
