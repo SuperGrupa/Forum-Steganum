@@ -1,19 +1,26 @@
 Sections = new Mongo.Collection("sections")
 
-if Sections.find().count() == 0
-    sections = [
-          name: 'Topic no 1'
-          description: 'Description no 1'
-        ,
-          name: 'Topic no 2'
-          description: 'Description no 2'
-        ,
-          name: 'Topic no 3'
-          description: 'Description no 3'
-    ]
+do ->
+    if Sections.find().count() == 0
+        sections = [
+              _id: 1
+              name: 'Section no 1'
+              description: 'Description no 1'
+              topic_ids: [1]
+            ,
+              _id: 2
+              name: 'Section no 2'
+              description: 'Description no 2'
+              topic_ids: [2, 3, 5]
+            ,
+              _id: 3
+              name: 'Section no 3'
+              description: 'Description no 3'
+              topic_ids: [4, 6]
+        ]
 
-    Sections.insert section for section in sections
+        Sections.insert section for section in sections
 
-Meteor.publish 'sections', ->
-    Sections.find {},
-        sort: createdAt: -1
+    Meteor.publish 'sections', ->
+        Sections.find {},
+            sort: createdAt: -1
