@@ -1,4 +1,9 @@
 angular.module('forumSteganum')
-.controller 'HeaderCtrl', (postsServ) ->
+.controller 'HeaderCtrl', ($meteor, $state) ->
     vm = this
+
+    vm.logout = ->
+        $meteor.logout().then ->
+            $state.go 'home'
+
     return vm

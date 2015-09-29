@@ -1,0 +1,12 @@
+md-whiteframe.login-form.md-whiteframe-z1(layout="column", layout-align="center center")
+    h2.title Login or create an account
+    form(layout="column")
+        md-input-container
+            input(type="text" ng-model="logCtrl.credentials.email"
+                    placeholder="email" aria-label="email")
+        md-input-container
+            input(type="password" ng-model="logCtrl.credentials.password"
+                    placeholder="password" aria-label="password")
+        div.md-warn.error-container(ng-show="logCtrl.error")
+            small {{ logCtrl.error }}
+        md-button.md-raised.md-primary(ng-click="logCtrl.login()" aria-label="login") Sign In
