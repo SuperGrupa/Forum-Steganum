@@ -1,0 +1,12 @@
+md-whiteframe.new-topic-form.md-whiteframe-z1(layout="column", layout-align="center center")
+    h2.title Create new topic
+    form(layout="column")
+        md-input-container
+            input(type="text" ng-model="topicCtrl.topic.name"
+                    placeholder="topic name" aria-label="Topic name")
+        md-input-container
+            input(type="description" ng-model="topicCtrl.topic.description"
+                    placeholder="description" aria-label="Description")
+        div.md-warn.error-container(ng-show="topicCtrl.error")
+            small {{ topicCtrl.error }}
+        md-button.md-raised.md-primary(ng-click="topicCtrl.create()" aria-label="Create topic") Create
