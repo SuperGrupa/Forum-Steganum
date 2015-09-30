@@ -13,3 +13,7 @@ do ->
     Meteor.publish 'topics', ->
         Topics.find {},
             sort: createdAt: -1
+
+    Meteor.publish 'topicsByIds', (topic_ids) ->
+        Topics.find { _id: { $in: topic_ids } },
+            sort: createdAt: -1

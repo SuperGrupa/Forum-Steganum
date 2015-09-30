@@ -6,17 +6,17 @@ do ->
               _id: '1'
               name: 'Section no 1'
               description: 'Description no 1'
-              topic_ids: [1]
+              topic_ids: ['1']
             ,
               _id: '2'
               name: 'Section no 2'
               description: 'Description no 2'
-              topic_ids: [2, 3, 5]
+              topic_ids: ['2', '3', '5']
             ,
               _id: '3'
               name: 'Section no 3'
               description: 'Description no 3'
-              topic_ids: [4, 6]
+              topic_ids: ['4', '6']
         ]
 
         Sections.insert section for section in sections
@@ -24,3 +24,7 @@ do ->
     Meteor.publish 'sections', ->
         Sections.find {},
             sort: createdAt: -1
+
+    Meteor.publish 'sectionTopicIds', (section_id) ->
+        Sections.find { _id: section_id },
+            fields: { 'topic_ids': 1 }
