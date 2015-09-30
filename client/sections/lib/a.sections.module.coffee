@@ -13,4 +13,5 @@ angular.module 'sections', ['ui.router']
         controllerAs: 'sectionCtrl'
     ).state('section.show',
         url: '/:id'
+        templateUrl: 'client/sections/show/show.section.html'
     )

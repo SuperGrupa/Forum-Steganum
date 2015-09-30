@@ -9,6 +9,7 @@ angular.module 'topics', ['ui.router']
         url: 's'
     ).state('topic.new',
         url: '/new'
+        templateUrl: 'client/topics/new/new.topic.html'
     ).state('topic.posts'
         url: '/:id/page/:page_id'
     ).state('topic.delete',
