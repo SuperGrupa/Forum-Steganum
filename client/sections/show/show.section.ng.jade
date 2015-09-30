@@ -1,3 +1,6 @@
-.single-section
+.section-topics
     md-whiteframe.md-whiteframe-z1(layout, layout-align="left center")
-        button(ng-click="showSectionCtrl.getTopics()") getTopics
+        ul
+            li(ng-repeat="topic in showSectionCtrl.topics")
+                p {{ topic.name }}
+                p {{ topic.description }}

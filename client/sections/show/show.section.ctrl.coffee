@@ -1,10 +1,11 @@
 angular.module('sections')
 .controller 'ShowSectionCtrl', (sectionsServ, $stateParams) ->
     vm = this
-    vm.section = sectionsServ
-    vm.id = $stateParams.id
+    do ->
+        vm.id = $stateParams.id
+        vm.section = sectionsServ
 
-    vm.getTopics = ->
-        vm.section.getTopics(vm.id)
+        vm.section.getTopics(vm.id).then (result) ->
+            vm.topics = result
 
     return vm
