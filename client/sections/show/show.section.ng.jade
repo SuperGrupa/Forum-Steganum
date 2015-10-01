@@ -6,3 +6,5 @@
                     h3 {{ topic.name }}
                     p {{ topic.description }}
                 md-divider(ng-if="!$last")
+    md-button.md-raised.md-primary.submit(ui-sref="topic.new") Create new topic
+div(ui-view="")

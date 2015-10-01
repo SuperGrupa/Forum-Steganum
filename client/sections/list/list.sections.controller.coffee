@@ -1,5 +1,5 @@
 angular.module('sections')
-.controller 'SectionCtrl', (sectionsServ) ->
+.controller 'ListSectionsCtrl', (sectionsServ) ->
     vm = this
     vm.section = sectionsServ
     return vm

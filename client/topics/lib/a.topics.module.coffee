@@ -4,9 +4,8 @@ angular.module 'topics', ['ui.router']
     $stateProvider.state('topic',
         url: '/topic'
         parent: 'section.show'
+        templateUrl: 'client/topics/topics.html'
         abstract: true
-    ).state('topic.list',
-        url: 's'
     ).state('topic.new',
         url: '/new'
         templateUrl: 'client/topics/new/new.topic.html'

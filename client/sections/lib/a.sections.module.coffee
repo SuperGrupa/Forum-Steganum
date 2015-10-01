@@ -9,8 +9,8 @@ angular.module 'sections', ['ui.router']
     ).state('section.list',
         url: 's'
         templateUrl: 'client/sections/list/list.sections.html'
-        controller: 'SectionCtrl'
-        controllerAs: 'sectionCtrl'
+        controller: 'ListSectionsCtrl'
+        controllerAs: 'listSectionsCtrl'
     ).state('section.show',
         url: '/:id'
         templateUrl: 'client/sections/show/show.section.html'
