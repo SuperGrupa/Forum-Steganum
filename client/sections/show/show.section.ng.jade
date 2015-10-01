@@ -1,6 +1,8 @@
 .section-topics
     md-whiteframe.md-whiteframe-z1(layout, layout-align="left center")
-        ul
-            li(ng-repeat="topic in showSectionCtrl.topics")
-                p {{ topic.name }}
-                p {{ topic.description }}
+        md-list
+            md-list-item.selectable(ng-repeat="topic in showSectionCtrl.topics")
+                .md-list-item-text
+                    h3 {{ topic.name }}
+                    p {{ topic.description }}
+                md-divider(ng-if="!$last")
