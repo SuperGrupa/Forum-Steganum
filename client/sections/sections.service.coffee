@@ -1,6 +1,3 @@
-Sections = new Mongo.Collection('sections')
-Topics = new Mongo.Collection('topics')
-
 angular.module 'sections'
 .service 'sectionsServ', ($meteor, $q) ->
     all: $meteor.collection(Sections).subscribe('sections')

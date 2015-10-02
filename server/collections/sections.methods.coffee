@@ -28,3 +28,7 @@ do ->
     Meteor.publish 'sectionTopicIds', (section_id) ->
         Sections.find { _id: section_id },
             fields: { 'topic_ids': 1 }
+
+    Meteor.publish 'sectionName', (section_id) ->
+        Sections.find { _id: section_id },
+            fields { 'name': 1 }

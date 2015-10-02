@@ -1,14 +1,14 @@
 md-whiteframe.new-topic-form.md-whiteframe-z1(layout="column", layout-align="center center")
     .title
         h2 Create new topic
-        h4 in section '{{ 'SECTION' }}'
+        h4 in section '{{ newTopicCtrl.section.name }}'
     form(layout="column")
         md-input-container
-            input(type="text" ng-model="topicCtrl.topic.name"
+            input(type="text" ng-model="newTopicCtrl.topic.name"
                     placeholder="topic name" aria-label="Topic name")
         md-input-container
-            input(type="description" ng-model="topicCtrl.topic.description"
+            input(type="description" ng-model="newTopicCtrl.topic.description"
                     placeholder="description" aria-label="Description")
-        div.md-warn.error-container(ng-show="topicCtrl.error")
+        div.md-warn.error-container(ng-show="newTopicCtrl.error")
             small {{ topicCtrl.error }}
-        md-button.md-raised.md-primary(ng-click="topicCtrl.create()" aria-label="Create topic") Create
+        md-button.md-raised.md-primary(ng-click="newTopicCtrl.create()" aria-label="Create topic") Create
