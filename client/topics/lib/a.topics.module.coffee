@@ -3,7 +3,7 @@ angular.module 'topics', ['ui.router']
 .config ($stateProvider) ->
     $stateProvider.state('topic',
         url: '/topic'
-        parent: 'section.show'
+        parent: 'section.one'
         templateUrl: 'client/topics/topics.html'
         abstract: true
     ).state('topic.new',

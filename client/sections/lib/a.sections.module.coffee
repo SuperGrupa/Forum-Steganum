@@ -11,8 +11,14 @@ angular.module 'sections', ['ui.router']
         templateUrl: 'client/sections/list/list.sections.html'
         controller: 'ListSectionsCtrl'
         controllerAs: 'listSectionsCtrl'
-    ).state('section.show',
+    ).state('section.one',
+        # ten stan jest abstrakcyjny, ponieważ jego potomkiem jest oprócz section.one.show także
+        # topic i topic.new w module topic
         url: '/:id'
+        abstract: true
+        templateUrl: 'client/sections/sections.html'
+    ).state('section.one.show',
+        url: ''
         templateUrl: 'client/sections/show/show.section.html'
         controller: 'ShowSectionCtrl'
         controllerAs: 'showSectionCtrl'
