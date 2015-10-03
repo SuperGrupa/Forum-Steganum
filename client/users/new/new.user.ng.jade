@@ -1,0 +1,15 @@
+md-whiteframe.auth-form.md-whiteframe-z1(layout="column", layout-align="center center")
+    auth-buttons(login="false")
+    form(name="nUCtrl.regForm" layout="column")
+        md-input-container
+            input(type="text" ng-model="userCtrl.auth.email" name="email"
+                    ng-change="nUCtrl.updateLogin()" placeholder="E-mail" aria-label="email")
+        md-input-container
+            input(type="text" ng-model="userCtrl.auth.userName" name="userName"
+                    placeholder="Login" aria-label="login")
+        md-input-container
+            input(type="password" ng-model="userCtrl.auth.password" name="password"
+                    placeholder="Password" aria-label="password")
+        div.md-warn.error-container(ng-show="userCtrl.auth.error")
+            small {{ userCtrl.auth.error }}
+        md-button.md-raised.md-primary(ng-click="userCtrl.auth.register()" aria-label="register") Sign Up
