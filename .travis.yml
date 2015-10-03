@@ -4,11 +4,10 @@ node_js:
 sudo: required
 script:
   - meteor run --test
-  - "cd .gulp && gulp test:unit"
+  - "cd .gulp && gulp"
 before_script:
   - cd .gulp
   - npm install
-  - gulp build
   - cd ../
   - curl https://install.meteor.com/ | sh
 after_success:

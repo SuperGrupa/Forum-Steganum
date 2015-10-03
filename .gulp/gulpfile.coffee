@@ -69,16 +69,24 @@ gulp.task 'templates', ->
     .on('error', notify.onError((error) -> error.message))
     .pipe(gulp.dest(destinations.templates))
 
-gulp.task 'unit-tests', (cb) ->
+
+tests = (cb, singleRun) ->
   args = ['start', '../tests/client/unit/karma.config.coffee']
-  for name in ['browsers', 'reporters']
-    args.push "--#{name}", "#{gutil.env[name]}" if gutil.env.hasOwnProperty(name)
+  args.push "--singleRun", singleRun.toString()
 
   child = child_process.spawn "node_modules/.bin/karma", args,
     stdio: 'inherit'
   .on 'exit', (code) ->
     child.kill() if child
     cb(code)
+
+gulp.task 'unit-tests', (cb) ->
+  tests(cb, true)
+  cb
+
+gulp.task 'ut', (cb) ->
+  tests(cb, false)
+  cb
 
 gulp.task 'build', (cb) ->
   runSequence 'clean',
@@ -90,3 +98,6 @@ gulp.task 'build', (cb) ->
 
 gulp.task 'default', (cb) ->
   runSequence 'build', 'unit-tests', cb
+
+gulp.task 'dev', (cb) ->
+  runSequence 'build', 'ut', cb
