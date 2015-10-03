@@ -7,6 +7,5 @@ md-whiteframe.auth-form.md-whiteframe-z1(layout="column", layout-align="center c
         md-input-container
             input(type="password" ng-model="userCtrl.auth.password" name="password"
                     placeholder="Password" aria-label="password")
-        div.md-warn.error-container(ng-show="userCtrl.auth.error")
-            small {{ userCtrl.auth.error }}
+        show-message(message="userCtrl.auth.error.login", type="error")
         md-button.md-raised.md-primary(ng-click="userCtrl.auth.logIn()" aria-label="login") Sign In
