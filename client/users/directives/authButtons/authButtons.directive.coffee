@@ -4,7 +4,7 @@ angular.module 'posts'
   scope:
     login: '='
   bindToController: true
-  templateUrl: 'client/users/directives/auth-buttons/auth-buttons.directive.html'
+  templateUrl: 'client/users/directives/authButtons/authButtons.directive.html'
   controllerAs: 'vm'
   controller: () ->
     vm = this
