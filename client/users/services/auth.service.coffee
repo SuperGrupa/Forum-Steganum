@@ -1,19 +1,27 @@
 angular.module 'users'
 .service 'authServ', ($meteor, $state) ->
 
-  email: ''
-  password: ''
-  userName: ''
-  error: ''
+  error = {
+    login: ''
+    register: ''
+  }
 
   goTo = ->
     if $state.previous.name then $state.go($state.previous) else $state.go('home')
 
+  errors: () ->
+    error
+
+  email: ''
+  password: ''
+  userName: ''
+  error: error
+
   logIn: () ->
     $meteor.loginWithPassword(this.email, this.password).then (->
-          goTo()
-      ), (err) ->
-          this.error = 'Login error - ' + err
+      goTo()
+    ), (err) ->
+      error.login = 'Login error - ' + err
 
   logout: () ->
     $meteor.logout().then ->
@@ -28,6 +36,6 @@ angular.module 'users'
     $meteor.createUser(credentials).then (->
       goTo()
     ), (err) ->
-        this.error = 'Register error - ' + err
+      error.register = 'Register error - ' + err
 
 

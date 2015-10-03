@@ -14,6 +14,7 @@ module.exports = (config) ->
       'client/unit/tests.helper.js'
 
       '../client/lib/*.coffee'
+      '../client/**/lib/*.coffee'
       '../client/**/*.coffee'
 
 
