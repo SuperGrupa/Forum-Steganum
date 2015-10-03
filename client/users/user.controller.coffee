@@ -1,4 +1,7 @@
 angular.module('users')
-.controller 'UserCtrl', () ->
+.controller 'UserCtrl', (authServ) ->
   vm = this
+
+  vm.auth = authServ
+
   return vm
