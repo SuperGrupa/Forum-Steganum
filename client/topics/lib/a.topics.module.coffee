@@ -1,5 +1,3 @@
-@Topics = new Mongo.Collection('topics')
-
 angular.module 'topics', ['ui.router']
 
 .config ($stateProvider) ->

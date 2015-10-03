@@ -1,5 +1,10 @@
 Sections = new Mongo.Collection("sections")
 
+Meteor.methods
+    # ważna sprawa! metody Meteora nie mogą zwracać kursorów, trzeba fetchować
+    sectionTitleById: (section_id) ->
+        Sections.findOne({ _id: section_id }, fields: { 'name': 1 }).name
+
 do ->
     if Sections.find().count() == 0
         sections = [

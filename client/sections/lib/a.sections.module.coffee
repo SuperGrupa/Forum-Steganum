@@ -1,5 +1,3 @@
-@Sections = new Mongo.Collection('sections')
-
 angular.module 'sections', ['ui.router']
 
 .config ($stateProvider) ->

@@ -3,6 +3,8 @@ angular.module('topics')
     vm = this
     vm.section =
         id: $stateParams.id
-        name: topicsServ.getSectionTitle(this.id)
+
+    topicsServ.getSectionTitle(vm.section.id).then (result) ->
+        vm.section.name = result
 
     return vm
