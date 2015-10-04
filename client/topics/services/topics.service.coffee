@@ -9,4 +9,4 @@ angular.module 'topics'
             $state.go('section.one.show', id: section_id)
     delete: (topic_id) ->
         $meteor.call('deleteTopic', topic_id).then ->
-            $state.go('section.one.show', id: section_id)
+            if $state.previous.name then $state.go($state.previous) else $state.go('home')
