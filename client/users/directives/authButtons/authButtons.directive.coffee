@@ -1,4 +1,4 @@
-angular.module 'posts'
+angular.module 'users'
 .directive 'authButtons', ->
   restrict: 'AE'
   scope:
