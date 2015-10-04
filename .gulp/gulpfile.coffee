@@ -13,6 +13,7 @@ runSequence         = require 'run-sequence'
 paths =
   scripts:
     vendor: [
+      'components/jquery/dist/jquery.js'
       'components/angular/angular.js'
       'components/angular-animate/angular-animate.js'
       'components/angular-aria/angular-aria.js'
