@@ -1,0 +1,9 @@
+// taka ogólna klasa dla itemów, które można kliknąć (ściemnia się po najechaniu kursorem)
+.selectable(@target-color; @time: 1s) {
+    cursor: pointer;
+    transition: background-color @time ease;
+
+    &:hover {
+        background-color: @target-color;
+    }
+}

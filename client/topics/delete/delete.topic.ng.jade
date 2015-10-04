@@ -1,0 +1,6 @@
+.delete-topic
+    md-whiteframe.md-whiteframe-z1(layout, layout-align="left center")
+        h3 Are you sure you want to delete topic '{{ }}' (id: {{deleteTopicsCtrl.topic.id}})?
+        .button-row.inset(layout="row" layout-align="center")
+            md-button.md-primary.md-raised Mom, get me out of there!
+            md-button.md-raised(ng-click="topicsCtrl.topic.delete(deleteTopicsCtrl.topic.id)") Yes

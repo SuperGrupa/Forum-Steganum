@@ -14,7 +14,7 @@ angular.module 'sections', ['ui.router']
     ).state('section.one',
         # ten stan jest abstrakcyjny, ponieważ jego potomkiem jest oprócz section.one.show także
         # topic i topic.new w module topics
-        url: '/:id'
+        url: '/:section_id'
         abstract: true
         templateUrl: 'client/sections/sections.html'
     ).state('section.one.show',

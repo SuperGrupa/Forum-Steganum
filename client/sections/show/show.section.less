@@ -1,10 +1,43 @@
 .section-topics {
     md-whiteframe {
+        position: relative;
         padding: 0px;
 
         md-list {
+            padding: 0;
             width: 100%;
-            padding: 0px;
+
+            md-list-item {
+                width: 100%;
+                padding: 0;
+
+                .md-list-item-text {
+                    width: 88%;
+                    padding: 20px 0 20px 20px;
+                    .selectable(#ddd);
+
+                    h3, p {
+                        display: inline-block;
+                    }
+
+                    h3 {
+                        width: 200px;
+                    }
+                }
+
+                .delete {
+                    position: absolute;
+                    width: 10%;
+                    right: 0;
+                    top: 5px;
+                    margin: 0;
+
+                    &:hover {
+                        cursor: pointer;
+                        color: #FF4444;
+                    }
+                }
+            }
         }
     }
 }

@@ -1,7 +1,8 @@
 .section-topics
     md-whiteframe.md-whiteframe-z1(layout, layout-align="left center")
         md-list
-            md-list-item.selectable(ng-repeat="topic in showSectionCtrl.topics")
+            md-list-item(ng-repeat="topic in showSectionCtrl.topics")
+                md-icon.delete(md-svg-icon="action:ic_delete_24px", ui-sref="topic.delete({topic_id: topic._id})")
                 .md-list-item-text
                     h3 {{ topic.name }}
                     p {{ topic.description }}

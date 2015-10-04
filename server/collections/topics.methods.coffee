@@ -13,6 +13,11 @@ Meteor.methods
             updatedAt: new Date
             userId: Meteor.userId()
 
+    deleteTopic: (topic_id) ->
+        # autoryzacja czy jest adminem ...
+        Topics.remove
+            _id: topic_id
+
     getTopicsOfSection: (section_id) ->
         Topics.find({ section_id: section_id }).fetch()
 
