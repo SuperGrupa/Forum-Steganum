@@ -3,6 +3,7 @@ angular.module 'forumSteganum', [
   'ui.router'
   'ngMaterial'
   'icons'
+  'common'
   'home'
   'sections'
   'posts'

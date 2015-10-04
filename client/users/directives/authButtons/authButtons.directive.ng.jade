@@ -1,0 +1,5 @@
+.buttons(layout="row", layout-align="center center")
+    md-button.md-accent.login-button(ui-sref="login" ng-class="{'md-raised': vm.login}")
+        .title I have an account
+    md-button.md-accent.register-button(ui-sref="register" ng-class="{'md-raised': !vm.login}")
+        .title Create a new account
