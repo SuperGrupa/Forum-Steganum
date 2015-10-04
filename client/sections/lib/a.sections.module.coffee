@@ -6,14 +6,14 @@ angular.module 'sections', ['ui.router']
         parent: 'root.main'
         abstract: true
         templateUrl: 'client/sections/sections.html'
+        controller: 'SectionsCtrl'
+        controllerAs: 'sectionsCtrl'
     ).state('section.list',
         url: 's'
         templateUrl: 'client/sections/list/list.sections.html'
-        controller: 'ListSectionsCtrl'
-        controllerAs: 'listSectionsCtrl'
     ).state('section.one',
         # ten stan jest abstrakcyjny, ponieważ jego potomkiem jest oprócz section.one.show także
-        # topic i topic.new w module topic
+        # topic i topic.new w module topics
         url: '/:id'
         abstract: true
         templateUrl: 'client/sections/sections.html'
