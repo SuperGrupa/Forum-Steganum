@@ -9,9 +9,6 @@ angular.module 'users'
   goTo = ->
     if $state.previous.name then $state.go($state.previous) else $state.go('home')
 
-  errors: () ->
-    error
-
   email: ''
   password: ''
   userName: ''
