@@ -18,3 +18,10 @@ angular.module 'users', ['ui.router']
     controllerAs: 'logCtrl'
     templateUrl: 'client/users/login/login.html'
 
+  .state 'register',
+    parent: 'users'
+    url: '/register'
+    controller: 'NewUserCtrl'
+    controllerAs: 'nUCtrl'
+    templateUrl: 'client/users/new/new.user.html'
+

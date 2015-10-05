@@ -2,6 +2,9 @@ describe 'Users controller', ->
   $scope = {}
   $controller = {}
   UserCtrl = {}
+  mockedAuthServ = {
+    email: 'bat@man.pl'
+  }
 
   beforeEach module('forumSteganum')
 
@@ -10,9 +13,13 @@ describe 'Users controller', ->
     $scope = $injector.get('$rootScope').$new()
     UserCtrl = $controller('UserCtrl as userCtrl',
       $scope: $scope
+      authServ: mockedAuthServ
     )
   )
 
   it 'should initialize', ->
     expect(UserCtrl).toBeDefined()
+
+  it 'should set authServ to userCtrl.auth', ->
+    expect(UserCtrl.auth).toBe(mockedAuthServ)
 

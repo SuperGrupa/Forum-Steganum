@@ -19,8 +19,8 @@ http://forum-steganum.meteor.com/
 
 # Odpalenie testów jednostkowych klienta
 
-    cd .gulp && npm install && gulp build
-    gulp test:unit
+    cd .gulp && npm install
+    gulp
 
 # Odpalenie testów serwera
 

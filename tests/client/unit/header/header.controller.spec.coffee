@@ -2,11 +2,8 @@ describe 'Header controller', ->
   $scope = {}
   $controller = {}
   HeaderCtrl = {}
-  mockedMeteor = {
+  mockedAuthServ = {
     logout: angular.noop
-  }
-  mockedState = {
-    go: angular.noop
   }
   successCallBack = null
   failCallBack = null
@@ -18,8 +15,7 @@ describe 'Header controller', ->
     $scope = $injector.get('$rootScope').$new()
     HeaderCtrl = $controller('HeaderCtrl as headCtrl',
       $scope: $scope
-      $meteor: mockedMeteor
-      $state: mockedState
+      authServ: mockedAuthServ
     )
   )
 
@@ -28,19 +24,10 @@ describe 'Header controller', ->
 
   describe 'logout', ->
     beforeEach (done) ->
-      spyOn(mockedMeteor, 'logout').and.returnValue
-        then: (success, fail) ->
-          successCallBack = success;
-          failCallBack = fail;
-      spyOn(mockedState, 'go')
+      spyOn(mockedAuthServ, 'logout').and.returnValue true
 
       HeaderCtrl.logout()
-      successCallBack()
       done()
 
     it 'should call logout method on meteor', () ->
-      expect(mockedMeteor.logout).toHaveBeenCalled()
-
-    it 'should call go method on state', () ->
-      expect(mockedState.go).toHaveBeenCalledWith 'home'
-
+      expect(mockedAuthServ.logout).toHaveBeenCalled()

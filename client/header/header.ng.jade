@@ -13,6 +13,9 @@ md-toolbar.md-primary
             md-button(ui-sref="login", ng-hide="currentUser")
                 md-icon(md-svg-icon="social:ic_person_24px")
                 .title Sing in
+            md-button(ui-sref="profile", ng-show="currentUser")
+                md-icon(md-svg-icon="social:ic_person_24px")
+                .title {{currentUser.username}}
             md-button(ng-click="headCtrl.logout()", ng-show="currentUser")
                 md-icon(md-svg-icon="action:ic_exit_to_app_24px")
                 .title Sign out
