@@ -3,7 +3,7 @@ angular.module 'topics'
     restrict: 'AE'
     scope: true
     bindToController: true
-    templateUrl: 'client/topics/new/new.topic.directive.html'
+    templateUrl: 'client/topics/new/directive/new.topic.directive.html'
     controllerAs: 'new'
     controller: (topicsServ, $stateParams) ->
         vm = this
