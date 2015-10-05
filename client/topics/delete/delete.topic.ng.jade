@@ -1,7 +1,7 @@
 .delete-topic
     md-whiteframe.md-whiteframe-z1(layout, layout-align="left center")
         h3 Are you sure you want to delete topic '{{ deleteTopicCtrl.topic.name }}'?
-        .button-row.inset(layout="row" layout-align="center")
+        .inset(layout="row" layout-align="center")
             md-button.md-primary.md-raised(ui-sref="section.one.show(deleteTopicCtrl.topic.section_id)") 
                 | Mom, get me out of there!
             md-button.md-raised(ng-click="topicsCtrl.topic.delete(deleteTopicCtrl.topic.id)")

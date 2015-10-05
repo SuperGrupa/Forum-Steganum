@@ -25,18 +25,28 @@
                     }
                 }
 
-                .delete, .edit {
-                    position: absolute;
-                    width: 10%;
-                    right: 0;
-                    top: 5px;
-                    margin: 0;
+                .icon-area {
+                    margin: 0 auto;
 
-                    &:hover {
-                        cursor: pointer;
-                        color: #FF4444;
+                    .delete, .edit {
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+
+                    .delete {
+                        &:hover {
+                            color: #FF4444;
+                        }
+                    }
+
+                    .edit {
+                        &:hover {
+                            color: #80AF24;
+                        }
                     }
                 }
+
             }
         }
     }

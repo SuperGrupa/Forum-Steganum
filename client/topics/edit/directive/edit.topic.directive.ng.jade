@@ -11,7 +11,8 @@ md-whiteframe.edit-topic-form.md-whiteframe-z1(layout="column", layout-align="ce
                     placeholder="description" aria-label="Description")
         div.md-warn.error-container(ng-show="new.error")
             small {{ edit.error }}
-        md-button.md-raised.md-primary(type="submit" aria-label="Update topic")
-            | Update topic
-        md-button.md-raised(aria-label="Cancel" ui-sref="section.one.show({ section_id: edit.topic.section_id })")
-            | Cancel
+        .inset(layout="row" layout-align="center")
+            md-button.md-raised.md-primary(type="submit" aria-label="Update topic")
+                | Update topic
+            md-button.md-raised(aria-label="Cancel" ui-sref="section.one.show({ section_id: edit.topic.section_id })")
+                | Cancel
