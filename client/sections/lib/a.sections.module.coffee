@@ -6,8 +6,8 @@ angular.module 'sections', ['ui.router']
         parent: 'root.main'
         abstract: true
         templateUrl: 'client/sections/sections.html'
-        controller: 'SectionsCtrl'
-        controllerAs: 'sectionsCtrl'
+        controller: 'SectionCtrl'
+        controllerAs: 'sectionCtrl'
     ).state('section.list',
         url: 's'
         templateUrl: 'client/sections/list/list.sections.html'
