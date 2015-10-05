@@ -13,6 +13,12 @@ Meteor.methods
             updatedAt: new Date
             userId: Meteor.userId()
 
+    updateTopic: (topic) ->
+        Topics.update { _id: topic._id },
+            $set:
+                name: topic.name
+                description: topic.description
+
     deleteTopic: (topic_id) ->
         # autoryzacja czy jest adminem ...
         Topics.remove
@@ -20,6 +26,9 @@ Meteor.methods
 
     getTopicsOfSection: (section_id) ->
         Topics.find({ section_id: section_id }).fetch()
+
+    getTopicById: (topic_id) ->
+        Topics.findOne({ _id: topic_id })
 
 do ->
     if Topics.find().count() == 0

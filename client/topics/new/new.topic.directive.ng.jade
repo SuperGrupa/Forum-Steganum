@@ -10,5 +10,5 @@ md-whiteframe.new-topic-form.md-whiteframe-z1(layout="column", layout-align="cen
             input(type="description" ng-model="new.topic.description"
                     placeholder="description" aria-label="Description")
         div.md-warn.error-container(ng-show="new.error")
-            small {{ newTopic.error }}
+            small {{ new.error }}
         md-button.md-raised.md-primary(type="submit" aria-label="Create topic") Create

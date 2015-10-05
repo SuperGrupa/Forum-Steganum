@@ -11,11 +11,14 @@ angular.module 'topics', ['ui.router']
     ).state('topic.new',
         url: '/new'
         templateUrl: 'client/topics/new/new.topic.html'
-    ).state('topic.posts'
+    ).state('topic.posts',
         url: '/:topic_id/page/:page_id'
+    ).state('topic.edit',
+        url: '/:topic_id/edit'
+        templateUrl: 'client/topics/edit/edit.topic.html'
     ).state('topic.delete',
         url: '/:topic_id/delete'
         templateUrl: 'client/topics/delete/delete.topic.html'
-        controller: 'DeleteTopicsCtrl'
-        controllerAs: 'deleteTopicsCtrl'
+        controller: 'DeleteTopicCtrl'
+        controllerAs: 'deleteTopicCtrl'
     )
