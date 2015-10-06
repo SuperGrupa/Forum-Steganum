@@ -4,7 +4,7 @@ Meteor.methods
     getPostsByTopicId: (topic_id, page_number, posts_per_page) ->
         Posts.find(topic_id: topic_id,
             sort: createdAt: 1
-            $slice: [page_number * posts_per_page, posts_per_page]).fetch()
+            $slice: [(page_number - 1) * posts_per_page, posts_per_page]).fetch()
     getPost: (postId) ->
         Posts.findOne postId
     addPost: (text) ->
@@ -28,9 +28,11 @@ do ->
 
         posts = ({
             _id: num.toString()
-            text: 'Some dummy text #' + num + ' in topic ' + (num % 6) + 1
+            text: 'Some dummy text #' + num + ' in topic ' + ((num % 6) + 1).toString() 
+            createdAt: new Date(2015, 10, 6, num % 24, 0, 0)
+            updatedAt: new Date
             userId: user_id
-            topic_id: (num % 6) + 1
+            topic_id: ((num % 6) + 1).toString()
         } for num in [1..36])
 
         Posts.insert post for post in posts
