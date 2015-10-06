@@ -2,7 +2,7 @@
     md-whiteframe.md-whiteframe-z1(layout, layout-align="left center")
         md-list
             md-list-item(ng-repeat="topic in showSectionCtrl.topics")
-                .md-list-item-text
+                .md-list-item-text(ui-sref="topic.posts({topic_id: topic._id, page_number: 1})")
                     h3 {{ topic.name }}
                     p {{ topic.description }}
                 .icon-area
