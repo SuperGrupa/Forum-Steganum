@@ -6,7 +6,7 @@
                     h3 {{ topic.name }}
                     p {{ topic.description }}
                 .icon-area
-                    md-icon.delete(md-svg-icon="action:ic_delete_24px", ui-sref="topic.delete({topic_id: topic._id})")
                     md-icon.edit(md-svg-icon="image:ic_edit_24px", ui-sref="topic.edit({topic_id: topic._id})")
+                    md-icon.delete(md-svg-icon="action:ic_delete_24px", ui-sref="topic.delete({topic_id: topic._id})")
                 md-divider(ng-if="!$last")
     md-button.md-raised.md-primary.submit(ui-sref="topic.new") Create new topic

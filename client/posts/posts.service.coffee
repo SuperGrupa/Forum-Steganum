@@ -1,4 +1,4 @@
-Posts = new Mongo.Collection("posts")
+Posts = new Mongo.Collection('posts')
 
 angular.module 'posts'
 .service 'postsServ', ($meteor) ->
