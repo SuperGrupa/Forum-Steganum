@@ -8,6 +8,5 @@ angular.module('topics')
 
     topicsServ.getPostsByTopicId(vm.topic.id, vm.page_number, 2).then (result) ->
         vm.topic.posts = result
-        console.log result
-
+        
     return vm
