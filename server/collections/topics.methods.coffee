@@ -1,5 +1,3 @@
-Topics = new Mongo.Collection("topics")
-
 Meteor.methods
     addTopic: (topic) ->
         if !Meteor.userId()

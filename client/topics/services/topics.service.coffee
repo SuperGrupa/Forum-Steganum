@@ -1,5 +1,3 @@
-Topics = new Mongo.Collection('topics')
-
 angular.module 'topics'
 .service 'topicsServ', ($meteor, $state) ->
     getSectionTitle: (section_id) ->

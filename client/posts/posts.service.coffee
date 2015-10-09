@@ -1,5 +1,3 @@
-Posts = new Mongo.Collection('posts')
-
 angular.module 'posts'
 .service 'postsServ', ($meteor) ->
     all: $meteor.collection(Posts).subscribe('posts')

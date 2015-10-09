@@ -1,5 +1,3 @@
-Posts = new Mongo.Collection("posts")
-
 Meteor.methods
     getPostsByTopicId: (topic_id, page_number, posts_per_page) ->
         Posts.find(topic_id: topic_id,
