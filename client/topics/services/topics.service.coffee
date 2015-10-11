@@ -3,7 +3,7 @@ angular.module 'topics'
     getSectionTitle: (section_id) ->
         $meteor.call 'sectionTitleById', section_id
     getPostsByTopicId: (topic_id, page_number, posts_per_page) ->
-        $meteor.call 'getPostsByTopicId', topic_id, page_number, posts_per_page
+        $meteor.collection(Posts).subscribe('postsOfTopic', topic_id, page_number, posts_per_page)
     getTopicById: (topic_id) ->
         $meteor.call 'getTopicById', topic_id
     create: (topic, section_id) ->
