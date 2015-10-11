@@ -16,7 +16,6 @@ angular.module 'topics'
             name: ''
             description: ''
 
-        topicsServ.getSectionTitle(vm.topic.section_id).then (result) ->
-            vm.section.name = result
+        vm.section.name = topicsServ.getSectionTitle(vm.topic.section_id)
 
         return vm

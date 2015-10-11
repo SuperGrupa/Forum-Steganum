@@ -14,7 +14,6 @@ angular.module 'topics'
         topicsServ.getTopicById($stateParams.topic_id).then (result) ->
             vm.topic = result
 
-        topicsServ.getSectionTitle($stateParams.section_id).then (result) ->
-            vm.section.name = result
+        vm.section.name = topicsServ.getSectionTitle($stateParams.section_id)
 
         return vm

@@ -1,7 +1,7 @@
 angular.module 'topics'
 .service 'topicsServ', ($meteor, $state) ->
     getSectionTitle: (section_id) ->
-        $meteor.call 'sectionTitleById', section_id
+        $meteor.collection(Sections).subscribe('sectionName', section_id)
     getPostsByTopicId: (topic_id, page_number, posts_per_page) ->
         $meteor.collection(Posts).subscribe('postsOfTopic', topic_id, page_number, posts_per_page)
     getTopicById: (topic_id) ->
