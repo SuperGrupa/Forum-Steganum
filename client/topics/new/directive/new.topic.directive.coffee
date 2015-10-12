@@ -5,7 +5,7 @@ angular.module 'topics'
     bindToController: true
     templateUrl: 'client/topics/new/directive/new.topic.directive.html'
     controllerAs: 'new'
-    controller: (topicsServ, $stateParams) ->
+    controller: (topicsServ, sectionsServ, $stateParams) ->
         vm = this
 
         vm.section =
@@ -16,6 +16,7 @@ angular.module 'topics'
             name: ''
             description: ''
 
-        vm.section.name = topicsServ.getSectionTitle(vm.topic.section_id)
+        sectionsServ.getSectionById(vm.topic.section_id).then (result) ->
+            vm.section.name = result.name
 
         return vm

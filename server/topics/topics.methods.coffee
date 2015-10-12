@@ -22,9 +22,6 @@ Meteor.methods
         Topics.remove
             _id: topic_id
 
-    getTopicsOfSection: (section_id) ->
-        Topics.find({ section_id: section_id }).fetch()
-
     getTopicById: (topic_id) ->
         Topics.findOne({ _id: topic_id })
 
@@ -32,6 +29,6 @@ Meteor.publish 'topics', ->
     Topics.find {},
         sort: createdAt: -1
 
-Meteor.publish 'topicsByIds', (topic_ids) ->
-    Topics.find { _id: { $in: topic_ids } },
+Meteor.publish 'topicsInSection', (section_id) ->
+    Topics.find { section_id: section_id },
         sort: createdAt: -1

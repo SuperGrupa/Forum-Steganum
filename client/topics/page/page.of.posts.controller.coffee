@@ -6,6 +6,6 @@ angular.module('topics')
         id: $stateParams.topic_id
         section_id: $stateParams.section_id
 
-    vm.topic.posts = topicsServ.getPostsByTopicId(vm.topic.id, vm.page_number, 10)
+    vm.topic.posts = topicsServ.getPosts(vm.topic.id, vm.page_number, 10)
 
     return vm
