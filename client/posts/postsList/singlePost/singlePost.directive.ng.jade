@@ -1,11 +1,13 @@
 .single-post
-    md-whiteframe.md-whiteframe-z1(layout, layout-align="left center")
-        .container
-            .author
-                strong {{ "TEST" }} 
-            .post
-                span.text
-                    | {{singleDir.post.text}}
-        .icon-area
-            md-icon.edit(md-svg-icon="image:ic_edit_24px")
-            md-icon.delete(md-svg-icon="action:ic_delete_24px", ng-click="listDir.post.delete(post)")
+    .md-list-item-text
+        .author
+            strong {{ "TEST" }} 
+        .post
+            span.text {{ singleDir.post.text }}
+            .status
+                small Created on {{ singleDir.post.createdAt.toLocaleDateString() }} 
+                small at {{ singleDir.post.createdAt.toLocaleTimeString() }} 
+    .icon-area
+        md-icon.edit(md-svg-icon="image:ic_edit_24px")
+        md-icon.delete(md-svg-icon="action:ic_delete_24px", ng-click="listDir.post.delete(post)")
+    md-divider(ng-if="!$last")

@@ -1,24 +1,26 @@
 .single-post {
-    md-whiteframe {
-        position: relative;
+    .md-list-item-text {
+        min-height: 50px;
+        padding: 10px;
 
-        .container {
-            min-height: 50px;
-            padding: 10px;
+        .author {
+            width: 200px;
+            display: inline-block;
+            vertical-align: top;
+            @media @phone {
+                display: block;
+            }
+        }
 
-            .author {
-                width: 200px;
-                display: inline-block;
-                @media @phone {
-                    display: block;
-                }
+        .post {
+            display: inline-block;
+            @media @phone {
+                display: block;
             }
 
-            .post {
-                display: inline-block;
-                @media @phone {
-                    display: block;
-                }
+            .status {
+                color: @post-status;
+                font-style: italic;
             }
         }
     }

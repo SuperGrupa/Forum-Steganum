@@ -7,4 +7,4 @@ angular.module 'posts'
     update: (post) ->
         $meteor.call 'updatePost', post._id, post.text
     findOwner: (post) ->
-        return
+        $meteor.subscribe('usersBasicInfo')
