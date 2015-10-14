@@ -1,11 +1,12 @@
 Meteor.methods
-    addPost: (text) ->
+    addPost: (post) ->
         if !Meteor.userId()
             throw new (Meteor.Error)('not-authorized')
         Posts.insert
-            text: text
+            text: post.text
             createdAt: new Date
             updatedAt: new Date
+            topic_id: post.topic_id
             userId: Meteor.userId()
     deletePost: (postId) ->
         Posts.remove postId
