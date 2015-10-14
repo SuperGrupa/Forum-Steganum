@@ -7,4 +7,4 @@ angular.module 'posts'
     update: (post) ->
         $meteor.call 'updatePost', post._id, post.text
     findOwner: (post) ->
-        Meteor.users.findOne(post.userId)
+        return
