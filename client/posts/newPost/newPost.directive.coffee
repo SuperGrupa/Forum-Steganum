@@ -8,8 +8,14 @@ angular.module 'posts'
     controller: (postsServ, $stateParams) ->
         vm = this
         vm.action = postsServ
-        vm.post =
-            text: ''
-            topic_id: $stateParams.topic_id
+
+        do vm.clearPost = () ->
+            vm.post =
+                text: ''
+                topic_id: $stateParams.topic_id
+
+        vm.addPost = (post) ->
+            vm.action.add(post).then ->
+                vm.clearPost()
 
         return vm

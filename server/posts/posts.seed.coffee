@@ -4,7 +4,7 @@ if Posts.find().count() == 0
     posts = ({
         _id: num.toString()
         text: 'Some dummy text #' + num + ' in topic ' + ((num % 6) + 1).toString()
-        createdAt: new Date(2015, 10, 6, num % 24, 0, 0)
+        createdAt: new Date(2015, 9, 6, num % 24, 0, 0)
         updatedAt: new Date
         userId: user_id
         topic_id: ((num % 6) + 1).toString()
