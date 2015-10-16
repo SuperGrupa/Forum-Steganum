@@ -1,5 +1,5 @@
 angular.module('sections')
-.controller 'ShowSectionCtrl', (sectionsServ, $scope, $stateParams) ->
+.controller 'ShowSectionCtrl', (sectionsServ, $stateParams) ->
     vm = this
     vm.id = $stateParams.section_id
     vm.section = sectionsServ
