@@ -1,7 +1,7 @@
 .single-post
     .md-list-item-text
         .author
-            strong {{ "TEST" }} 
+            strong {{ listDir.post.findOwner(singleDir.post).username }} 
         .post
             span.text {{ singleDir.post.text }}
             .status
