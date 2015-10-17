@@ -1,5 +1,5 @@
 .profile
-    .form-container(layout="row", layout-align="center center")
+    .form-container(layout="row", layout-sm="column", layout-align="center center")
         md-whiteframe.md-whiteframe-z1.username-form
             ng-form(name="prof.loginForm" layout="column")
                 md-input-container
@@ -14,11 +14,11 @@
                             placeholder="E-mail" aria-label="email")
                 md-button.md-raised.md-primary(ng-click="prof.actions.updateEmail(currentUser.emails[0].address)"
                         aria-label="update email") Update email
-    .form-container(layout="row", layout-align="center center")
+    .form-container(layout="row", layout-sm="column", layout-align="center center")
         md-whiteframe.md-whiteframe-z1
             ng-form(name="prof.emailForm")
                 h4.title Profile info
-                .names(layout="row", layout-align="left center")
+                .names(layout="row", layout-sm="column", layout-align="left center")
                     md-input-container
                         input(type="text" ng-model="currentUser.profile.firstname" name="firstname"
                                 placeholder="Firstname" aria-label="first name")
@@ -26,7 +26,7 @@
                         input(type="text" ng-model="currentUser.profile.lastname" name="lastname"
                                 placeholder="Lastname" aria-label="last name")
                 h4.title Do you have a cat?
-                .cats(layout="row", layout-align="left center")
+                .cats(layout="row", layout-sm="column", layout-align="left center")
                     md-input-container
                         input(type="text" ng-model="currentUser.profile.catname" name="catname"
                                 placeholder="Cat Name" aria-label="catname")
@@ -37,7 +37,7 @@
                         input(type="text" ng-model="currentUser.profile.catyeras" name="catyears"
                                 placeholder="How old?" aria-label="cat years")
                 h4.title Or dog?
-                .cats(layout="row", layout-align="left center")
+                .cats(layout="row", layout-sm="column", layout-align="left center")
                     md-input-container
                         input(type="text" ng-model="currentUser.profile.dogname" name="dogname"
                                 placeholder="Dog Name" aria-label="dogname")
