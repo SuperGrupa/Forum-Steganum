@@ -6,7 +6,7 @@ describe 'Login controller', ->
   initEmail = 'super@man.pl'
   initName = 'ClarkKent'
 
-  beforeEach module('forumSteganum')
+  beforeEach module('users')
 
   beforeEach inject(($injector) ->
     $controller = $injector.get('$controller')

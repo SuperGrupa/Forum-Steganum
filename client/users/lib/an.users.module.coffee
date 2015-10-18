@@ -25,3 +25,11 @@ angular.module 'users', ['ui.router']
     controllerAs: 'nUCtrl'
     templateUrl: 'client/users/new/new.user.html'
 
+  .state 'profile',
+    parent: 'users'
+    url: '/profile'
+    controller: 'ProfileCtrl'
+    controllerAs: 'prof'
+    templateUrl: 'client/users/profile/profile.html'
+
+
