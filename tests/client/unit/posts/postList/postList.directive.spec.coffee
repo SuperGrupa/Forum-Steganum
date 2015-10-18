@@ -4,7 +4,7 @@ describe 'Directive: postList', ->
     beforeEach module 'posts',
         singlePostDirective:
             restrict: 'AE'
-        $meteor: {}
+        postsServ: {}
     beforeEach module 'templates'
 
     element = {}

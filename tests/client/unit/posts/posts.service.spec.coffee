@@ -64,4 +64,4 @@ describe 'Posts Service', ->
       postsServ.findOwner(post)
 
     it 'should call $meteor.object method with Meteor.users, post.userId and false arguments', ->
-        expect(mockedMeteor.object).toHaveBeenCalled()
+        expect(mockedMeteor.object).toHaveBeenCalledWith(Meteor.users, post.userId, false)

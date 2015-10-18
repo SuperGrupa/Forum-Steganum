@@ -1,6 +1,8 @@
 'use strict'
 
 describe 'Directive: newPost', ->
+    beforeEach module 'posts',
+        $meteor: {}
     beforeEach module 'templates'
 
     element = {}
