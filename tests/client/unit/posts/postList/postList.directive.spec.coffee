@@ -4,6 +4,7 @@ describe 'Directive: postList', ->
     beforeEach module 'posts',
         singlePostDirective:
             restrict: 'AE'
+        $meteor: {}
     beforeEach module 'templates'
 
     element = {}
@@ -15,8 +16,7 @@ describe 'Directive: postList', ->
             posts: mockedPosts
 
     it 'should compile', ->
-      expect(element.dom).toBeDefined()
+        expect(element.dom).toBeDefined()
 
     it 'should set mockedPosts to scope', ->
         expect(element.scope.posts).toBe mockedPosts
-

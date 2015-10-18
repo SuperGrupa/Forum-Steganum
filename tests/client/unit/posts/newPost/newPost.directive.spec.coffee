@@ -1,7 +1,6 @@
 'use strict'
 
 describe 'Directive: newPost', ->
-    beforeEach module 'forumSteganum'
     beforeEach module 'templates'
 
     element = {}
@@ -12,4 +11,3 @@ describe 'Directive: newPost', ->
 
     it 'should compile', ->
         expect(element.dom).toBeDefined()
-
