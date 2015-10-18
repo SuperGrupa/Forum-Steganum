@@ -6,5 +6,10 @@ function Mongo () {
 
 Mongo.Collection = function(asd) {};
 
+function Meteor () {
+    this.users = {};
+}
+
 angular.module('angular-meteor', []);
 angular.module('toastr', []);
+

@@ -1,9 +1,12 @@
-Topics = new Mongo.Collection('topics')
-
 angular.module 'topics'
 .service 'topicsServ', ($meteor, $state) ->
-    getSectionTitle: (section_id) ->
-        $meteor.call 'sectionTitleById', section_id
+    getPosts: (topic_id, page_number, posts_per_page) ->
+        $meteor.collection ->
+            Posts.find topic_id: topic_id,
+                sort: createdAt: 1
+                skip: (page_number - 1) * posts_per_page
+                limit: posts_per_page
+        .subscribe('postsOfTopic', topic_id, page_number, posts_per_page)
     getTopicById: (topic_id) ->
         $meteor.call 'getTopicById', topic_id
     create: (topic, section_id) ->

@@ -3,26 +3,26 @@
 @laptop: ~"(min-width: 992px) and (max-width: 1199px)";
 @desktop: ~"(min-width: 1200px)";
 
-@import "client/common/mixins.less";
 @import "client/layout.less";
+
+@import "client/common/less/common.less";
+@import "client/common/less/forms.less";
+@import "client/common/less/mixins.less";
+@import "client/common/less/colors.less";
+
 @import "client/header/header.less";
 @import "client/footer/footer.less";
-
-@import "client/forms.less";
-
-@import "client/posts/posts.less";
-@import "client/posts/newPost/newPost.less";
-@import "client/posts/postsList/postList.less";
-@import "client/posts/postsList/singlePost/singlePost.less";
 
 @import "client/sections/show/show.section.less";
 @import "client/sections/list/directives/sectionsList/singleSection/singleSection.less";
 @import "client/sections/list/directives/sectionsList/sectionsList.less";
 
-@import "client/topics/new/new.topic.less";
+@import "client/topics/topics.less";
 @import "client/topics/delete/delete.topic.less";
 
-@import "client/common/mixins.less";
+@import "client/posts/newPost/newPost.less";
+@import "client/posts/postsList/postList.less";
+@import "client/posts/postsList/singlePost/singlePost.less";
 
 @import "client/users/directives/authButtons/authButtons.less";
 @import "client/users/users.less";
