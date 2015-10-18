@@ -1,5 +1,5 @@
 angular.module 'users'
-.service 'usersServ', ($meteor, $state, toastr) ->
+.service 'usersServ', ($meteor, toastr) ->
 
   updateEmail: (email) ->
     $meteor.call('updateEmail', email).then ->
