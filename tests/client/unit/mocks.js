@@ -7,3 +7,4 @@ function Mongo () {
 Mongo.Collection = function(asd) {};
 
 angular.module('angular-meteor', []);
+angular.module('toastr', []);

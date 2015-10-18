@@ -3,7 +3,7 @@ describe 'Login controller', ->
   $controller = {}
   LoginCtrl = {}
 
-  beforeEach module('forumSteganum')
+  beforeEach module('users')
 
   beforeEach inject(($injector) ->
     $controller = $injector.get('$controller')
