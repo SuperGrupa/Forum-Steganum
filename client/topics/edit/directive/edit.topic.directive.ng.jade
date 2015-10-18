@@ -14,5 +14,5 @@ md-whiteframe.topic-form.md-whiteframe-z1(layout="column", layout-align="center 
         .inset(layout="row" layout-align="center")
             md-button.md-raised.md-primary(type="submit" aria-label="Update topic")
                 | Update topic
-            md-button.md-raised(aria-label="Cancel" ui-sref="section.one.show({ section_id: edit.topic.section_id })")
+            md-button.md-raised(aria-label="Cancel" ng-click="edit.state.goBack()")
                 | Cancel
