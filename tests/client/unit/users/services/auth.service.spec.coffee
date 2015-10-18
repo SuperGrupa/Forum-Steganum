@@ -6,8 +6,7 @@ describe 'Auth Service', ->
     logout: angular.noop
   }
   mockedState = {
-    go: angular.noop,
-    previous: {}
+    goBack: angular.noop,
   }
   successCallBack = {}
   failCallBack = {}
@@ -36,7 +35,7 @@ describe 'Auth Service', ->
         then: (success, fail) ->
           successCallBack = success
           failCallBack = fail
-      spyOn(mockedState, 'go')
+      spyOn(mockedState, 'goBack')
 
       authServ.email = email
       authServ.password = password
@@ -44,36 +43,20 @@ describe 'Auth Service', ->
       done()
 
     describe 'success', ->
-      describe 'is previous state', ->
-        beforeEach (done) ->
-          mockedState.previous.name = 'previous state'
-          authServ.logIn()
-          successCallBack()
-          done()
+      beforeEach (done) ->
+        authServ.logIn()
+        successCallBack()
+        done()
 
-        it 'should call loginWithPassword method on meteor', () ->
-          expect(mockedMeteor.loginWithPassword).toHaveBeenCalledWith email, password
+      it 'should call loginWithPassword method on meteor', () ->
+        expect(mockedMeteor.loginWithPassword).toHaveBeenCalledWith email, password
 
-        it 'should call go method on state', () ->
-          expect(mockedState.go).toHaveBeenCalledWith mockedState.previous
-
-      describe 'is not previous state', ->
-        beforeEach (done) ->
-          mockedState.previous.name = ''
-          authServ.logIn()
-          successCallBack()
-          done()
-
-        it 'should call loginWithPassword method on meteor', () ->
-          expect(mockedMeteor.loginWithPassword).toHaveBeenCalledWith email, password
-
-        it 'should call go method on state', () ->
-          expect(mockedState.go).toHaveBeenCalledWith 'home'
+      it 'should call goBack method on state', () ->
+        expect(mockedState.goBack).toHaveBeenCalled()
 
     describe 'failed', ->
       error = 'some error'
       beforeEach (done) ->
-        mockedState.previous.name = ''
         authServ.logIn()
         failCallBack(error)
         done()
@@ -81,8 +64,8 @@ describe 'Auth Service', ->
       it 'should call loginWithPassword method on meteor', () ->
         expect(mockedMeteor.loginWithPassword).toHaveBeenCalledWith email, password
 
-      it 'should not call go method on state', () ->
-        expect(mockedState.go).not.toHaveBeenCalled()
+      it 'should not call goBack method on state', () ->
+        expect(mockedState.goBack).not.toHaveBeenCalled()
 
       it 'should set error to this.error', () ->
         expect(authServ.error.login).toContain error
@@ -95,7 +78,6 @@ describe 'Auth Service', ->
       spyOn(mockedMeteor, 'logout').and.returnValue
         then: (success) ->
           successCallBack = success
-      spyOn(mockedState, 'go')
 
       authServ.logout()
       successCallBack()
@@ -103,9 +85,6 @@ describe 'Auth Service', ->
 
     it 'should call logout method on meteor', () ->
       expect(mockedMeteor.logout).toHaveBeenCalled()
-
-    it 'should call go method on state with "home"', () ->
-      expect(mockedState.go).toHaveBeenCalledWith 'home'
 
 
 
@@ -120,7 +99,7 @@ describe 'Auth Service', ->
         then: (success, fail) ->
           successCallBack = success
           failCallBack = fail
-      spyOn(mockedState, 'go')
+      spyOn(mockedState, 'goBack')
 
       authServ.email = registerObject.email
       authServ.password = registerObject.password
@@ -129,36 +108,21 @@ describe 'Auth Service', ->
       done()
 
     describe 'success', ->
-      describe 'is previous state', ->
-        beforeEach (done) ->
-          mockedState.previous.name = 'previous state'
-          authServ.register()
-          successCallBack()
-          done()
+      beforeEach (done) ->
+        authServ.register()
+        successCallBack()
+        done()
 
-        it 'should call createUser method on meteor', () ->
-          expect(mockedMeteor.createUser).toHaveBeenCalledWith registerObject
+      it 'should call createUser method on meteor', () ->
+        expect(mockedMeteor.createUser).toHaveBeenCalledWith registerObject
 
-        it 'should call go method on state', () ->
-          expect(mockedState.go).toHaveBeenCalledWith mockedState.previous
+      it 'should call goBack method on state', () ->
+        expect(mockedState.goBack).toHaveBeenCalled()
 
-      describe 'is not previous state', ->
-        beforeEach (done) ->
-          mockedState.previous.name = ''
-          authServ.register()
-          successCallBack()
-          done()
-
-        it 'should call createUser method on meteor', () ->
-          expect(mockedMeteor.createUser).toHaveBeenCalledWith registerObject
-
-        it 'should call go method on state', () ->
-          expect(mockedState.go).toHaveBeenCalledWith 'home'
 
     describe 'failed', ->
       error = 'some another error'
       beforeEach (done) ->
-        mockedState.previous.name = ''
         authServ.register()
         failCallBack(error)
         done()
@@ -166,8 +130,8 @@ describe 'Auth Service', ->
       it 'should call createUser method on meteor', () ->
         expect(mockedMeteor.createUser).toHaveBeenCalledWith registerObject
 
-      it 'should not call go method on state', () ->
-        expect(mockedState.go).not.toHaveBeenCalled()
+      it 'should not call goBack method on state', () ->
+        expect(mockedState.goBack).not.toHaveBeenCalled()
 
       it 'should set error to this.error', () ->
         expect(authServ.error.register).toContain error

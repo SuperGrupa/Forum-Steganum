@@ -19,3 +19,18 @@ describe 'App dependencies', ->
 
   it 'should have common as a dependency', ->
     expect(hasModule('common')).toEqual(true)
+
+  it 'should have home as a dependency', ->
+    expect(hasModule('home')).toEqual(true)
+
+  it 'should have sections as a dependency', ->
+    expect(hasModule('sections')).toEqual(true)
+
+  it 'should have topics as a dependency', ->
+    expect(hasModule('topics')).toEqual(true)
+
+  it 'should have posts as a dependency', ->
+    expect(hasModule('posts')).toEqual(true)
+
+  it 'should have users as a dependency', ->
+    expect(hasModule('users')).toEqual(true)
