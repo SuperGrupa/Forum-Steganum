@@ -7,3 +7,7 @@ function Mongo () {
 Mongo.Collection = function(asd) {};
 
 angular.module('angular-meteor', []);
+
+function Meteor () {
+    this.users = {};
+}

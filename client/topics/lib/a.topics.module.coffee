@@ -12,7 +12,10 @@ angular.module 'topics', ['ui.router']
         url: '/new'
         templateUrl: 'client/topics/new/new.topic.html'
     ).state('topic.posts',
-        url: '/:topic_id/page/:page_id'
+        url: '/:topic_id/page/:page_number'
+        templateUrl: 'client/topics/page/page.of.posts.html'
+        controller: 'PageOfPostsCtrl'
+        controllerAs: 'page'
     ).state('topic.edit',
         url: '/:topic_id/edit'
         templateUrl: 'client/topics/edit/edit.topic.html'

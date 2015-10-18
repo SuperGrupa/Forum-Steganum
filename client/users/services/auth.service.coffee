@@ -34,5 +34,3 @@ angular.module 'users'
       goTo()
     ), (err) ->
       error.register = 'Register error - ' + err
-
-
