@@ -5,14 +5,23 @@
   .title {
     margin-left: 20px;
   }
-  md-input-container.md-icon-float.md-input-focused, md-input-container.md-icon-float.md-input-has-value {
-    margin-top: -8px;
-  }
   md-input-container {
     margin-left: 20px;
     margin-right: 20px;
   }
   .prof-button {
     margin-left: 20px;
+  }
+  .cats, .names, .dogs {
+    @media @tablet,
+    @laptop, @desktop {
+      height: 80px;
+    }
+  }
+  .username-form, .email-form {
+    height: 140px;
+    .input-row {
+      height: 80px;
+    }
   }
 }
