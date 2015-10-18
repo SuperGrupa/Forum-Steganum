@@ -6,9 +6,6 @@ angular.module 'users'
     register: ''
   }
 
-  goTo = ->
-    if $state.previous.name then $state.go($state.previous) else $state.go('home')
-
   email: ''
   password: ''
   userName: ''
@@ -16,13 +13,12 @@ angular.module 'users'
 
   logIn: () ->
     $meteor.loginWithPassword(this.email, this.password).then (->
-      goTo()
+      $state.goBack()
     ), (err) ->
       error.login = 'Login error - ' + err
 
   logout: () ->
-    $meteor.logout().then ->
-      $state.go 'home'
+    $meteor.logout()
 
   register: () ->
     credentials =
@@ -31,7 +27,7 @@ angular.module 'users'
       username: this.userName
 
     $meteor.createUser(credentials).then (->
-      goTo()
+      $state.goBack()
     ), (err) ->
       error.register = 'Register error - ' + err
 
