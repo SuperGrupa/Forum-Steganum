@@ -9,4 +9,5 @@ angular.module 'forumSteganum', [
   'topics'
   'posts'
   'users'
+  'toastr'
  ]
