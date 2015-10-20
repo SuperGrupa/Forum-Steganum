@@ -9,3 +9,7 @@ angular.module 'sections'
 
     getSectionById: (section_id) ->
         $meteor.call 'getSectionById', section_id
+
+    delete: (section_id) ->
+        console.log section_id
+        #$meteor.call 'deleteSection', section_id
