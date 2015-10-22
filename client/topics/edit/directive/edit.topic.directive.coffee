@@ -5,9 +5,9 @@ angular.module 'topics'
     bindToController: true
     templateUrl: 'client/topics/edit/directive/edit.topic.directive.html'
     controllerAs: 'edit'
-    controller: (topicsServ, sectionsServ, $stateParams) ->
+    controller: (topicsServ, sectionsServ, $state, $stateParams) ->
         vm = this
-
+        vm.state = $state
         vm.section =
             name: ''
 

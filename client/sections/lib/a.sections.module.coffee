@@ -22,4 +22,14 @@ angular.module 'sections', ['ui.router']
         templateUrl: 'client/sections/show/show.section.html'
         controller: 'ShowSectionCtrl'
         controllerAs: 'showSectionCtrl'
+    ).state('section.one.delete',
+        url: '/delete'
+        templateUrl: 'client/sections/delete/delete.section.html'
+        controller: 'DeleteSectionCtrl'
+        controllerAs: 'delSecCtrl'
+    ).state('section.one.edit',
+        url: '/edit'
+        templateUrl: 'client/sections/edit/edit.section.html'
+        controller: 'EditSectionCtrl'
+        controllerAs: 'edit'
     )
