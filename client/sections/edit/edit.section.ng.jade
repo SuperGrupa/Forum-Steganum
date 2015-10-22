@@ -1,0 +1,17 @@
+md-whiteframe.topic-form.md-whiteframe-z1(layout="column", layout-align="center center")
+    .title
+        h2 Edit section '{{ edit.section.name }}'
+    form(ng-submit="sectionCtrl.section.update(edit.section)", layout="column")
+        md-input-container
+            input(type="text" ng-model="edit.section.name"
+                    placeholder="section name" aria-label="Section name")
+        md-input-container
+            input(type="description" ng-model="edit.section.description"
+                    placeholder="description" aria-label="Description")
+        div.md-warn.error-container(ng-show="new.error")
+            small {{ edit.error }}
+        .inset(layout="row" layout-align="center")
+            md-button.md-raised.md-primary(type="submit" aria-label="Update section")
+                | Update section
+            md-button.md-raised(aria-label="Cancel" ng-click="edit.state.goBack()")
+                | Cancel

@@ -4,7 +4,7 @@ angular.module 'sections'
 
     getTopics: (section_id) ->
         $meteor.collection ->
-            Topics.find({ section_id: section_id })
+            Filter.Topics.by(section_id)
         .subscribe('topicsInSection', section_id)
 
     getSectionById: (section_id) ->
