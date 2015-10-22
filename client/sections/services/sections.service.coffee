@@ -1,5 +1,5 @@
 angular.module 'sections'
-.service 'sectionsServ', ($meteor) ->
+.service 'sectionsServ', ($meteor, $state) ->
     all: $meteor.collection(Sections).subscribe('sections')
 
     getTopics: (section_id) ->
@@ -10,6 +10,10 @@ angular.module 'sections'
     getSectionById: (section_id) ->
         $meteor.call 'getSectionById', section_id
 
+    update: (section) ->
+        $meteor.call('updateSection', section).then ->
+            $state.goBack()
+
     delete: (section_id) ->
-        console.log section_id
-        #$meteor.call 'deleteSection', section_id
+        $meteor.call('deleteSection', section_id).then ->
+            $state.goBack()

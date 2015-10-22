@@ -27,4 +27,9 @@ angular.module 'sections', ['ui.router']
         templateUrl: 'client/sections/delete/delete.section.html'
         controller: 'DeleteSectionCtrl'
         controllerAs: 'delSecCtrl'
+    ).state('section.one.edit',
+        url: '/edit'
+        templateUrl: 'client/sections/edit/edit.section.html'
+        controller: 'EditSectionCtrl'
+        controllerAs: 'edit'
     )
