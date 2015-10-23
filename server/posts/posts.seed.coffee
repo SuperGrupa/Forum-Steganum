@@ -11,7 +11,7 @@ Meteor.methods
             createdAt: new Date(2015, 9, 6, num % 24, 0, 0)
             updatedAt: new Date
             userId: user_id
-            topic_id: ((num % 6) + 1).toString()
+            topic_id: ((num % 18) + 1).toString()
         } for num in [1..36])
 
         Posts.insert post for post in posts
