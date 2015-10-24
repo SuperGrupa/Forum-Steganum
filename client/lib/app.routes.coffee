@@ -1,6 +1,4 @@
-angular.module 'forumSteganum'
-
-.config ($urlRouterProvider, $stateProvider, $locationProvider) ->
+appRoutes = ($urlRouterProvider, $stateProvider, $locationProvider) ->
   $locationProvider.html5Mode true
 
   $stateProvider
@@ -18,3 +16,9 @@ angular.module 'forumSteganum'
       templateUrl: 'client/main.html'
 
   $urlRouterProvider.otherwise '/'
+  return
+
+appRoutes.$inject = ['$urlRouterProvider', '$stateProvider', '$locationProvider']
+
+angular.module 'forumSteganum'
+.config appRoutes
