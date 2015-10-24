@@ -1,0 +1,9 @@
+.delete-section
+    md-whiteframe.md-whiteframe-z1(layout, layout-align="left center")
+        h3 Are you sure you want to delete section '{{ delSecCtrl.section.name }}'?
+        p Please note this action will remove section with its topics and posts
+        .inset(layout="row" layout-align="center")
+            md-button.md-primary.md-raised(ng-click="delSecCtrl.state.goBack()") 
+                | Mom, get me out of here!
+            md-button.md-raised(ng-click="sectionCtrl.section.delete(delSecCtrl.section.id)")
+                | Yes

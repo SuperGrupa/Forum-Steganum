@@ -13,10 +13,10 @@ topicsServ = ($meteor, $state) ->
             $state.go('section.one.show', id: section_id)
     update: (topic) ->
         $meteor.call('updateTopic', topic).then ->
-            $state.go('section.one.show', id: topic.section_id)
+            $state.goBack()
     delete: (topic_id) ->
         $meteor.call('deleteTopic', topic_id).then ->
-            if $state.previous.name then $state.go($state.previous) else $state.go('home')
+            $state.goBack()
 
 
 topicsServ.$inject = ['$meteor', '$state']

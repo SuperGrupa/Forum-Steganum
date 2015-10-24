@@ -5,10 +5,10 @@ md-whiteframe.topic-form.md-whiteframe-z1(layout="column", layout-align="center 
     form(ng-submit="topicsCtrl.topic.create(new.topic, new.topic.section_id)", layout="column")
         md-input-container
             input(type="text" ng-model="new.topic.name"
-                    placeholder="topic name" aria-label="Topic name")
+                    placeholder="Topic name" aria-label="topic name")
         md-input-container
             input(type="description" ng-model="new.topic.description"
-                    placeholder="description" aria-label="Description")
+                    placeholder="Description" aria-label="description")
         div.md-warn.error-container(ng-show="new.error")
             small {{ new.error }}
         md-button.md-raised.md-primary(type="submit" aria-label="Create topic") Create
