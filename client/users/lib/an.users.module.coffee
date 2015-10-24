@@ -1,6 +1,4 @@
-angular.module 'users', ['ui.router']
-
-.config ($stateProvider) ->
+usersModule = ($stateProvider) ->
 
   $stateProvider
   .state 'users',
@@ -31,5 +29,12 @@ angular.module 'users', ['ui.router']
     controller: 'ProfileCtrl'
     controllerAs: 'prof'
     templateUrl: 'client/users/profile/profile.html'
+
+  return
+
+usersModule.$inject = ['$stateProvider']
+
+angular.module 'users', ['ui.router']
+.config usersModule
 
 

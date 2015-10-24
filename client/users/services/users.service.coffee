@@ -1,5 +1,4 @@
-angular.module 'users'
-.service 'usersServ', ($meteor, toastr) ->
+usersServ = ($meteor, toastr) ->
 
   updateEmail: (email) ->
     $meteor.call('updateEmail', email).then ->
@@ -19,5 +18,7 @@ angular.module 'users'
     , (data) ->
       toastr.error(data.message, 'Error')
 
+usersServ.$inject = ['$meteor', 'toastr']
 
-
+angular.module 'users'
+.service 'usersServ', usersServ

@@ -1,5 +1,4 @@
-angular.module 'users'
-.directive 'authButtons', ->
+authButtons = ->
   restrict: 'AE'
   scope:
     login: '='
@@ -9,4 +8,7 @@ angular.module 'users'
   controller: () ->
     vm = this
     return vm
+
+angular.module 'users'
+.directive 'authButtons', authButtons
 
