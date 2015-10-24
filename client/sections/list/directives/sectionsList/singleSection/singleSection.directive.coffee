@@ -1,5 +1,4 @@
-angular.module 'sections'
-.directive 'singleSection', ->
+singleSection = ->
       restrict: 'AE'
       replace: true
       scope: true
@@ -10,3 +9,7 @@ angular.module 'sections'
       controller: () ->
           vm = this
           return vm
+
+
+angular.module 'sections'
+.directive 'singleSection', singleSection

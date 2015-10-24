@@ -1,5 +1,4 @@
-angular.module 'sections'
-.service 'sectionsServ', ($meteor) ->
+sectionsServ = ($meteor) ->
     all: $meteor.collection(Sections).subscribe('sections')
 
     getTopics: (section_id) ->
@@ -9,3 +8,8 @@ angular.module 'sections'
 
     getSectionById: (section_id) ->
         $meteor.call 'getSectionById', section_id
+
+sectionsServ.$inject = ['$meteor']
+
+angular.module 'sections'
+.service 'sectionsServ', sectionsServ
