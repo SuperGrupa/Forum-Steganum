@@ -1,5 +1,4 @@
-angular.module 'topics'
-.directive 'newTopic', ->
+newTopic = ->
     restrict: 'AE'
     scope: true
     bindToController: true
@@ -20,3 +19,6 @@ angular.module 'topics'
             vm.section.name = result.name
 
         return vm
+
+angular.module 'topics'
+.directive 'newTopic', newTopic

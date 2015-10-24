@@ -1,5 +1,4 @@
-angular.module 'topics'
-.directive 'editTopic', ->
+editTopic = ->
     restrict: 'AE'
     scope: true
     bindToController: true
@@ -18,3 +17,7 @@ angular.module 'topics'
             vm.section = result
 
         return vm
+
+
+angular.module 'topics'
+.directive 'editTopic', editTopic

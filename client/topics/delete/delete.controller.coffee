@@ -1,5 +1,4 @@
-angular.module('topics')
-.controller 'DeleteTopicCtrl', (topicsServ, $stateParams) ->
+DeleteTopicCtrl = (topicsServ, $stateParams) ->
     vm = this
     vm.topic =
         id: $stateParams.topic_id
@@ -9,3 +8,9 @@ angular.module('topics')
         vm.topic.name = result.name
 
     return vm
+
+
+DeleteTopicCtrl.$inject = ['topicsServ', '$stateParams']
+
+angular.module('topics')
+.controller 'DeleteTopicCtrl', DeleteTopicCtrl

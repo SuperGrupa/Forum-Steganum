@@ -1,6 +1,4 @@
-angular.module 'topics', ['ui.router']
-
-.config ($stateProvider) ->
+topicsModule = ($stateProvider) ->
     $stateProvider.state('topic',
         url: '/topic'
         parent: 'section.one'
@@ -25,3 +23,9 @@ angular.module 'topics', ['ui.router']
         controller: 'DeleteTopicCtrl'
         controllerAs: 'deleteTopicCtrl'
     )
+    return
+
+topicsModule.$inject = ['$stateProvider']
+
+angular.module 'topics', ['ui.router']
+.config topicsModule
