@@ -1,5 +1,4 @@
-angular.module 'posts'
-.directive 'newPost', ->
+newPost = ->
     restrict: 'AE'
     scope: true
     bindToController: true
@@ -19,3 +18,7 @@ angular.module 'posts'
                 vm.clearPost()
 
         return vm
+
+
+angular.module 'posts'
+.directive 'newPost', newPost

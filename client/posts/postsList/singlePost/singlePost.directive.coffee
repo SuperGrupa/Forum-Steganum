@@ -1,5 +1,4 @@
-angular.module 'posts'
-.directive 'singlePost', ->
+singlePost = ->
     restrict: 'AE'
     scope: true
     bindToController:
@@ -9,3 +8,7 @@ angular.module 'posts'
     controller: () ->
         vm = this
         return vm
+
+
+angular.module 'posts'
+.directive 'singlePost', singlePost

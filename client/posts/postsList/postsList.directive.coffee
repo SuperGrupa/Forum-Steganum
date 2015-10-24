@@ -1,5 +1,4 @@
-angular.module 'posts'
-.directive 'postsList', ->
+postsList = ->
     restrict: 'AE'
     scope: true
     bindToController:
@@ -10,3 +9,7 @@ angular.module 'posts'
         vm = this
         vm.post = postsServ
         return vm
+
+
+angular.module 'posts'
+.directive 'postsList', postsList
