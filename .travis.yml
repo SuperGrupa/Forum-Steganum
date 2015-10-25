@@ -13,8 +13,7 @@ before_script:
 - curl https://install.meteor.com/ | sh
 after_success:
 - cd ../
-- chmod a+x deploy.exp
-- "expect deploy.exp"
+- "expect ./deploy.exp"
 - "sleep 5"
 addons:
   code_climate:
