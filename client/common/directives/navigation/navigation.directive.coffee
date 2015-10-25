@@ -1,5 +1,4 @@
-angular.module 'common'
-.directive 'navigation', ->
+navigation = ->
     restrict: 'AE'
     scope:
         sectionId: '@'
@@ -21,3 +20,6 @@ angular.module 'common'
                 vm.topic   = Topics.findOne(_id: vm.topicId)
 
         return vm
+
+angular.module 'common'
+.directive 'navigation', navigation
