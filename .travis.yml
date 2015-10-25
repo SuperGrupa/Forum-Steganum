@@ -12,8 +12,8 @@ before_script:
 - curl https://install.meteor.com/ | sh
 after_success:
 - cd ../
-- chmod a+x deploy.sh
-- "./deploy.sh"
+- chmod a+x deploy.exp
+- "expect deploy.exp"
 addons:
   code_climate:
     repo_token: 6ca72ca29fad172c4217d0f11b5254e433ac548258b4508c20b7db49b1e09d14
