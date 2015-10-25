@@ -5,11 +5,7 @@ postsList = ->
         posts: '='
     templateUrl: 'client/posts/postsList/postsList.directive.html'
     controllerAs: 'listDir'
-    controller: (postsServ) ->
-        vm = this
-        vm.post = postsServ
-        return vm
-
+    controller: 'postsListController'
 
 angular.module 'posts'
 .directive 'postsList', postsList

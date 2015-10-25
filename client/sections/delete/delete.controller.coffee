@@ -1,5 +1,4 @@
-angular.module('sections')
-.controller 'DeleteSectionCtrl', (sectionsServ, $state, $stateParams) ->
+DeleteSectionCtrl = (sectionsServ, $state, $stateParams) ->
     vm = this
     vm.state = $state
     vm.section =
@@ -9,3 +8,9 @@ angular.module('sections')
         vm.section.name = result.name
 
     return vm
+
+
+DeleteSectionCtrl.$inject = ['sectionsServ', '$state', '$stateParams']
+
+angular.module('sections')
+.controller 'DeleteSectionCtrl', DeleteSectionCtrl
