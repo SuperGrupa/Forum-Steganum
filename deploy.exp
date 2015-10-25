@@ -3,7 +3,7 @@ set timeout 1000
 set email "$env(METEOR_EMAIL)"
 set password "$env(METEOR_PASSWORD)"
 
-if [ "$TRAVIS_BRANCH" == "develop" ]; then
+if [ "$env(TRAVIS_BRANCH)" == "develop" ]; then
 
   spawn meteor deploy "$env(METEOR_DEV_DEPLOY_URL)"
 
@@ -14,7 +14,7 @@ if [ "$TRAVIS_BRANCH" == "develop" ]; then
 
 fi
 
-if [ "$TRAVIS_BRANCH" == "master" ]; then
+if [ "$env(TRAVIS_BRANCH)" == "master" ]; then
 
   spawn meteor deploy "$env(METEOR_DEPLOY_URL)"
 
