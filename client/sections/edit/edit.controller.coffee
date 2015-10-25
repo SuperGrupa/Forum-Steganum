@@ -1,5 +1,4 @@
-angular.module('sections')
-.controller 'EditSectionCtrl', (sectionsServ, $state, $stateParams) ->
+editSectionController = (sectionsServ, $state, $stateParams) ->
     vm = this
     vm.state = $state
     vm.section = {}
@@ -8,3 +7,8 @@ angular.module('sections')
         vm.section = result
 
     return vm
+
+editSectionController.$inject = ['sectionsServ', '$state', '$stateParams']
+
+angular.module('sections')
+.controller 'EditSectionCtrl', editSectionController
