@@ -11,6 +11,7 @@ if { "$env(TRAVIS_BRANCH)" == "develop" } {
   send "$email\n"
   expect -- "*assword:"
   send -- "$password\n"
+  expect -- "*Now serving at $env(METEOR_DEPLOY_URL)"
 }
 
 if { "$env(TRAVIS_BRANCH)" == "master" } {
@@ -21,5 +22,6 @@ if { "$env(TRAVIS_BRANCH)" == "master" } {
   send "$email\n"
   expect -- "*assword:"
   send -- "$password\n"
+  expect -- "*Now serving at $env(METEOR_DEPLOY_URL)"
 }
 
