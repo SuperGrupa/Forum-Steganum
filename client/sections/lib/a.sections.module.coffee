@@ -1,6 +1,4 @@
-angular.module 'sections', ['ui.router']
-
-.config ($stateProvider) ->
+sectionsModule = ($stateProvider) ->
     $stateProvider.state('section',
         url: '/section'
         parent: 'root.main'
@@ -33,3 +31,9 @@ angular.module 'sections', ['ui.router']
         controller: 'EditSectionCtrl'
         controllerAs: 'edit'
     )
+    return
+
+sectionsModule.$inject = ['$stateProvider']
+
+angular.module 'sections', ['ui.router']
+.config sectionsModule

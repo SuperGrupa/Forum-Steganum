@@ -1,5 +1,4 @@
-angular.module 'topics'
-.service 'topicsServ', ($meteor, $state) ->
+topicsServ = ($meteor, $state) ->
     getPosts: (topic_id, page_number, posts_per_page) ->
         $meteor.collection ->
             Posts.find topic_id: topic_id,
@@ -18,3 +17,9 @@ angular.module 'topics'
     delete: (topic_id) ->
         $meteor.call('deleteTopic', topic_id).then ->
             $state.goBack()
+
+
+topicsServ.$inject = ['$meteor', '$state']
+
+angular.module 'topics'
+.service 'topicsServ', topicsServ

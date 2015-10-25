@@ -1,5 +1,4 @@
-angular.module('users')
-.controller 'NewUserCtrl', (authServ) ->
+NewUserCtrl = (authServ) ->
     vm = this
 
     vm.updateLogin = ->
@@ -7,3 +6,9 @@ angular.module('users')
         authServ.userName = authServ.email.split("@").shift()
 
     return vm
+
+
+NewUserCtrl.$inject = ['authServ']
+
+angular.module('users')
+.controller 'NewUserCtrl', NewUserCtrl

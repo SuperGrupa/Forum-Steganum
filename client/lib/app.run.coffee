@@ -1,6 +1,4 @@
-angular.module 'forumSteganum'
-
-.run ($rootScope, $state) ->
+appRun = ($rootScope, $state) ->
     $state.goBack = ->
       if $state.previous.name then $state.go($state.previous, $state.previousParams) else $state.go('home')
 
@@ -8,3 +6,9 @@ angular.module 'forumSteganum'
         if (fromState.name != 'login' && fromState.name != 'register')
             $state.previous = fromState
             $state.previousParams = fromParams
+    return
+
+appRun.$inject = ['$rootScope', '$state']
+
+angular.module 'forumSteganum'
+.run appRun

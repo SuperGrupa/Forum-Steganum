@@ -1,5 +1,4 @@
-angular.module 'common'
-.directive 'showMessage', ->
+showMessage = ->
   restrict: 'AE'
   scope:
     message: '='
@@ -10,4 +9,8 @@ angular.module 'common'
   controller: () ->
     vm = this
     return vm
+
+
+angular.module 'common'
+.directive 'showMessage', showMessage
 

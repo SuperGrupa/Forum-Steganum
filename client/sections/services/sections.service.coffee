@@ -1,5 +1,4 @@
-angular.module 'sections'
-.service 'sectionsServ', ($meteor, $state) ->
+sectionsServ = ($meteor, $state) ->
     all: $meteor.collection(Sections).subscribe('sections')
 
     getTopics: (section_id) ->
@@ -17,3 +16,9 @@ angular.module 'sections'
     delete: (section_id) ->
         $meteor.call('deleteSection', section_id).then ->
             $state.goBack()
+
+
+sectionsServ.$inject = ['$meteor', '$state']
+
+angular.module 'sections'
+.service 'sectionsServ', sectionsServ
