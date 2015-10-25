@@ -27,6 +27,7 @@ branches:
   - develop
 after_success:
   - cd ../
+  - chmod a+x deploy.sh
   - ./deploy.sh
 env:
   global:
