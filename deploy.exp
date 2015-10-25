@@ -2,7 +2,6 @@
 set timeout 1000
 set email "$env(METEOR_EMAIL)"
 set password "$env(METEOR_PASSWORD)"
-set -ev
 
 if [ "$TRAVIS_BRANCH" == "develop" ]; then
 
