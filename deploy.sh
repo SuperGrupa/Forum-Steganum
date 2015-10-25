@@ -5,7 +5,6 @@ set password "$env(METEOR_PASSWORD)"
 
 if [ "$TRAVIS_BRANCH" == "develop" ]; then
 
-  cd ../
   spawn meteor deploy $env(METEOR_DEPLOY_URL)
 
   expect -- "*Email:"
