@@ -17,6 +17,9 @@ http://forum-steganum.meteor.com/
 
     http://localhost:3000
 
+# Seedowanie bazy i odpalenie aplikacji
+    SEED="true" meteor
+
 # Odpalenie testów jednostkowych klienta
 
     cd .gulp && npm install
