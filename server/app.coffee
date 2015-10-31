@@ -1,3 +1,5 @@
+@Counters = new Mongo.Collection('counters')
+
 Meteor.startup ->
     config =
         run_seed: (process.env.SEED == "true" || process.env.NODE_ENV == "production")
@@ -6,3 +8,5 @@ Meteor.startup ->
         Meteor.call 'seedPosts'
         Meteor.call 'seedTopics'
         Meteor.call 'seedSections'
+
+        process.env.SEED = "false"
