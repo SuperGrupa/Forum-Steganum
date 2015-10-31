@@ -2,7 +2,7 @@
     md-button(ui-sref="section.list")
         | Forum
     md-icon(ng-show="nav.sectionId", md-svg-icon="navigation:ic_chevron_right_24px")
-    md-button(ng-show="nav.sectionId", ui-sref="section.one.show({ section_id: nav.section._id })")
+    md-button(ng-show="nav.sectionId", ui-sref="section.one.show({ section_id: nav.section.id })")
         | {{ nav.section.name }} 
     md-icon(ng-show="nav.topicId", md-svg-icon="navigation:ic_chevron_right_24px")
     md-button(ng-show="nav.topicId", ui-sref="topic.posts({ topic_id: nav.topic.id, page_number: 1 })")
