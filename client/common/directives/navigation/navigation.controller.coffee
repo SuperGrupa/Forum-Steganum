@@ -3,13 +3,11 @@ navigationController = ($meteor) ->
 
     if vm.sectionId?
         $meteor.call('getSectionById', vm.sectionId).then ->
-            # TODO użyć filtrów kiedy zmerguje się ich gałąź
-            vm.section = Sections.findOne({ id: vm.sectionId })
+            vm.section = Filter.Sections.by(vm.sectionId)
 
     if vm.topicId?
         $meteor.call('getTopicById', vm.topicId).then ->
-            # TODO użyć filtrów kiedy zmerguje się ich gałąź
-            vm.topic   = Topics.findOne(id: vm.topicId)
+            vm.topic = Filter.Topics.by.id(vm.topicId)
 
     return vm
 
