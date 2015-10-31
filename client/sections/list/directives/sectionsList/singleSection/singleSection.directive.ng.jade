@@ -1,10 +1,10 @@
 .single-section
     md-whiteframe.md-whiteframe-z1(layout, layout-align="left center")
-        .container(ui-sref="section.one.show({ section_id: singleDir.section._id })")
+        .container(ui-sref="section.one.show({ section_id: singleDir.section.id })")
             h3 {{ singleDir.section.name }}
             p {{ singleDir.section.description }}
         .icon-area
             md-icon.edit(md-svg-icon="image:ic_edit_24px", 
-                         ui-sref="section.one.edit({section_id: singleDir.section._id})")
+                         ui-sref="section.one.edit({section_id: singleDir.section.id})")
             md-icon.delete(md-svg-icon="action:ic_delete_24px", 
-                         ui-sref="section.one.delete({section_id: singleDir.section._id})")
+                         ui-sref="section.one.delete({section_id: singleDir.section.id})")

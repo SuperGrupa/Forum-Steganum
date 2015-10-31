@@ -3,7 +3,8 @@ Meteor.methods
         if !Meteor.userId()
             throw new (Meteor.Error)('not-authorized')
 
-        id = Topics.insert
+        Topics.insert
+            id: incrementCounter(Counters, 'topic_id').toString()
             section_id: topic.section_id
             name: topic.name
             description: topic.description
@@ -12,16 +13,16 @@ Meteor.methods
             userId: Meteor.userId()
 
     updateTopic: (topic) ->
-        Topics.update { _id: topic._id },
+        Topics.update { id: topic.id },
             $set:
                 name: topic.name
                 description: topic.description
 
     deleteTopic: (topic_id) ->
         # autoryzacja czy jest adminem ...
-        Topics.remove _id: topic_id
+        Topics.remove id: topic_id
         # usuń również posty z tego tematu
         Posts.remove topic_id: topic_id
 
     getTopicById: (topic_id) ->
-        Topics.findOne({ _id: topic_id })
+        Topics.findOne({ id: topic_id })
