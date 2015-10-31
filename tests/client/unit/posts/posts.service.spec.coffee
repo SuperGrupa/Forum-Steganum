@@ -37,26 +37,26 @@ describe 'Posts Service', ->
 
   describe 'delete method', ->
     post =
-      _id: 'someId'
+      id: 'someId'
     beforeEach ->
       postsServ.delete(post)
 
     it 'should call call method on meteor with "addPost" and postId', ->
-      expect(mockedMeteor.call).toHaveBeenCalledWith('deletePost', post._id)
+      expect(mockedMeteor.call).toHaveBeenCalledWith('deletePost', post.id)
 
   describe 'update method', ->
     post =
-      _id: 'someId'
+      id: 'someId'
       text: 'someText'
     beforeEach ->
       postsServ.update(post)
 
     it 'should call call method on meteor with "addPost" and postId', ->
-      expect(mockedMeteor.call).toHaveBeenCalledWith('updatePost', post._id, post.text)
+      expect(mockedMeteor.call).toHaveBeenCalledWith('updatePost', post.id, post.text)
 
   describe 'findOwner method', ->
     post =
-      _id: 'someId'
+      id: 'someId'
       userId: 'someUserId'
       text: 'someText'
 
