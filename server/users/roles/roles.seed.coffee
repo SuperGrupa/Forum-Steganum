@@ -1,21 +1,27 @@
 Meteor.methods
     seedRoles: ->
+        # usuń wszystkie role
+        Roles.remove {}
 
         roles = [{
             name: 'admin'
             can: RolesObject['admin']
+            default: false
         },
         {
             name: 'moderator'
             can: RolesObject['moderator']
+            default: false
         },
         {
             name: 'user'
             can: RolesObject['user']
+            default: true
         },
         {
             name: 'banned'
             can: RolesObject['banned']
+            default: false
         }]
 
         Roles.insert role for role in roles

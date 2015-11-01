@@ -12,14 +12,15 @@ Meteor.methods
                 email: 'moderator@fs.pl'
                 password: 'moderator'
 
+        if !Meteor.users.find({username: 'banned'}).count()
+            Accounts.createUser
+                username: 'banned'
+                email: 'banned@fs.pl'
+                password: 'banned'
+
         if !Meteor.users.find({username: 'user'}).count()
             Accounts.createUser
                 username: 'user'
                 email: 'user@fs.pl'
                 password: 'user'
 
-        if !Meteor.users.find({username: 'banned'}).count()
-            Accounts.createUser
-                username: 'banned'
-                email: 'banned@fs.pl'
-                password: 'banned'

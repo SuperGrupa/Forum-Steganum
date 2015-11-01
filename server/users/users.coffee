@@ -1,6 +1,6 @@
 Accounts.onCreateUser (options, user) ->
-    if (options.username not in ['admin', 'moderator', 'banned'])
-        setRole(user, 'user')
+    if (options.username in ['admin', 'moderator', 'banned'])
+        setRoleByName(user, options.username)
     else
-        setRole(user, options.username)
+        setDefaultRole(user)
 
