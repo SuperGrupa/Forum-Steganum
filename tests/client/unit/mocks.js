@@ -1,7 +1,5 @@
 function Mongo () {
     this.Collection = function(asd) {};
-    this.color = "red";
-    this.getInfo = getAppleInfo;
 }
 
 Mongo.Collection = function(asd) {};
@@ -10,6 +8,10 @@ function Meteor () {
     this.users = {};
 }
 
+Promise = {
+    then: function () {},
+    error: function () {}
+};
+
 angular.module('angular-meteor', []);
 angular.module('toastr', []);
-
