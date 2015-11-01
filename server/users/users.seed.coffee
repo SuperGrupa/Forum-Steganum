@@ -18,7 +18,7 @@ Meteor.methods
                 email: 'user@fs.pl'
                 password: 'user'
 
-        if !Meteor.users.find({username: 'admin'}).count()
+        if !Meteor.users.find({username: 'banned'}).count()
             Accounts.createUser
                 username: 'banned'
                 email: 'banned@fs.pl'
