@@ -40,7 +40,7 @@ ptsu = (self = false, p = false, t = false, s = false, u = false) ->
             sections: self
     }
 
-@RolesObject =
+RolesObject =
     admin:
         create: ptsu(true, true, true, true, true)
         read: ptsu(true, true, true, true, true)
