@@ -11,3 +11,4 @@ Meteor.startup ->
 
         # to jest tutaj po to, żeby seed następował max 1 raz na uruchomienie serwera, a nie przy każdym restarcie
         process.env.SEED = "false"
+
