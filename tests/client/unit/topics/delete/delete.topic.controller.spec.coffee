@@ -9,8 +9,10 @@ describe 'DeleteTopic controller', ->
     beforeEach inject ($injector) ->
         $controller = $injector.get('$controller')
         $scope = $injector.get('$rootScope').$new()
-        DeleteTopicCtrl = $controller 'DeleteTopicCtrl as DeleteTopicCtrl',
-            topicsServ: mockedTopicsServ
+        DeleteTopicCtrl = $controller 'DeleteTopicCtrl as deleteTopicCtrl',
+            $scope: $scope
+            topicsServ:
+                getTopicById: -> Promise
 
     it 'should initialize', ->
         expect(DeleteTopicCtrl).toBeDefined()
