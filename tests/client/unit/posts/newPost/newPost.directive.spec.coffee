@@ -1,11 +1,24 @@
 'use strict'
 
 describe 'Directive: newPost', ->
+    mockedPostsServ =
+        add: angular.noop
+    mockedStateParams =
+        topic_id: 123
+    successCallback = {}
+
     beforeEach module 'posts',
-        $meteor: {}
+        postsServ: mockedPostsServ
+        $stateParams: mockedStateParams
     beforeEach module 'templates'
 
     element = {}
+
+    beforeEach (done) ->
+        spyOn(mockedPostsServ, 'add').and.returnValue
+            then: (success) ->
+                successCallback = success
+        done()
 
     beforeEach ->
         element = new TestElement 'newPost'
@@ -13,3 +26,35 @@ describe 'Directive: newPost', ->
 
     it 'should compile', ->
         expect(element.dom).toBeDefined()
+
+    it 'should set to vm.action', ->
+        expect(element.ctrl.action).toBe(mockedPostsServ)
+
+    describe 'clearPost method', ->
+        beforeEach (done) ->
+            element.ctrl.clearPost()
+            done()
+
+        it 'should clear text', () ->
+            expect(element.ctrl.post.text).toBe ''
+
+        it 'should set $stateParams.topic_id to post.topic_di', () ->
+            expect(element.ctrl.post.topic_id).toBe mockedStateParams.topic_id
+
+    describe 'addPost method', ->
+        post =
+            text: 'Im Batman'
+
+        beforeEach (done) ->
+            spyOn(element.ctrl, 'clearPost')
+            element.ctrl.addPost(post)
+            successCallback()
+            done()
+
+        it 'should call add method on postsServ with post', () ->
+            expect(mockedPostsServ.add).toHaveBeenCalledWith(post)
+
+        it 'should call clearPost method on controller', () ->
+            expect(element.ctrl.clearPost).toHaveBeenCalled()
+
+
