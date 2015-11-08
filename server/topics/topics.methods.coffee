@@ -13,13 +13,14 @@ Meteor.methods
             userId: Meteor.userId()
 
     updateTopic: (topic) ->
+        # TODO autoryzacja czy jest adminem...
         Topics.update { id: topic.id },
             $set:
                 name: topic.name
                 description: topic.description
 
     deleteTopic: (topic_id) ->
-        # autoryzacja czy jest adminem ...
+        # TODO autoryzacja czy jest adminem ...
         Topics.remove id: topic_id
         # usuń również posty z tego tematu
         Posts.remove topic_id: topic_id
