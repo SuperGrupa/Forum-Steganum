@@ -13,6 +13,8 @@ Promise = {
     error: function () {}
 };
 
+Sections = {}
+
 angular.module('angular-meteor', []);
 angular.module('toastr', []);
 
