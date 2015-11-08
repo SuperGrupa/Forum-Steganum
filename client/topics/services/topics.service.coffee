@@ -5,9 +5,9 @@ topicsServ = ($meteor, $state) ->
         .subscribe('postsOfTopic', topic_id, page_number, posts_per_page)
     getTopicById: (topic_id) ->
         $meteor.call 'getTopicById', topic_id
-    create: (topic, section_id) ->
+    create: (topic) ->
         $meteor.call('addTopic', topic).then ->
-            $state.go('section.one.show', id: section_id)
+            $state.go('section.one.show', id: topic.section_id)
     update: (topic) ->
         $meteor.call('updateTopic', topic).then ->
             $state.goBack()

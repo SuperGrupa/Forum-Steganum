@@ -1,4 +1,4 @@
-newTopicController = (topicsServ, sectionsServ, $stateParams) ->
+newTopicController = (sectionsServ, $stateParams) ->
     vm = this
 
     vm.section =
@@ -14,7 +14,7 @@ newTopicController = (topicsServ, sectionsServ, $stateParams) ->
 
     return vm
 
-newTopicController.$inject = ['topicsServ', 'sectionsServ', '$stateParams']
+newTopicController.$inject = ['sectionsServ', '$stateParams']
 
 angular.module('topics')
 .controller 'newTopicController', newTopicController
