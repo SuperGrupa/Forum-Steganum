@@ -7085,7 +7085,7 @@ var packageMetadata = {
                 },
                 "version": {
                   "type": "constant",
-                  "value": "acfa97c57653141b22300cd0ec0b1252234e6c36"
+                  "value": "b195d83d2bacb115b33169998a0bd373a765c7f2"
                 },
                 "PUBLIC_SETTINGS": {
                   "type": "undefined"
@@ -7209,7 +7209,7 @@ var packageMetadata = {
             },
             "connections": {
               "type": "constant",
-              "value": 2
+              "value": 1
             },
             "timeout": {
               "type": "constant",
@@ -7365,7 +7365,6 @@ var packageMetadata = {
       }
     }
   },
-  "autopublish": {},
   "callback-hook": {
     "Hook": {
       "type": "function",
@@ -7853,11 +7852,11 @@ var packageMetadata = {
       "members": {
         "autoupdateVersion": {
           "type": "constant",
-          "value": "4c0883f01c890303d798ecb39895131432b26d29"
+          "value": "5fa7beeca710e22d6beb435bc0f89a5e02d908d8"
         },
         "autoupdateVersionRefreshable": {
           "type": "constant",
-          "value": "2c75dd9e129541f659f40cac44e4c3089cd70aa1"
+          "value": "085a8d99b5d847edf9564632a8f5b6f5fb05668a"
         },
         "autoupdateVersionCordova": {
           "type": "constant",
@@ -7875,7 +7874,6 @@ var packageMetadata = {
   "coffeescript": {},
   "civilframe:angular-jade": {},
   "mquandalle:jade": {},
-  "less": {},
   "accounts-ui": {},
   "npm-bcrypt": {
     "NpmModuleBcrypt": {
@@ -8139,6 +8137,25 @@ var packageMetadata = {
         },
         "createAppLogger": {
           "type": "function"
+        }
+      }
+    },
+    "ObjectLogger": {
+      "type": "function",
+      "members": {
+        "prototype": {
+          "type": "object",
+          "members": {
+            "enter": {
+              "type": "function"
+            },
+            "return": {
+              "type": "function"
+            },
+            "bindMethod": {
+              "type": "function"
+            }
+          }
         }
       }
     }
@@ -8477,6 +8494,16 @@ var packageMetadata = {
       }
     }
   },
+  "velocity:source-map-support": {
+    "SourceMapSupport": {
+      "type": "object",
+      "members": {
+        "install": {
+          "type": "function"
+        }
+      }
+    }
+  },
   "sanjo:long-running-child-process": {
     "LongRunningChildProcess": {
       "type": "function",
@@ -8674,11 +8701,11 @@ var packageMetadata = {
         },
         "mirrorMeteorVersion": {
           "type": "constant",
-          "value": "1.1.0.2_3"
+          "value": "1.1.0.3_2"
         },
         "mirrorMeteorRelease": {
           "type": "constant",
-          "value": "velocity:METEOR@1.1.0.2_3"
+          "value": "velocity:METEOR@1.1.0.3_2"
         },
         "mirrorMeteorToolReleaseName": {
           "type": "constant",
@@ -8686,11 +8713,11 @@ var packageMetadata = {
         },
         "mirrorMeteorToolVersion": {
           "type": "constant",
-          "value": "1.1.3_4"
+          "value": "1.1.4_2"
         },
         "mirrorMeteorToolRelease": {
           "type": "constant",
-          "value": "velocity:meteor-tool@1.1.3_4"
+          "value": "velocity:meteor-tool@1.1.4_2"
         }
       }
     },
@@ -8970,127 +8997,7 @@ var packageMetadata = {
       "type": "object",
       "members": {
         "karmaChilds": {
-          "type": "object",
-          "members": {
-            "jasmine-client-unit": {
-              "type": "object",
-              "members": {
-                "taskName": {
-                  "type": "constant",
-                  "value": "jasmine-client-unit"
-                },
-                "appPath": {
-                  "type": "constant",
-                  "value": "/Users/dako/sitesWWW/Forum-Steganum"
-                },
-                "pid": {
-                  "type": "constant",
-                  "value": 8673
-                },
-                "fout": {
-                  "type": "constant",
-                  "value": 30
-                },
-                "child": {
-                  "type": "object",
-                  "members": {
-                    "domain": {
-                      "type": "null",
-                      "value": null
-                    },
-                    "signalCode": {
-                      "type": "null",
-                      "value": null
-                    },
-                    "exitCode": {
-                      "type": "null",
-                      "value": null
-                    },
-                    "pid": {
-                      "type": "constant",
-                      "value": 8673
-                    },
-                    "stdin": {
-                      "type": "null",
-                      "value": null
-                    },
-                    "stdout": {
-                      "type": "null",
-                      "value": null
-                    },
-                    "stderr": {
-                      "type": "null",
-                      "value": null
-                    },
-                    "stdio": {
-                      "type": "array"
-                    },
-                    "spawn": {
-                      "type": "function"
-                    },
-                    "kill": {
-                      "type": "function"
-                    },
-                    "ref": {
-                      "type": "function"
-                    },
-                    "unref": {
-                      "type": "function"
-                    },
-                    "setMaxListeners": {
-                      "type": "function"
-                    },
-                    "emit": {
-                      "type": "function"
-                    },
-                    "addListener": {
-                      "type": "function",
-                      "refID": 17
-                    },
-                    "on": {
-                      "ref": 17
-                    },
-                    "once": {
-                      "type": "function"
-                    },
-                    "removeListener": {
-                      "type": "function"
-                    },
-                    "removeAllListeners": {
-                      "type": "function"
-                    },
-                    "listeners": {
-                      "type": "function"
-                    }
-                  }
-                },
-                "getTaskName": {
-                  "type": "function"
-                },
-                "getChild": {
-                  "type": "function"
-                },
-                "getPid": {
-                  "type": "function"
-                },
-                "isDead": {
-                  "type": "function"
-                },
-                "isRunning": {
-                  "type": "function"
-                },
-                "readPid": {
-                  "type": "function"
-                },
-                "spawn": {
-                  "type": "function"
-                },
-                "kill": {
-                  "type": "function"
-                }
-              }
-            }
-          }
+          "type": "object"
         },
         "getKarmaChild": {
           "type": "function"
@@ -9125,11 +9032,34 @@ var packageMetadata = {
       "members": {
         "onTest": {
           "type": "function"
+        },
+        "setKarmaConfig": {
+          "type": "function"
         }
       }
     }
   },
+  "grigio:babel": {},
   "velocity:html-reporter": {},
+  "angular:angular-material": {},
+  "planettraining:material-design-icons": {},
+  "reywood:publish-composite": {},
+  "grove:less": {},
+  "mongo-livedata": {},
+  "konecty:mongo-counter": {
+    "incrementCounter": {
+      "type": "function"
+    },
+    "decrementCounter": {
+      "type": "function"
+    },
+    "setCounter": {
+      "type": "function"
+    },
+    "deleteCounters": {
+      "type": "function"
+    }
+  },
   "session": {},
   "livedata": {
     "DDP": {
