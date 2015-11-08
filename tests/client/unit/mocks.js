@@ -8,11 +8,6 @@ function Meteor () {
     this.users = {};
 }
 
-Promise = {
-    then: function () {},
-    error: function () {}
-};
-
 Sections = {}
 
 angular.module('angular-meteor', []);
