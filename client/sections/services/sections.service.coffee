@@ -3,7 +3,7 @@ sectionsServ = ($meteor, $state) ->
 
     getTopics: (section_id) ->
         $meteor.collection ->
-            Filter.Topics.by(section_id)
+            Filter.Topics.by.section(section_id)
         .subscribe('topicsInSection', section_id)
 
     getSectionById: (section_id) ->

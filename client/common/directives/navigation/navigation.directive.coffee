@@ -1,9 +1,9 @@
 navigation = ->
     restrict: 'AE'
-    scope:
+    scope: {}
+    bindToController:
         sectionId: '@'
         topicId: '@'
-    bindToController: true
     templateUrl: 'client/common/directives/navigation/navigation.directive.html'
     controllerAs: 'nav'
     controller: 'navigationController'
