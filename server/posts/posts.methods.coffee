@@ -12,6 +12,6 @@ Meteor.methods
     deletePost: (postId) ->
         Posts.remove { id: postId }
     editPost: (postId, text) ->
-        Posts.update postId, $set:
-                                text: text
-                                updatedAt: new Date
+        Posts.update { id: postId }, $set:
+                                        text: text
+                                        updatedAt: new Date
