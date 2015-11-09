@@ -2,7 +2,7 @@ Meteor.methods
     getSectionById: (section_id) ->
         Sections.findOne { id: section_id }
     deleteSection: (section_id) ->
-        # sprawdzenie uprawnień ...
+        # TODO sprawdzenie uprawnień ...
 
         # wyznacz id tematów w danym dziale (sekcji) forum
         topics_in_section = Topics.find(section_id: section_id, { fields: { id: 1 } }).fetch()
@@ -13,7 +13,7 @@ Meteor.methods
         Topics.remove { section_id: section_id }
         Sections.remove { id: section_id }
     updateSection: (section) ->
-        # sprawdzenie uprawnień ...
+        # TODO sprawdzenie uprawnień ...
 
         Sections.update { id: section.id },
             $set:
