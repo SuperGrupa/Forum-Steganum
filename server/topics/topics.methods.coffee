@@ -18,6 +18,7 @@ Meteor.methods
             $set:
                 name: topic.name
                 description: topic.description
+                updatedAt: new Date
 
     deleteTopic: (topic_id) ->
         # TODO autoryzacja czy jest adminem ...

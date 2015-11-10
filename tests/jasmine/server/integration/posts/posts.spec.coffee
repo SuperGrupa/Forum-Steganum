@@ -7,18 +7,14 @@ describe 'Posts', ->
 
     Posts.remove { }
 
-    login = ->
-        Meteor.userId = -> 1
-    seed = ->
-        Meteor.call 'addPost', post
-
     describe 'addPost method', ->
         it 'should throw not-authorized error', ->
+            Helpers.logout()
             Meteor.call 'addPost', post, (error) ->
                 expect(error).toEqual(new Meteor.Error('not-authorized'))
 
         it 'should add new post to database', ->
-            login()
+            Helpers.login()
             posts_before = Posts.find({}).count()
             Meteor.call 'addPost', post
             expect(Posts.find({}).count()).toEqual(posts_before + 1)
@@ -28,8 +24,8 @@ describe 'Posts', ->
 
     describe 'deletePost method', ->
         beforeEach ->
-            login()             # aby móc seed'ować bazę
-            seed()
+            Helpers.login()             # aby móc seed'ować bazę
+            Helpers.seed(post)
 
         it 'should remove specific post', ->
             posts_before = Posts.find({}).count()
@@ -42,8 +38,8 @@ describe 'Posts', ->
 
     describe 'editPost method', ->
         beforeEach ->
-            login()             # aby móc seed'ować bazę
-            seed()
+            Helpers.login()             # aby móc seed'ować bazę
+            Helpers.seed(post)
 
         it 'should update post', ->
             posts_before = Posts.find({}).count()
