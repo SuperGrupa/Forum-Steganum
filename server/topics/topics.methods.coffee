@@ -22,9 +22,9 @@ Meteor.methods
 
     deleteTopic: (topic_id) ->
         # TODO autoryzacja czy jest adminem ...
-        Topics.remove id: topic_id
+        Topics.remove { id: topic_id }
         # usuń również posty z tego tematu
-        Posts.remove topic_id: topic_id
+        Posts.remove { topic_id: topic_id }
 
     getTopicById: (topic_id) ->
         Topics.findOne({ id: topic_id })

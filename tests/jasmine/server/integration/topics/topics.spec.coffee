@@ -23,19 +23,19 @@ describe 'Topics', ->
             Helpers.logout()
 
         it 'should update topic name and description in database', ->
-            local_post = Topics.findOne({ name: 'Example topic name' })
-            expect(local_post).not.toBe(undefined)
+            local_topic = Topics.findOne({ name: 'Example topic name' })
+            expect(local_topic).not.toBe(undefined)
 
-            local_post.name = 'Updated topic name'
-            local_post.description = 'Updated description of example topic'
+            local_topic.name = 'Updated topic name'
+            local_topic.description = 'Updated description of example topic'
 
-            Meteor.call 'updateTopic', local_post
+            Meteor.call 'updateTopic', local_topic
 
-            updated_topic = Topics.findOne({ id: local_post.id })
+            updated_topic = Topics.findOne({ id: local_topic.id })
             expect(updated_topic).not.toBe(undefined)
             expect(updated_topic.name).toBe('Updated topic name')
             expect(updated_topic.description).toBe('Updated description of example topic')
-            expect(updated_topic.updatedAt).toBeGreaterThan(local_post.updatedAt)
+            expect(updated_topic.updatedAt).toBeGreaterThan(local_topic.updatedAt)
 
     describe 'deleteTopic method', ->
         beforeEach ->
@@ -43,14 +43,13 @@ describe 'Topics', ->
             Helpers.seed.topic(topic)
 
         it 'should delete given topic', ->
-            local_post_id = Topics.findOne({ name: 'Example topic name' }, { fields: { id: 1}})
-            expect(local_post_id).not.toBe(undefined)
+            local_topic = Topics.findOne({ name: 'Example topic name' })
+            expect(local_topic).not.toBe(undefined)
 
-            Meteor.call 'deleteTopic', local_post_id
-            Topics.remove({ })
+            Meteor.call 'deleteTopic', local_topic.id
 
-            local_post_id = Topics.findOne({ name: 'Example topic name' }, { fields: { id: 1}})
-            expect(local_post_id).toBe(undefined)
+            local_topic = Topics.findOne({ name: 'Example topic name' })
+            expect(local_topic).toBe(undefined)
 
     describe 'getTopicById method', ->
         beforeEach ->
@@ -58,10 +57,8 @@ describe 'Topics', ->
             Helpers.seed.topic(topic)
 
         it 'should return topic object based on given id', ->
-            # znajdź pierwszy lepszy temat w bazie i pobierz go przez metodę
             topic_from_db = Topics.findOne({ name: 'Example topic name' })
             expect(topic_from_db).not.toBe(undefined)
 
             topic_from_method = Meteor.call 'getTopicById', topic_from_db.id
-
             expect(topic_from_db).toEqual(topic_from_method)

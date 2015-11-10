@@ -16,3 +16,7 @@
             Helpers.login()
             Meteor.call 'addTopic', topic
             Helpers.logout()
+        section: (section) ->
+            Helpers.login()
+            Sections.insert section
+            Helpers.logout()

@@ -19,3 +19,4 @@ Meteor.methods
             $set:
                 name: section.name
                 description: section.description
+                updatedAt: new Date
