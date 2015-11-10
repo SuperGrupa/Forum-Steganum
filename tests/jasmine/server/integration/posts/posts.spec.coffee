@@ -24,8 +24,7 @@ describe 'Posts', ->
 
     describe 'deletePost method', ->
         beforeEach ->
-            Helpers.login()             # aby móc seed'ować bazę
-            Helpers.seed(post)
+            Helpers.seed.post(post)
 
         it 'should remove specific post', ->
             posts_before = Posts.find({}).count()
@@ -38,8 +37,7 @@ describe 'Posts', ->
 
     describe 'editPost method', ->
         beforeEach ->
-            Helpers.login()             # aby móc seed'ować bazę
-            Helpers.seed(post)
+            Helpers.seed.post(post)
 
         it 'should update post', ->
             posts_before = Posts.find({}).count()
