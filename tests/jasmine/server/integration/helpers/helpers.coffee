@@ -19,4 +19,4 @@
         topic: (topic) ->
             this.__inSession(Meteor.call, ['addTopic', topic])
         section: (section) ->
-            this.__inSession(Sections.insert, [section])
+            this.__inSession(Meteor.call, ['addSection', section])

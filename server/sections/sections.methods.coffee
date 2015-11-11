@@ -1,4 +1,14 @@
 Meteor.methods
+    addSection: (section) ->
+        if !Meteor.userId()
+            throw new (Meteor.Error)('not-authorized')
+
+        Sections.insert
+            id: incrementCounter(Counters, 'section_id').toString()
+            name: section.name
+            description: section.description
+            createdAt: new Date
+            updatedAt: new Date
     getSectionById: (section_id) ->
         Sections.findOne { id: section_id }
     deleteSection: (section_id) ->
