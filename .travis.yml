@@ -12,7 +12,7 @@ before_script:
 - cd ../
 - curl https://install.meteor.com/ | sh
 after_success:
-- cd ../
+- cd ../ && npm install codeclimate-test-reporter && codeclimate-test-reporter < tests/coverage/phantomjs/lcov.info
 - "expect deploy.exp"
 - "sleep 5" #Sleep is to make sure meteor is done deploying
 addons:
