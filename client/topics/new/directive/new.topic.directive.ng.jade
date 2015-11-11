@@ -2,7 +2,7 @@ md-whiteframe.topic-form.md-whiteframe-z1(layout="column", layout-align="center 
     .title
         h2 Create new topic
         h4 in section '{{ new.section.name }}'
-    form(ng-submit="topicsCtrl.topic.create(new.topic, new.topic.section_id)", layout="column")
+    form(ng-submit="topicsCtrl.topic.create(new.topic)", layout="column")
         md-input-container
             input(type="text" ng-model="new.topic.name"
                     placeholder="Topic name" aria-label="topic name")
