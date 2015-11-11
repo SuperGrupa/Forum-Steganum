@@ -1,4 +1,4 @@
-@RolesFunctions =
+module.exports 'rolesFunctions',
     setRoleByName: (user, roleName) ->
         foundRole = Roles.find({ name: roleName }).fetch()
         setRole(user, foundRole)

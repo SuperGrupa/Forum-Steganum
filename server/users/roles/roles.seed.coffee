@@ -29,15 +29,15 @@ Meteor.methods
 
 ptsu = (self = false, p = false, t = false, s = false, u = false) ->
     return {
-        posts: p
-        topics: t
-        sections: s
-        users: u
+        post: p
+        topic: t
+        section: s
+        user: u
         in: []
         self:
-            posts: self
-            topics: self
-            sections: self
+            post: self
+            topic: self
+            section: self
     }
 
 RolesObject =

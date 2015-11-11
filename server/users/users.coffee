@@ -1,3 +1,5 @@
+RolesFunctions = require('rolesFunctions')
+
 Accounts.onCreateUser (options, user) ->
     if (options.username in ['admin', 'moderator', 'banned'])
         RolesFunctions.setRoleByName(user, options.username)
