@@ -8,15 +8,15 @@
         Topics.remove {}
         Sections.remove {}
     seed:
+        __inSession: (fun, params) ->
+            if _.isFunction(fun) && _.isArray(params)
+                Helpers.login()
+                fun.apply(undefined, params)
+                Helpers.logout()
+
         post: (post) ->
-            Helpers.login()
-            Meteor.call 'addPost', post
-            Helpers.logout()
+            this.__inSession(Meteor.call, ['addPost', post])
         topic: (topic) ->
-            Helpers.login()
-            Meteor.call 'addTopic', topic
-            Helpers.logout()
+            this.__inSession(Meteor.call, ['addTopic', topic])
         section: (section) ->
-            Helpers.login()
-            Sections.insert section
-            Helpers.logout()
+            this.__inSession(Sections.insert, [section])
