@@ -3,3 +3,6 @@ tests/coverage
 .gulp/node_modules
 .gulp/components
 .gulp/www
+.gulp/npm-debug.log
+.vpn
+TODO

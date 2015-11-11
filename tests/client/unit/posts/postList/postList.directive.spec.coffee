@@ -1,9 +1,10 @@
 'use strict'
 
 describe 'Directive: postList', ->
-    beforeEach module 'forumSteganum',
+    beforeEach module 'posts',
         singlePostDirective:
             restrict: 'AE'
+        postsServ: {}
     beforeEach module 'templates'
 
     element = {}
@@ -15,8 +16,7 @@ describe 'Directive: postList', ->
             posts: mockedPosts
 
     it 'should compile', ->
-      expect(element.dom).toBeDefined()
+        expect(element.dom).toBeDefined()
 
     it 'should set mockedPosts to scope', ->
         expect(element.scope.posts).toBe mockedPosts
-

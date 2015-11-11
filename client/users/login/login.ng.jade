@@ -1,0 +1,11 @@
+md-whiteframe.auth-form.md-whiteframe-z1(layout="column", layout-align="center center")
+    auth-buttons(login="true")
+    form(name="logForm" layout="column")
+        md-input-container
+            input(type="text" ng-model="userCtrl.auth.email" name="email"
+                    placeholder="E-mail" aria-label="email")
+        md-input-container
+            input(type="password" ng-model="userCtrl.auth.password" name="password"
+                    placeholder="Password" aria-label="password")
+        show-message(message="userCtrl.auth.error.login", type="error")
+        md-button.md-raised.md-primary(ng-click="userCtrl.auth.logIn()" aria-label="login") Sign In

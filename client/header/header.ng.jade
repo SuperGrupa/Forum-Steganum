@@ -1,14 +1,21 @@
 md-toolbar.md-primary
     div.md-toolbar-tools
-        md-button(ui-sref="home")
-            md-icon(md-svg-icon="action:ic_home_24px")
-            .title Home
-        md-button(ui-sref="posts")
-            md-icon(md-svg-icon="communication:ic_forum_24px")
-            .title Forum
-        md-button(ui-sref="todos")
-            md-icon(md-svg-icon="action:ic_assignment_24px")
-            .title Todos
+        .buttons-container
+            md-button(ui-sref="home")
+                md-icon(md-svg-icon="action:ic_home_24px")
+                .title Home
+            md-button(ui-sref="section.list")
+                md-icon(md-svg-icon="navigation:ic_menu_24px")
+                .title Forum
+            md-button(ui-sref="login", ng-hide="currentUser")
+                md-icon(md-svg-icon="social:ic_person_24px")
+                .title Sing in
+            md-button(ui-sref="profile", ng-show="currentUser")
+                md-icon(md-svg-icon="social:ic_person_24px")
+                .title {{currentUser.username}}
+            md-button(ng-click="headCtrl.logout()", ng-show="currentUser")
+                md-icon(md-svg-icon="action:ic_exit_to_app_24px")
+                .title Sign out
         span(flex)
         .logo(ui-sref="home")
             h1.big Forum

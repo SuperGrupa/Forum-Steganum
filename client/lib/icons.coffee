@@ -9,5 +9,7 @@ themeIcons = ($mdIconProvider) ->
   .iconSet 'image', '/packages/planettraining_material-design-icons/bower_components/material-design-icons/sprites/svg-sprite/svg-sprite-image.svg'
   return
 
+themeIcons.$inject = ['$mdIconProvider']
+
 angular.module 'icons', []
 .config themeIcons

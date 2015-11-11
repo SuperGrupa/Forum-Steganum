@@ -1,8 +1,6 @@
-[![Stories in Ready](https://badge.waffle.io/SuperGrupa/Forum-Steganum.png?label=ready&title=Ready)](https://waffle.io/SuperGrupa/Forum-Steganum)
 [![Build Status](https://travis-ci.org/SuperGrupa/Forum-Steganum.svg?branch=master)](https://travis-ci.org/SuperGrupa/Forum-Steganum)
 [![Code Climate](https://codeclimate.com/github/SuperGrupa/Forum-Steganum/badges/gpa.svg)](https://codeclimate.com/github/SuperGrupa/Forum-Steganum)
 [![Test Coverage](https://codeclimate.com/github/SuperGrupa/Forum-Steganum/badges/coverage.svg)](https://codeclimate.com/github/SuperGrupa/Forum-Steganum/coverage)
-![Repo Size](https://reposs.herokuapp.com/?path=SuperGrupa/Forum-Steganum)
 
 Develop:
 [![Build Status](https://travis-ci.org/SuperGrupa/Forum-Steganum.svg?branch=develop)](https://travis-ci.org/SuperGrupa/Forum-Steganum)
@@ -20,14 +18,15 @@ http://forum-steganum.meteor.com/
     meteor
 
     http://localhost:3000
-    
+
+# Seedowanie bazy i odpalenie aplikacji
+    SEED="true" meteor
+
 # Odpalenie testów jednostkowych klienta
 
-    cd .gulp && npm install && gulp build
-    gulp test:unit
-    
+    cd .gulp && npm install
+    gulp
+
 # Odpalenie testów serwera
 
     meteor run --test
-    
-

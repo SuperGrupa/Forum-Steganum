@@ -1,5 +1,13 @@
-div
-  button.delete(ng-click="postCtrl.post.delete(post)") &times;
-  span.text
-    strong {{ postCtrl.post.findOwner(singleDir.post).username }} 
-    | - {{singleDir.post.text}}
+.single-post
+    .md-list-item-text
+        .author
+            strong {{ listDir.post.findOwner(singleDir.post).username }} 
+        .post
+            span.text {{ singleDir.post.text }}
+            .status
+                small {{ singleDir.post.createdAt | date: 'EEEE, dd MMMM yyyy' }} 
+                small at {{ singleDir.post.createdAt | date: 'HH:mm' }} 
+    .icon-area
+        md-icon.edit(md-svg-icon="image:ic_edit_24px")
+        md-icon.delete(md-svg-icon="action:ic_delete_24px", ng-click="listDir.post.delete(post)")
+    md-divider(ng-if="!$last")
