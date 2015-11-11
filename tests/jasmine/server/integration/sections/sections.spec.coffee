@@ -3,6 +3,21 @@ describe 'Sections', ->
         name: 'Example section name'
         description: 'Description of example section'
 
+    # TODO ta metoda jest jeszcze nieużywana w kliencie
+    describe 'addSection method', ->
+        it 'should throw not-authorized exception for not logged user', ->
+            Helpers.logout()
+            Meteor.call 'addSection', section, (error) ->
+                Helpers.logout()
+                expect(error).toEqual(new Meteor.Error('not-authorized'))
+
+        it 'should add new section after login', ->
+            Helpers.login()
+            sections_before = Sections.find({}).count()
+            Meteor.call 'addSection', section
+            expect(Sections.find({}).count()).toEqual(sections_before + 1)
+            expect(Sections.find({ name: 'Example section name' }).count()).toBeGreaterThan(0)
+
     describe 'updateSection method', ->
         beforeEach ->
             Helpers.seed.section(section)
