@@ -8,7 +8,6 @@ describe 'Sections', ->
         it 'should throw not-authorized exception for not logged user', ->
             Helpers.logout()
             Meteor.call 'addSection', section, (error) ->
-                Helpers.logout()
                 expect(error).toEqual(new Meteor.Error('not-authorized'))
 
         it 'should add new section after login', ->

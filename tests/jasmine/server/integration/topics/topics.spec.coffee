@@ -8,7 +8,6 @@ describe 'Topics', ->
         it 'should throw not-authorized exception for not logged user', ->
             Helpers.logout()
             Meteor.call 'addTopic', topic, (error) ->
-                Helpers.logout()
                 expect(error).toEqual(new Meteor.Error('not-authorized'))
 
         it 'should add new topic after login', ->

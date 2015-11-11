@@ -1,8 +1,24 @@
 @Helpers =
     login: ->
-        Meteor.userId = -> 1
+        Meteor.userId = -> '1'
+        Meteor.user = ->
+            user = Meteor.users.findOne({ _id: '1' })
+            if !user
+                user =
+                    _id: '1'
+                    username: 'Nitrooos'
+                    emails: [
+                        address: 'nitrooos@gmail.com'
+                    ]
+                    profile:
+                        firstname: 'Nitr'
+                        lastname: 'Ooos'
+                Meteor.users.insert user
+
+            return user
     logout: ->
-        Meteor.userId = -> 0
+        Meteor.userId = -> ''
+        Meteor.user = -> undefined
     clear: ->
         Posts.remove {}
         Topics.remove {}
