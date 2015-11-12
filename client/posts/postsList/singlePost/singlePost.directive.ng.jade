@@ -3,7 +3,7 @@
         .author
             strong {{ listDir.post.findOwner(singleDir.post).username }} 
         .post
-            span.text {{ singleDir.post.text }}
+            live-edit(field="singleDir.post.text", on-save="listDir.post.update(post)", input-type="text")
             .status
                 small {{ singleDir.post.createdAt | date: 'EEEE, dd MMMM yyyy' }} 
                 small at {{ singleDir.post.createdAt | date: 'HH:mm' }} 

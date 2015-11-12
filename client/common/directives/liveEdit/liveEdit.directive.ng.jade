@@ -1,0 +1,7 @@
+div
+    div(ng-hide='editEnabled')
+        span {{field | date:'yyyy-MM-dd' }}
+        span(ng-click='startEditing()') Edytuj
+    div(ng-show='editEnabled')
+        input(type='{{inputType}}' ng-model='field')
+        span(ng-click='save()') Zapisz

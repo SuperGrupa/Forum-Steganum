@@ -14,7 +14,7 @@ Meteor.methods
     deletePost: (postId) ->
         # TODO autoryzacja czy jest adminem...
         Posts.remove { id: postId }
-    editPost: (postId, text) ->
+    updatePost: (postId, text) ->
         # TODO autoryzacja czy jest twórcą posta...
         Posts.update { id: postId }, $set:
                                         text: text
