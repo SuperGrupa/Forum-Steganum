@@ -1,3 +1,5 @@
+Counters = require 'Counters'
+
 Meteor.methods
     addPost: (post) ->
         if !Meteor.userId()

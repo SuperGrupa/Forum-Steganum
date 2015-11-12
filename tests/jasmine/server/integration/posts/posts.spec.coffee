@@ -1,3 +1,5 @@
+Helpers = require 'Helpers'
+
 describe 'Posts', ->
     post =
         text: 'Some example text'
