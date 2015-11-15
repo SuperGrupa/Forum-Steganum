@@ -33,7 +33,9 @@ ptsu = (self = false, p = false, t = false, s = false, u = false) ->
         topic: t
         section: s
         user: u
-        in: []
+        in:
+            topic: []
+            section: []
         self:
             post: self
             topic: self
