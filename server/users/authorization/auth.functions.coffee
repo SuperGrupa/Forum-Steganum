@@ -1,5 +1,6 @@
 module.exports 'authFunctions',
     can: (what, name, object, userId) ->
+        if what == 'read' then return true
         if what != 'read' then userId = Meteor.userId()
         if typeof object == 'string'
             found = switch name
