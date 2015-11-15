@@ -15,7 +15,8 @@ Meteor.startup ->
         Meteor.users.remove({})
         process.env.CLEAR_USERS = "false"
 
-    Meteor.call 'seedUsers'
+    if !Meteor.users.find({}).count()
+        Meteor.call 'seedUsers'
 
     if config.run_seed
         Meteor.call 'seedPosts'

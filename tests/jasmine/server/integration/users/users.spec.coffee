@@ -7,9 +7,11 @@ describe 'Users', ->
 
         it 'should update username when logged', ->
             Helpers.login('admin')
-            Meteor.call 'updateUsername', 'Bartas'
+            Meteor.call 'updateUsername', 'Bartass'
 
-            expect(Meteor.user().username).toEqual('Bartas')
+            user = Meteor.users.findOne({ role: 'admin' })
+
+            expect(user.username).toEqual('Bartass')
 
     describe 'updateEmail method', ->
         it 'should throw not-authorized exception when user not logged', ->
@@ -19,9 +21,11 @@ describe 'Users', ->
 
         it 'should update email when logged', ->
             Helpers.login('admin')
-            Meteor.call 'updateEmail', 'bartas@gmail.com'
+            Meteor.call 'updateEmail', 'bartas1@gmail.com'
 
-            expect(Meteor.user().emails[0].address).toEqual('bartas@gmail.com')
+            user = Meteor.users.findOne({ role: 'admin' })
+
+            expect(user.emails[0].address).toEqual('bartas1@gmail.com')
 
     describe 'updateProfile method', ->
         profile =
@@ -43,4 +47,6 @@ describe 'Users', ->
             Helpers.login('admin')
             Meteor.call 'updateProfile', profile
 
-            expect(Meteor.user().profile).toEqual(profile)
+            user = Meteor.users.findOne({ role: 'admin' })
+
+            expect(user.profile).toEqual(profile)

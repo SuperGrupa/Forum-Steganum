@@ -2,24 +2,11 @@
     login: (roleName) ->
         if !Roles.find({}).count()
             Meteor.call 'seedRoles'
-        if Meteor.users.find({}).count()
-            Meteor.call 'seedUsers'
         Meteor.userId = ->
             user = Meteor.users.findOne({ role: roleName })
             return user._id
         Meteor.user = ->
             user = Meteor.users.findOne({ role: roleName })
-            if !user
-                user =
-                    _id: 'roleName'
-                    username: 'Nitrooos'
-                    emails: [
-                        address: 'nitrooos@gmail.com'
-                    ]
-                    profile:
-                        firstname: 'Nitr'
-                        lastname: 'Ooos'
-                Meteor.users.insert user
 
             return user
     logout: ->
