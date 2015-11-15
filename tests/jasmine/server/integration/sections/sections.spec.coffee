@@ -8,10 +8,10 @@ describe 'Sections', ->
         it 'should throw not-authorized exception for not logged user', ->
             Helpers.logout()
             Meteor.call 'addSection', section, (error) ->
-                expect(error).toEqual(new Meteor.Error('not-authorized'))
+                expect(error).toEqual(new Meteor.Error('notLogged'))
 
         it 'should add new section after login', ->
-            Helpers.login()
+            Helpers.login('admin')
             sections_before = Sections.find({}).count()
             Meteor.call 'addSection', section
             expect(Sections.find({}).count()).toEqual(sections_before + 1)
@@ -20,6 +20,7 @@ describe 'Sections', ->
     describe 'updateSection method', ->
         beforeEach ->
             Helpers.seed.section(section)
+            Helpers.login('admin')
 
         it 'should update section name and description in database', ->
             local_section = Sections.findOne({ name: 'Example section name' })
@@ -39,6 +40,7 @@ describe 'Sections', ->
         beforeEach ->
             Helpers.clear()
             Helpers.seed.section(section)
+            Helpers.login('admin')
 
         it 'should delete given section', ->
             local_section = Sections.findOne({ name: 'Example section name' })
@@ -53,6 +55,7 @@ describe 'Sections', ->
         beforeEach ->
             Helpers.clear()
             Helpers.seed.section(section)
+            Helpers.login('admin')
 
         it 'should return section object based on given id', ->
             section_from_db = Sections.findOne({ name: 'Example section name' })

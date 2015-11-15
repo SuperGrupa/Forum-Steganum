@@ -6,7 +6,7 @@ describe 'Users', ->
                 expect(error).toEqual(new Meteor.Error(500, 'You are not logged in'))
 
         it 'should update username when logged', ->
-            Helpers.login()
+            Helpers.login('admin')
             Meteor.call 'updateUsername', 'Bartas'
 
             expect(Meteor.user().username).toEqual('Bartas')
@@ -18,7 +18,7 @@ describe 'Users', ->
                 expect(error).toEqual(new Meteor.Error(500, 'You are not logged in'))
 
         it 'should update email when logged', ->
-            Helpers.login()
+            Helpers.login('admin')
             Meteor.call 'updateEmail', 'bartas@gmail.com'
 
             expect(Meteor.user().emails[0].address).toEqual('bartas@gmail.com')
@@ -40,7 +40,7 @@ describe 'Users', ->
                 expect(error).toEqual(new Meteor.Error(500, 'You are not logged in'))
 
         it 'should update profile when logged', ->
-            Helpers.login()
+            Helpers.login('admin')
             Meteor.call 'updateProfile', profile
 
             expect(Meteor.user().profile).toEqual(profile)
