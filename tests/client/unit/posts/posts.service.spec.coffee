@@ -1,14 +1,19 @@
 describe 'Posts Service', ->
   postsServ = {}
-  mockedMeteor = {
+  mockedMeteor =
     call: angular.noop
     object: angular.noop
     collection: angular.noop
-  }
+  mockedAlertsServ =
+    success: angular.noop
+    error: angular.noop
   callBack = {}
+  successCallBack = {}
 
   beforeEach ->
-    spyOn(mockedMeteor, 'call').and.returnValue true
+    spyOn(mockedMeteor, 'call').and.returnValue
+      then: (success) ->
+          successCallBack = success
     spyOn(mockedMeteor, 'object').and.callFake ->
       subscribe: (what) ->
         callBack = what
@@ -18,6 +23,7 @@ describe 'Posts Service', ->
 
   beforeEach module('posts',
     $meteor: mockedMeteor
+    alertsServ: mockedAlertsServ
   )
 
   beforeEach inject(($injector) ->
@@ -31,6 +37,7 @@ describe 'Posts Service', ->
     newPost = 'something'
     beforeEach ->
       postsServ.add(newPost)
+      successCallBack()
 
     it 'should call call method on meteor with "addPost" and newPost', ->
       expect(mockedMeteor.call).toHaveBeenCalledWith('addPost', newPost)
@@ -40,6 +47,7 @@ describe 'Posts Service', ->
       id: 'someId'
     beforeEach ->
       postsServ.delete(post)
+      successCallBack()
 
     it 'should call call method on meteor with "addPost" and postId', ->
       expect(mockedMeteor.call).toHaveBeenCalledWith('deletePost', post.id)
@@ -50,8 +58,9 @@ describe 'Posts Service', ->
       text: 'someText'
     beforeEach ->
       postsServ.update(post)
+      successCallBack()
 
-    it 'should call call method on meteor with "addPost" and postId', ->
+    it 'should call call method on meteor with "updatePost" and postId', ->
       expect(mockedMeteor.call).toHaveBeenCalledWith('updatePost', post.id, post.text)
 
   describe 'findOwner method', ->

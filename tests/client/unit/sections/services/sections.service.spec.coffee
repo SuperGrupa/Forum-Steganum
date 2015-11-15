@@ -16,6 +16,9 @@ describe 'Sections Service', ->
     mockedState =
         go: angular.noop
         goBack: angular.noop
+    mockedAlertsServ = 
+        success: angular.noop
+        error: angular.noop
     successCallBack = {}
 
     beforeEach ->
@@ -29,6 +32,7 @@ describe 'Sections Service', ->
     beforeEach module('sections',
         $meteor: mockedMeteor
         $state: mockedState
+        alertsServ: mockedAlertsServ
     )
 
     beforeEach inject ($injector) ->
