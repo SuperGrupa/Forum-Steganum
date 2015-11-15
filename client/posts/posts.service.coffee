@@ -1,20 +1,23 @@
-postsServ = ($meteor, toastr) ->
-  add: (newPost) ->
+postsServ = ($meteor, alertsServ) ->
+    add: (newPost) ->
       $meteor.call('addPost', newPost).then () ->
-          toastr.success('You\'ve created a new post', 'New Post')
-      , (data) ->
-          toastr.error(data.message, 'Error')
-  delete: (post) ->
+          alertsServ.success('New Post', 'You\'ve created a new post')
+      , (error) ->
+          alertsServ.error(error)
+    delete: (post) ->
       $meteor.call('deletePost', post.id).then () ->
-          toastr.success('You\'ve removed a post', 'Remove Post')
-      , (data) ->
-          toastr.error(data.message, 'Error')
-  update: (post) ->
-      $meteor.call 'updatePost', post.id, post.text
-  findOwner: (post) ->
+          alertsServ.success('Remove Post', 'You\'ve removed a post')
+      , (error) ->
+          alertsServ.error(error)
+    update: (post) ->
+      $meteor.call('updatePost', post.id, post.text).then () ->
+          alertsServ.success('Update Post', 'You\'ve updated a post')
+      , (error) ->
+          alertsServ.error(error)
+    findOwner: (post) ->
       $meteor.object(Meteor.users, post.userId, false).subscribe('usersBasicInfo')
 
-postsServ.$inject = ['$meteor', 'toastr']
+postsServ.$inject = ['$meteor', 'alertsServ']
 
 angular.module 'posts'
 .service 'postsServ', postsServ

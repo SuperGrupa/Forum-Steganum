@@ -14,7 +14,7 @@ module.exports 'authFunctions',
 
 checkAuth = (what, name, object, userId) ->
     if !userId
-        throw new (Meteor.Error)('not-logged')
+        throw new (Meteor.Error)('notLogged')
         return false
 
     user = Meteor.users.findOne({_id: userId})
@@ -36,5 +36,5 @@ checkAuth = (what, name, object, userId) ->
     if user.can[what].self[name] && userId == object.userId
         return true
 
-    throw new (Meteor.Error)('not-authorized')
+    throw new (Meteor.Error)('notAuthorized')
     return false

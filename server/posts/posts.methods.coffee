@@ -14,7 +14,7 @@ Meteor.methods
         if auth.can('remove', 'post', postId)
             Posts.remove { id: postId }
     editPost: (postId, text) ->
-        if auth.can('update', 'post', post)
+        if auth.can('update', 'post', postId)
             Posts.update { id: postId }, $set:
                                             text: text
                                             updatedAt: new Date
