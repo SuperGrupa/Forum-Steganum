@@ -1,24 +1,25 @@
 head
   base(href="/")
   title Forum-Steganum
-body(ng-app='forumSteganum', ng-controller="AppCtrl as appCtrl")
+body(ng-app='forumSteganum')
   header(ui-view="header")
   div.main(ui-view="main")
   footer(ui-view="footer")
-  div.build-info(ng-if="appCtrl.buildInfo")
-    p Build Info
-    p(ng-if="appCtrl.buildInfo.branch")
-      span Branch:
-      span(ng-bind="appCtrl.buildInfo.branch")
-    p(ng-if="appCtrl.buildInfo.date")
-      span Date:
-      span(ng-bind="appCtrl.buildInfo.date")
-    p(ng-if="appCtrl.buildInfo.number")
-      span Number of Build:
-      span(ng-bind="appCtrl.buildInfo.number")
-    p(ng-if="appCtrl.buildInfo.id")
-      span Id of Build:
-      span(ng-bind="appCtrl.buildInfo.id")
-    p(ng-if="appCtrl.buildInfo.tag")
-      span Tag:
-      span(ng-bind="appCtrl.buildInfo.tag")
+  div(ng-controller="BuildCtrl as build")
+    div.build-info(ng-if="build.info")
+      p Build Info
+      p(ng-if="build.info.branch")
+        span Branch:
+        span(ng-bind="build.info.branch")
+      p(ng-if="build.info.date")
+        span Date:
+        span(ng-bind="build.info.date")
+      p(ng-if="build.info.number")
+        span Number of Build:
+        span(ng-bind="build.info.number")
+      p(ng-if="build.info.id")
+        span Id of Build:
+        span(ng-bind="build.info.id")
+      p(ng-if="build.info.tag")
+        span Tag:
+        span(ng-bind="build.info.tag")
