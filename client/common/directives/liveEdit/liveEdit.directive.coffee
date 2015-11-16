@@ -1,11 +1,11 @@
 liveEdit = ->
     restrict: 'AE'
     replace: true
-    scope:
-        field: '@'
+    scope: true
+    bindToController:
+        field: '='
         onSave: '&'
         inputType: '@'
-    bindToController: true
     templateUrl: 'client/common/directives/liveEdit/liveEdit.directive.html'
     controllerAs: 'live'
     controller: () ->

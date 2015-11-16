@@ -1,12 +1,12 @@
 .single-post
     .md-list-item-text
         .author
-            strong {{ listDir.post.findOwner(singleDir.post).username }} 
+            strong {{ listDir.post.findOwner(post).username }} 
         .post
-            live-edit(field="{{singleDir.post.text}}", on-save="listDir.post.update(singleDir.post)", input-type="text")
+            live-edit(field="post.text", on-save="listDir.post.update(post)", input-type="text")
             .status
-                small {{ singleDir.post.createdAt | date: 'EEEE, dd MMMM yyyy' }} 
-                small at {{ singleDir.post.createdAt | date: 'HH:mm' }} 
+                small {{ post.createdAt | date: 'EEEE, dd MMMM yyyy' }} 
+                small at {{ post.createdAt | date: 'HH:mm' }} 
     .icon-area
         md-icon.edit(md-svg-icon="image:ic_edit_24px")
         md-icon.delete(md-svg-icon="action:ic_delete_24px", ng-click="listDir.post.delete(post)")

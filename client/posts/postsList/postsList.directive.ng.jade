@@ -2,4 +2,4 @@
     md-whiteframe.md-whiteframe-z1(layout, layout-align="left center")
         md-list
             md-list-item(ng-repeat='post in listDir.posts')
-                single-post(post="post")
+                single-post(post="{{post}}")
