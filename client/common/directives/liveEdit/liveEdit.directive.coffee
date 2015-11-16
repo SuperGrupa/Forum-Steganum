@@ -1,23 +1,28 @@
 liveEdit = ->
-  restrict: 'AE'
-  replace: true
-  scope:
-    field: '='
-    onSave: '&'
-    inputType: '@'
-  templateUrl: 'client/common/directives/liveEdit/liveEdit.directive.html'
+    restrict: 'AE'
+    replace: true
+    scope:
+        field: '@'
+        onSave: '&'
+        inputType: '@'
+    bindToController: true
+    templateUrl: 'client/common/directives/liveEdit/liveEdit.directive.html'
+    controllerAs: 'live'
+    controller: () ->
+        vm = this
 
-  link: (scope, elem, attrs) ->
-    scope.save = ->
-      reverseEditEnabled()
-      scope.onSave()
+        vm.save = ->
+            vm.reverseEditEnabled()
+            vm.onSave()
 
-    scope.startEditing = ->
-      reverseEditEnabled()
-      scope.focusInput = true
+        vm.startEditing = ->
+            vm.reverseEditEnabled()
+            vm.focusInput = true
 
-    reverseEditEnabled = ->
-      scope.editEnabled = !scope.editEnabled
+        vm.reverseEditEnabled = ->
+            vm.editEnabled = !vm.editEnabled
+
+        return vm
 
 angular.module 'common'
 .directive 'liveEdit', liveEdit
