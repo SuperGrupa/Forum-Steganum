@@ -16,7 +16,6 @@ Meteor.methods
         Posts.remove { id: postId }
     updatePost: (postId, text) ->
         # TODO autoryzacja czy jest twórcą posta...
-        console.log text
         Posts.update { id: postId }, $set:
                                         text: text
                                         updatedAt: new Date

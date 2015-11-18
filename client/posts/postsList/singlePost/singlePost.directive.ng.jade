@@ -3,11 +3,10 @@
         .author
             strong {{ listDir.post.findOwner(post).username }} 
         .post
-            live-edit(field="post.text", on-save="listDir.post.update(post)", input-type="text")
+            live-edit(object="post", on-save="listDir.post.update(post)", input-type="text")
             .status
                 small {{ post.createdAt | date: 'EEEE, dd MMMM yyyy' }} 
                 small at {{ post.createdAt | date: 'HH:mm' }} 
     .icon-area
-        md-icon.edit(md-svg-icon="image:ic_edit_24px")
         md-icon.delete(md-svg-icon="action:ic_delete_24px", ng-click="listDir.post.delete(post)")
     md-divider(ng-if="!$last")

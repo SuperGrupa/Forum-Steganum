@@ -3,17 +3,18 @@ liveEdit = ->
     replace: true
     scope: true
     bindToController:
-        field: '='
+        object: '='
         onSave: '&'
         inputType: '@'
     templateUrl: 'client/common/directives/liveEdit/liveEdit.directive.html'
     controllerAs: 'live'
     controller: () ->
         vm = this
+        vm.object = angular.copy vm.object
 
         vm.save = ->
             vm.reverseEditEnabled()
-            vm.onSave()
+            vm.onSave(vm.object)
 
         vm.startEditing = ->
             vm.reverseEditEnabled()

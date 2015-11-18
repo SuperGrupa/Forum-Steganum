@@ -1,7 +1,9 @@
-div
+.live-edit
     div(ng-hide='live.editEnabled')
-        span {{ live.field }}
-        button(ng-click='live.startEditing()') Edytuj
+        span {{ live.object.text }}
+        .icon-area
+            md-icon.edit(md-svg-icon="image:ic_edit_24px", ng-click="live.startEditing()")
     div(ng-show='live.editEnabled')
-        input(type='{{live.inputType}}' ng-model='live.field')
-        button(ng-click='live.save()') Zapisz
+        input(ng-if="live.inputType != 'text'" type='{{live.inputType}}' ng-model='live.object.text')
+        textarea(ng-if="live.inputType == 'text'" ng-model='live.object.text')
+        md-button(ng-click='live.save()') Save
