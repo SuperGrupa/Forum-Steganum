@@ -1,12 +1,10 @@
-newSectionController = (sectionsServ) ->
+newSectionController = () ->
     vm = this
 
     vm.section =
         name: ''
 
     return vm
-
-newSectionController.$inject = ['sectionsServ']
 
 angular.module('sections')
 .controller 'newSectionCtrl', newSectionController
