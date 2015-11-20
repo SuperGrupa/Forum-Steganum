@@ -2,7 +2,7 @@ singlePost = ->
     restrict: 'AE'
     scope: true
     bindToController:
-        post: '@'
+        post: '='
     templateUrl: 'client/posts/postsList/singlePost/singlePost.directive.html'
     controllerAs: 'singleDir'
     controller: () ->
