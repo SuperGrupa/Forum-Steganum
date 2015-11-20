@@ -3,7 +3,8 @@
 describe 'Directive: liveEdit', ->
     object =
         text: 'live edit value'
-    onSave = angular.noop
+    config =
+        onSave: angular.noop
 
     beforeEach module 'common'
     beforeEach module 'templates'
@@ -15,17 +16,20 @@ describe 'Directive: liveEdit', ->
 
     compileElement = (objectName, onSave, inputType) ->
         element = new TestElement 'liveEdit'
-        element.create '<live-edit object="object" on-save="onSave()" input-type="' + inputType + '"></live-edit>',
+        element.create '<live-edit object="object" on-save="config.onSave(object)" input-type="' + inputType + '"></live-edit>',
             object: object,
-            onSave: onSave
+            onSave: config.onSave
 
     describe 'compilation', ->
         beforeEach ->
-            compileElement(object, onSave, 'password')
+            compileElement(object, config.onSave, 'password')
 
         it 'should compile', ->
             expect(element.dom).toBeDefined()
             expect(element.ctrl).toBeDefined()
+            expect(element.ctrl.object).toBeDefined()
+            expect(element.ctrl.save).toBeDefined()
+            expect(element.ctrl.startEditing).toBeDefined()
 
         it 'should have its own object copy', ->
             expect(element.ctrl.object).toEqual object
@@ -33,7 +37,7 @@ describe 'Directive: liveEdit', ->
 
     describe 'HTML template structure', ->
         beforeEach (done) ->
-            compileElement(object, onSave, 'password')
+            compileElement(object, config.onSave, 'password')
             done()
 
         it 'should have visible object.text', ->
@@ -44,54 +48,21 @@ describe 'Directive: liveEdit', ->
 
     describe 'textarea or input?', ->
         it 'should have input with type email', ->
-            compileElement(object, onSave, 'email')
+            compileElement(object, config.onSave, 'email')
             expect(element.dom.find('input[type=email]').length).toEqual 1
             expect(element.dom.find('textarea').length).toEqual 0
 
         it 'should have textarea instead of input', ->
-            compileElement(object, onSave, 'text')
+            compileElement(object, config.onSave, 'text')
             expect(element.dom.find('input[type=email]').length).toEqual 0
             expect(element.dom.find('textarea').length).toEqual 1
 
+    describe 'liveEdit.save method', ->
+        beforeEach ->
+            compileElement(object, config.onSave, 'email')
 
-        # it 'have hidden section.name', () ->
-        #     expect(element.dom.find('[ng-show="nav.sectionId"]').hasClass('ng-hide')).toBeTruthy()
-        #
-        # it 'have hidden topic.name', () ->
-        #     expect(element.dom.find('[ng-show="nav.topicId"]').hasClass('ng-hide')).toBeTruthy()
-        #
-    # describe 'with section id', ->
-    #     sectionId = '2'
-    #
-    #     beforeEach (done) ->
-    #         compileElement(sectionId, '')
-    #         successCallback()
-    #         element.scope.$digest()
-    #         done()
-    #
-    #     it 'should call call method on $meteor with "getSectionById" and sectionId', () ->
-    #         expect(mockedMeteor.call).toHaveBeenCalledWith('getSectionById', sectionId)
-    #
-    #     it 'should show section.name', () ->
-    #         expect(element.dom.find('[ng-show="nav.sectionId"]').text()).toContain section.name
-    #
-    #     it 'have hidden topic.name', () ->
-    #         expect(element.dom.find('[ng-show="nav.topicId"]').hasClass('ng-hide')).toBeTruthy()
-    #
-    # describe 'with topic id', ->
-    #     topicId = '3'
-    #
-    #     beforeEach (done) ->
-    #         compileElement('', topicId)
-    #         successCallback()
-    #         element.scope.$digest()
-    #         done()
-    #
-    #     it 'should call call method on $meteor with "getTopicById" and topicId', () ->
-    #         expect(mockedMeteor.call).toHaveBeenCalledWith('getTopicById', topicId)
-    #
-    #     it 'have hidden section.name', () ->
-    #         expect(element.dom.find('[ng-show="nav.sectionId"]').hasClass('ng-hide')).toBeTruthy()
-    #
-    #     it 'should show topic.name', () ->
-    #         expect(element.dom.find('[ng-show="nav.topicId"]').text()).toContain topic.name
+            spyOn(element.ctrl, 'onSave').and.callThrough()
+            element.ctrl.save()
+
+        it 'should call on-save method from declaration', ->
+            expect(element.ctrl.onSave).toHaveBeenCalledWith(object)
