@@ -1,4 +1,4 @@
-liveEditController: () ->
+liveEditController = () ->
     vm = this
     vm.object = angular.copy vm.object
 
