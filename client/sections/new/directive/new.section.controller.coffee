@@ -1,9 +1,6 @@
 newSectionController = () ->
     vm = this
-
-    vm.section =
-        name: ''
-
+    vm.section = { }
     return vm
 
 angular.module('sections')
