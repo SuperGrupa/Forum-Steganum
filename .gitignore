@@ -6,3 +6,4 @@ tests/coverage
 .gulp/npm-debug.log
 .vpn
 TODO
+.project
