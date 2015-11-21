@@ -1,6 +1,10 @@
 sectionsServ = ($meteor, $state) ->
     all: $meteor.collection(Sections).subscribe('sections')
 
+    create: (section) ->
+        $meteor.call('addSection', section).then ->
+            $state.go('section.list')
+
     getTopics: (section_id) ->
         $meteor.collection ->
             Filter.Topics.by.section(section_id)

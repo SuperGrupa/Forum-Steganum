@@ -1,0 +1,13 @@
+md-whiteframe.topic-form.md-whiteframe-z1(layout="column", layout-align="center center")
+    .title
+        h2 Create new section
+    form(ng-submit="sectionCtrl.section.create(new.section)", layout="column")
+        md-input-container
+            input(type="text" ng-model="new.section.name"
+                    placeholder="Section name" aria-label="section name")
+        md-input-container
+            input(type="description" ng-model="new.section.description"
+                    placeholder="Description" aria-label="description")
+        div.md-warn.error-container(ng-show="new.error")
+            small {{ new.error }}
+        md-button.md-raised.md-primary(type="submit" aria-label="Create section") Create

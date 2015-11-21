@@ -1,3 +1,5 @@
+Helpers = require 'Helpers'
+
 describe 'Posts', ->
     post =
         text: 'Some example text'
@@ -35,7 +37,7 @@ describe 'Posts', ->
             Meteor.call 'deletePost', local_post.id
             expect(Posts.find({}).count()).toBe(posts_before - 1)
 
-    describe 'editPost method', ->
+    describe 'updatePost method', ->
         beforeEach ->
             Helpers.seed.post(post)
 
@@ -43,7 +45,7 @@ describe 'Posts', ->
             posts_before = Posts.find({}).count()
 
             local_post = Posts.findOne({ text: 'Some example text' })
-            Meteor.call 'editPost', local_post.id, 'Some updated text'
+            Meteor.call 'updatePost', local_post.id, 'Some updated text'
 
             expect(Posts.find({}).count()).toBe(posts_before)
 
