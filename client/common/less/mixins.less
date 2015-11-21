@@ -7,3 +7,9 @@
         background-color: @target-color;
     }
 }
+
+.box-sizing(@sizing) {
+    -webkit-box-sizing: @sizing;    /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: @sizing;       /* Firefox, other Gecko */
+    box-sizing: @sizing;            /* Opera/IE 8+ */
+}

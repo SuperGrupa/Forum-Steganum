@@ -1,7 +1,6 @@
 md-whiteframe.md-whiteframe-z1(layout, layout-align="left center")
   form.new-post(ng-submit="new.addPost(new.post)")
-    label
-      span Add new post
-      textarea(ng-model='new.post.text', type='text', name='text', placeholder='Type to add new posts')
-      file-chooser
+    h4 Add new post
+    textarea(ng-model='new.post.text', type='text', name='text', placeholder='Type to add new posts')
+    file-chooser
     md-button.md-raised.md-primary.submit(type="submit") Submit
