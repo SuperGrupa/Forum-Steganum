@@ -1,3 +1,5 @@
+Counters = require 'Counters'
+
 Meteor.methods
     addTopic: (topic) ->
         if !Meteor.userId()

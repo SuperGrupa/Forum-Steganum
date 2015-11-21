@@ -1,4 +1,4 @@
-@Helpers =
+Helpers =
     login: ->
         Meteor.userId = -> '1'
         Meteor.user = ->
@@ -36,3 +36,5 @@
             this.__inSession(Meteor.call, ['addTopic', topic])
         section: (section) ->
             this.__inSession(Meteor.call, ['addSection', section])
+
+module.exports('Helpers', Helpers)

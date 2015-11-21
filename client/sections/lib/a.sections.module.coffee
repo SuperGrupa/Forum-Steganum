@@ -9,6 +9,9 @@ sectionsModule = ($stateProvider) ->
     ).state('section.list',
         url: 's'
         templateUrl: 'client/sections/list/list.sections.html'
+    ).state('section.new',
+        url: '/new'
+        templateUrl: 'client/sections/new/new.section.html'
     ).state('section.one',
         # ten stan jest abstrakcyjny, ponieważ jego potomkiem jest oprócz section.one.show także
         # topic i topic.new w module topics

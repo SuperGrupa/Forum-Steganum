@@ -1,3 +1,5 @@
+Counters = require 'Counters'
+
 Meteor.methods
     addSection: (section) ->
         if !Meteor.userId()
