@@ -1,5 +1,5 @@
-describe 'Auth Service', ->
-  authServ = {}
+describe 'Login Service', ->
+  loginServ = {}
   mockedMeteor = {
     loginWithPassword: angular.noop
     createUser: angular.noop
@@ -18,11 +18,11 @@ describe 'Auth Service', ->
 
 
   beforeEach inject(($injector) ->
-    authServ = $injector.get('authServ')
+    loginServ = $injector.get('loginServ')
   )
 
   it 'should initialize', ->
-    expect(authServ).toBeDefined()
+    expect(loginServ).toBeDefined()
 
 
 
@@ -37,14 +37,14 @@ describe 'Auth Service', ->
           failCallBack = fail
       spyOn(mockedState, 'goBack')
 
-      authServ.email = email
-      authServ.password = password
+      loginServ.email = email
+      loginServ.password = password
 
       done()
 
     describe 'success', ->
       beforeEach (done) ->
-        authServ.logIn()
+        loginServ.logIn()
         successCallBack()
         done()
 
@@ -57,7 +57,7 @@ describe 'Auth Service', ->
     describe 'failed', ->
       error = 'some error'
       beforeEach (done) ->
-        authServ.logIn()
+        loginServ.logIn()
         failCallBack(error)
         done()
 
@@ -68,7 +68,7 @@ describe 'Auth Service', ->
         expect(mockedState.goBack).not.toHaveBeenCalled()
 
       it 'should set error to this.error', () ->
-        expect(authServ.error.login).toContain error
+        expect(loginServ.error.login).toContain error
 
 
 
@@ -79,7 +79,7 @@ describe 'Auth Service', ->
         then: (success) ->
           successCallBack = success
 
-      authServ.logout()
+      loginServ.logout()
       successCallBack()
       done()
 
@@ -101,15 +101,15 @@ describe 'Auth Service', ->
           failCallBack = fail
       spyOn(mockedState, 'goBack')
 
-      authServ.email = registerObject.email
-      authServ.password = registerObject.password
-      authServ.userName = registerObject.username
+      loginServ.email = registerObject.email
+      loginServ.password = registerObject.password
+      loginServ.userName = registerObject.username
 
       done()
 
     describe 'success', ->
       beforeEach (done) ->
-        authServ.register()
+        loginServ.register()
         successCallBack()
         done()
 
@@ -123,7 +123,7 @@ describe 'Auth Service', ->
     describe 'failed', ->
       error = 'some another error'
       beforeEach (done) ->
-        authServ.register()
+        loginServ.register()
         failCallBack(error)
         done()
 
@@ -134,4 +134,4 @@ describe 'Auth Service', ->
         expect(mockedState.goBack).not.toHaveBeenCalled()
 
       it 'should set error to this.error', () ->
-        expect(authServ.error.register).toContain error
+        expect(loginServ.error.register).toContain error

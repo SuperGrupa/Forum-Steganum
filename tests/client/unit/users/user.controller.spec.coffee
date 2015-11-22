@@ -2,7 +2,7 @@ describe 'Users controller', ->
   $scope = {}
   $controller = {}
   UserCtrl = {}
-  mockedAuthServ = {
+  mockedLoginServ = {
     email: 'bat@man.pl'
   }
 
@@ -13,7 +13,7 @@ describe 'Users controller', ->
     $scope = $injector.get('$rootScope').$new()
     UserCtrl = $controller('UserCtrl as userCtrl',
       $scope: $scope
-      authServ: mockedAuthServ
+      loginServ: mockedLoginServ
     )
   )
 
@@ -21,5 +21,5 @@ describe 'Users controller', ->
     expect(UserCtrl).toBeDefined()
 
   it 'should set authServ to userCtrl.auth', ->
-    expect(UserCtrl.auth).toBe(mockedAuthServ)
+    expect(UserCtrl.auth).toBe(mockedLoginServ)
 

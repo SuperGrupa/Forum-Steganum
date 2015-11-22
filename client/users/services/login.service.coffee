@@ -1,4 +1,4 @@
-authServ = ($meteor, $state) ->
+loginServ = ($meteor, $state) ->
 
   error = {
     login: ''
@@ -31,7 +31,7 @@ authServ = ($meteor, $state) ->
       error.register = 'Register error - ' + err
 
 
-authServ.$inject = ['$meteor', '$state']
+loginServ.$inject = ['$meteor', '$state']
 
 angular.module 'users'
-.service 'authServ', authServ
+.service 'loginServ', loginServ

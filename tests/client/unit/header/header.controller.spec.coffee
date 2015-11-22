@@ -2,7 +2,7 @@ describe 'Header controller', ->
   $scope = {}
   $controller = {}
   HeaderCtrl = {}
-  mockedAuthServ = {
+  mockedLoginServ = {
     logout: angular.noop
   }
   successCallBack = null
@@ -15,7 +15,7 @@ describe 'Header controller', ->
     $scope = $injector.get('$rootScope').$new()
     HeaderCtrl = $controller('HeaderCtrl as headCtrl',
       $scope: $scope
-      authServ: mockedAuthServ
+      loginServ: mockedLoginServ
     )
   )
 
@@ -24,10 +24,10 @@ describe 'Header controller', ->
 
   describe 'logout', ->
     beforeEach (done) ->
-      spyOn(mockedAuthServ, 'logout').and.returnValue true
+      spyOn(mockedLoginServ, 'logout').and.returnValue true
 
       HeaderCtrl.logout()
       done()
 
     it 'should call logout method on meteor', () ->
-      expect(mockedAuthServ.logout).toHaveBeenCalled()
+      expect(mockedLoginServ.logout).toHaveBeenCalled()
