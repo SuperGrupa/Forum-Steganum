@@ -9,7 +9,7 @@ newPostController = (postsServ, $stateParams) ->
             topic_id: $stateParams.topic_id
 
     vm.addPost = (post) ->
-        vm.action.add(post).then ->
+        vm.action.add(post, vm.images).then ->
             vm.clearPost()
 
     return vm

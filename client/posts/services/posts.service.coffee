@@ -1,12 +1,18 @@
 postsServ = ($meteor) ->
-  add: (newPost) ->
-      $meteor.call 'addPost', newPost
-  delete: (post) ->
-      $meteor.call 'deletePost', post.id
-  update: (post) ->
-      $meteor.call 'updatePost', post.id, post.text
-  findOwner: (post) ->
-      $meteor.object(Meteor.users, post.userId, false).subscribe('usersBasicInfo')
+    add: (newPost, imagesFilesList) ->
+        unless _.isEmpty imagesFilesList
+            image = Images.insert _.first(imagesFilesList), (error, fileObj) ->
+                if (error)
+                    console.log error
+
+        newPost.image_id = image._id
+        $meteor.call 'addPost', newPost
+    delete: (post) ->
+        $meteor.call 'deletePost', post.id
+    update: (post) ->
+        $meteor.call 'updatePost', post.id, post.text
+    findOwner: (post) ->
+        $meteor.object(Meteor.users, post.userId, false).subscribe('usersBasicInfo')
 
 postsServ.$inject = ['$meteor']
 
