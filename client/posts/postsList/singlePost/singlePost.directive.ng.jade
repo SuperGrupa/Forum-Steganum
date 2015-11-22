@@ -3,7 +3,7 @@
         .author
             strong {{ listDir.post.findOwner(post).username }} 
         .post
-            live-edit(object="post", on-save="listDir.post.update(post)", input-type="text")
+            live-edit(object="post", on-save="listDir.post.update(post)", input-type="text", ng-if="can('update', 'post', singleDir.post)")
             .status
                 small {{ post.createdAt | date: 'EEEE, dd MMMM yyyy' }} 
                 small at {{ post.createdAt | date: 'HH:mm' }} 

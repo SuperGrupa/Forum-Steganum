@@ -1,6 +1,6 @@
 authServ = ($rootScope, $stateParams) ->
 
-    return (what, name, object) ->
+    return (what, name, object = {}) ->
         user = $rootScope.currentUser
         sectionId = $stateParams.section_id
         topicId = object.topic_id || $stateParams.topic_id

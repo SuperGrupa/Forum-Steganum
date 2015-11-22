@@ -1,2 +1,2 @@
 sections-list(sections="sectionCtrl.section.all")
-md-button.md-raised.md-primary.submit(ui-sref="section.new") Create new section
+md-button.md-raised.md-primary.submit(ui-sref="section.new", ng-if="can('create', 'section')") Create new section

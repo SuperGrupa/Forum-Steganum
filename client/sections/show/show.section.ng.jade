@@ -1,6 +1,6 @@
 .section-topics
     navigation(section-id="{{ showSectionCtrl.id }}")
-    
+
     md-whiteframe.md-whiteframe-z1(layout, layout-align="left center")
         md-list
             md-list-item(ng-repeat="topic in showSectionCtrl.topics", ng-if="can('read', 'topic', topic)")
@@ -8,7 +8,9 @@
                     h3 {{ topic.name }}
                     p {{ topic.description }}
                 .icon-area
-                    md-icon.edit(md-svg-icon="image:ic_edit_24px", ui-sref="topic.edit({topic_id: topic.id})")
-                    md-icon.delete(md-svg-icon="action:ic_delete_24px", ui-sref="topic.delete({topic_id: topic.id})")
+                    md-icon.edit(md-svg-icon="image:ic_edit_24px", ui-sref="topic.edit({topic_id: topic.id})",
+                        ng-if="can('update', 'topic', topic)")
+                    md-icon.delete(md-svg-icon="action:ic_delete_24px", ui-sref="topic.delete({topic_id: topic.id})",
+                        ng-if="can('remove', 'topic', topic)")
                 md-divider(ng-if="!$last")
-    md-button.md-raised.md-primary.submit(ui-sref="topic.new") Create new topic
+    md-button.md-raised.md-primary.submit(ui-sref="topic.new", ng-if="can('create', 'topic')") Create new topic
