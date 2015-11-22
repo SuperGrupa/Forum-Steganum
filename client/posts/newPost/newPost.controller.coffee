@@ -1,6 +1,7 @@
 newPostController = (postsServ, $stateParams) ->
     vm = this
     vm.action = postsServ
+    vm.images = []
 
     do vm.clearPost = () ->
         vm.post =
