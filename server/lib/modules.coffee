@@ -10,3 +10,6 @@ objects = {}
         if (objects[name] != undefined)
             throw new (Meteor.Error)('Module name duplication')
         objects[name] = object
+
+Counters = new Mongo.Collection('counters')
+module.exports('Counters', Counters)

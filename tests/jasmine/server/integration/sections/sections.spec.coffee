@@ -1,3 +1,5 @@
+Helpers = require 'Helpers'
+
 describe 'Sections', ->
     section =
         name: 'Example section name'

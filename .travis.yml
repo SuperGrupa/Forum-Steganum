@@ -11,6 +11,8 @@ before_script:
 - npm install
 - cd ../
 - curl https://install.meteor.com/ | sh
+- chmod a+x build.variables.sh
+- "./build.variables.sh"
 after_success:
 - cd ../
 - "expect deploy.exp"

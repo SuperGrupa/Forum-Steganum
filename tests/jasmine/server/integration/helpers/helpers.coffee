@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @Helpers =
     login: (roleName) ->
         if !Roles.find({}).count()
@@ -5,6 +6,11 @@
         Meteor.userId = ->
             user = Meteor.users.findOne({ role: roleName })
             return user._id
+=======
+Helpers =
+    login: ->
+        Meteor.userId = -> '1'
+>>>>>>> ecafe35e608218320d985c25a799aa5d47ea62dc
         Meteor.user = ->
             user = Meteor.users.findOne({ role: roleName })
 
@@ -29,3 +35,5 @@
             this.__inSession(Meteor.call, ['addTopic', topic])
         section: (section) ->
             this.__inSession(Meteor.call, ['addSection', section])
+
+module.exports('Helpers', Helpers)

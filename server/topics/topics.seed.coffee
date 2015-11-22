@@ -1,3 +1,5 @@
+Counters = require 'Counters'
+
 Meteor.methods
     seedTopics: ->
         # usuń wszystkie tematy

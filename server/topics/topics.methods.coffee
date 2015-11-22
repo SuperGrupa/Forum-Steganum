@@ -1,4 +1,5 @@
 auth = require('authFunctions')
+Counters = require 'Counters'
 
 Meteor.methods
     addTopic: (topic) ->

@@ -1,3 +1,5 @@
+Helpers = require 'Helpers'
+
 describe 'Users', ->
     describe 'updateUsername method', ->
         it 'should throw not-authorized exception when user not logged', ->

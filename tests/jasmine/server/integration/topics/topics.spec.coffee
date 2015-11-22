@@ -1,3 +1,5 @@
+Helpers = require 'Helpers'
+
 describe 'Topics', ->
     topic =
         section_id: '1'

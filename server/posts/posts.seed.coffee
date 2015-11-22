@@ -1,3 +1,5 @@
+Counters = require 'Counters'
+
 Meteor.methods
     seedPosts: ->
         # najpierw wyczyść bazę danych (kolekcja postów)

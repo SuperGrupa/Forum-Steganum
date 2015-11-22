@@ -1,3 +1,5 @@
+Counters = require 'Counters'
+
 Meteor.methods
     seedSections: ->
         # usuń wszystkie sekcje (działy) na forum

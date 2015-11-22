@@ -1,4 +1,5 @@
 auth = require('authFunctions')
+Counters = require 'Counters'
 
 Meteor.methods
     addPost: (post) ->
@@ -13,7 +14,7 @@ Meteor.methods
     deletePost: (postId) ->
         if auth.can('remove', 'post', postId)
             Posts.remove { id: postId }
-    editPost: (postId, text) ->
+    updatePost: (postId, text) ->
         if auth.can('update', 'post', postId)
             Posts.update { id: postId }, $set:
                                             text: text
