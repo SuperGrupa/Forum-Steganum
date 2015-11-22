@@ -55,7 +55,7 @@ RolesObject =
         remove: ptsu(true, true, false, true)
     user:
         create: ptsu(true, true, true)
-        read: ptsu(true, true, true)
+        read: ptsu(true, true, true, true)
         update: ptsu(true)
         remove: ptsu()
     banned:
