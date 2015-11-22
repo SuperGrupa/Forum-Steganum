@@ -1,5 +1,5 @@
-@phone: ~"(max-width: 767px)";
-@tablet: ~"(min-width: 767px) and (max-width: 991px)";
+@phone: ~"(max-width: 360px)";
+@tablet: ~"(min-width: 361px) and (max-width: 991px)";
 @laptop: ~"(min-width: 992px) and (max-width: 1199px)";
 @desktop: ~"(min-width: 1200px)";
 
@@ -9,6 +9,7 @@
 @import "client/common/less/forms.less";
 @import "client/common/less/mixins.less";
 @import "client/common/less/colors.less";
+@import "client/common/directives/fileChooser/fileChooser.less";
 @import "client/common/directives/navigation/navigation.directive.less";
 @import "client/common/directives/liveEdit/liveEdit.less";
 
@@ -31,5 +32,3 @@
 @import "client/users/directives/authButtons/authButtons.less";
 @import "client/users/users.less";
 @import "client/users/profile/profile.less";
-
-@import "client/common/directives/fileChooser/fileChooser.less";
