@@ -5,7 +5,7 @@ PageOfPostsCtrl = (topicsServ, $stateParams) ->
         id: $stateParams.topic_id
         section_id: $stateParams.section_id
 
-    vm.topic.posts = topicsServ.getPosts(vm.topic.id, vm.page_number, 10)
+    [vm.topic.images, vm.topic.posts] = topicsServ.getPostsWithImages(vm.topic.id, vm.page_number, 10)
 
     return vm
 

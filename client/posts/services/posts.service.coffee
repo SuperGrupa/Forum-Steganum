@@ -5,7 +5,7 @@ postsServ = ($meteor) ->
                 if (error)
                     console.log error
 
-        newPost.image_id = image._id
+        newPost.image_id = image._id if image?
         $meteor.call 'addPost', newPost
     delete: (post) ->
         $meteor.call 'deletePost', post.id
