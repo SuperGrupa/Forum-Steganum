@@ -1,4 +1,6 @@
-appRun = ($rootScope, $state) ->
+appRun = ($rootScope, $state, authServ) ->
+    $rootScope.can = authServ
+
     $state.goBack = ->
       if $state.previous.name then $state.go($state.previous, $state.previousParams) else $state.go('home')
 
@@ -8,7 +10,7 @@ appRun = ($rootScope, $state) ->
             $state.previousParams = fromParams
     return
 
-appRun.$inject = ['$rootScope', '$state']
+appRun.$inject = ['$rootScope', '$state', 'authServ']
 
 angular.module 'forumSteganum'
 .run appRun
