@@ -2,9 +2,9 @@ Images.allow
     insert: ->
         true
     update: ->
-        true
+        false
     remove: ->
-        true
+        false
     download: ->
         true
 
@@ -12,8 +12,8 @@ Images.deny
     insert: ->
         false
     update: ->
-        false
+        true
     remove: ->
-        false
+        true
     download: ->
         false

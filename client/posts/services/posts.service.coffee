@@ -5,6 +5,10 @@ postsServ = ($meteor) ->
                 if (error)
                     console.log error
 
+            # nie udało się przesłać pliku - nie wysyłaj samej treści
+            unless image._id?
+                return
+
         newPost.image_id = image._id if image?
         $meteor.call 'addPost', newPost
     delete: (post) ->
