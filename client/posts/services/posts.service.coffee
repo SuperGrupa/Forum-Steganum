@@ -3,7 +3,7 @@ postsServ = ($meteor) ->
         unless _.isEmpty imagesFilesList
             image = Images.insert _.first(imagesFilesList), (error, fileObj) ->
                 if (error)
-                    console.log error
+                    alert error
 
             # nie udało się przesłać pliku - nie wysyłaj samej treści
             unless image._id?

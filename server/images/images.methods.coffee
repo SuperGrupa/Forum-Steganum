@@ -1,19 +1,11 @@
 Images.allow
-    insert: ->
-        true
-    update: ->
-        false
-    remove: ->
-        false
-    download: ->
-        true
+    insert:   (userId) -> !!userId              # takie rzeczy tylko dla zalogowanych
+    update:   (userId) -> !!userId              # i tu też
+    remove:   -> false
+    download: (userId) -> !!userId              # o, i tu jeszcze jeden przypadek
 
 Images.deny
-    insert: ->
-        false
-    update: ->
-        true
-    remove: ->
-        true
-    download: ->
-        false
+    insert:   -> false
+    update:   -> false
+    remove:   -> true
+    download: -> false

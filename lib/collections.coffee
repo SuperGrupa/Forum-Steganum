@@ -9,8 +9,8 @@ imageStore = new FS.Store.GridFS('images');
     filter:
         maxSize: 1048576                # w bajtach
         allow:
-            contentTypes: ['image/*'],
-            extensions: ['png', 'bmp']
+            contentTypes: ['image/*'],  # tylko pliki graficzne
+            extensions: ['png', 'bmp']  # tylko formaty bezstratne
         onInvalid: (message) ->
             if (Meteor.isClient)
                 alert(message)
