@@ -16,7 +16,7 @@ Meteor.methods
     deletePost: (postId) ->
         # TODO autoryzacja czy jest adminem...
         post = Posts.findOne({ id: postId }, { fields: { image_id: 1 } })
-        if post?
+        if post.image_id?
             Images.remove { _id: post.image_id }         # obrazki mają standardowe id od Mongo
 
         Posts.remove { id: postId }
