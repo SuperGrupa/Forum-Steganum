@@ -15,6 +15,10 @@ Meteor.methods
             userId: Meteor.userId()
     deletePost: (postId) ->
         # TODO autoryzacja czy jest adminem...
+        post = Posts.findOne({ id: postId }, { fields: { image_id: 1 } })
+        if post?
+            Images.remove { _id: post.image_id }         # obrazki mają standardowe id od Mongo
+
         Posts.remove { id: postId }
     updatePost: (postId, text) ->
         # TODO autoryzacja czy jest twórcą posta...
