@@ -10,7 +10,7 @@ module.exports = (config) ->
 
       '../.gulp/www/templates/**/*.html'
 
-      'client/unit/mocks.js'
+      'client/mocks/**/mocks.coffee'
       'client/unit/tests.helper.js'
 
       '../client/lib/*.coffee'
@@ -43,6 +43,7 @@ module.exports = (config) ->
     preprocessors:
       '../client/**/*.coffee': ['coverage']
       'client/unit/**/*.coffee': ['coffee']
+      'client/mocks/**/mocks.coffee': ['coffee']
       '../.gulp/www/templates/**/*.html': ['ng-html2js']
 
     # web server port
