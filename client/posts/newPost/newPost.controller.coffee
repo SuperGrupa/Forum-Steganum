@@ -9,9 +9,9 @@ newPostController = (postsServ, $stateParams) ->
             topic_id: $stateParams.topic_id
         vm.images = []
 
-    vm.addPost = () ->
-        unless _.isEmpty(vm.images) && vm.post.text == ''
-            vm.action.add(vm.post, vm.images).then ->
+    vm.addPost = (post, imagesFilesList) ->
+        unless _.isEmpty(imagesFilesList) && post.text == ''
+            vm.action.add(post, imagesFilesList).then ->
                 vm.clearPost()
         else
             alert 'Empty posts are not allowed on this forum!'

@@ -29,8 +29,10 @@ describe 'Posts Service', ->
 
   describe 'add method', ->
     newPost = 'something'
+    imagesFilesList = ['Something in the Way']      # Easter Egg!
+
     beforeEach ->
-      postsServ.add(newPost)
+      postsServ.add(newPost, imagesFilesList)
 
     it 'should call call method on meteor with "addPost" and newPost', ->
       expect(mockedMeteor.call).toHaveBeenCalledWith('addPost', newPost)

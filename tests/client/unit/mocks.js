@@ -8,7 +8,10 @@ function Meteor () {
     this.users = {};
 }
 
-Sections = {}
+Sections = {};
+Images = {
+    insert: function () { return {_id: 'abc'}; }
+};
 
 angular.module('angular-meteor', []);
 angular.module('toastr', []);
@@ -26,4 +29,9 @@ Filter = {
   Sections: {
     by: angular.noop
   }
+}
+
+_ = {
+    isEmpty: angular.noop,
+    first: angular.noop
 }

@@ -40,13 +40,13 @@ describe 'Topics Service', ->
     it 'should initialize', ->
         expect(topicsServ).toBeDefined()
 
-    describe 'getPosts method', ->
+    describe 'getPostsWithImages method', ->
         topic_id = 1
         page_number = 2
         posts_per_page = 10
 
         beforeEach ->
-            topicsServ.getPosts(topic_id, page_number, posts_per_page)
+            topicsServ.getPostsWithImages(topic_id, page_number, posts_per_page)
             collectionCallBack()
 
         it 'should call by method on Filter.Posts with proper arguments', ->
