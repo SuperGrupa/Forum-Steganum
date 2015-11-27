@@ -5,9 +5,6 @@ fileChooser = ->
     scope:
         files: '='
     link: (scope, element, attrs) ->
-        input = element.find('.file-input')
-        button = element.find('.upload-button')
-
         element.on 'change', (event) ->
             scope.files = event.target.files
             scope.fileName = _.first(scope.files).name
