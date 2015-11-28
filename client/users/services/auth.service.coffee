@@ -1,6 +1,29 @@
-authServ = ($rootScope, $stateParams) ->
+authServ = ($rootScope, $stateParams, $meteor, $q) ->
 
-    return (what, name, object = {}) ->
+    hasRole: (roleName) ->
+        $meteor.requireValidUser (user) =>
+            if $rootScope.currentUser.role == roleName
+                return true
+            return 'UNAUTHORIZED'
+
+    stateCan: (what, name) ->
+        $meteor.requireValidUser (user) =>
+            if @.can(what, name)
+                return true
+            return 'UNAUTHORIZED'
+
+    isLogged: () ->
+        $meteor.requireUser()
+
+    isNotLogged: () ->
+        deferred = $q.defer()
+        if !$rootScope.currentUser
+            deferred.resolve()
+        else
+            deferred.reject('ALREADYLOGGED')
+        deferred.promise
+
+    can: (what, name, object = {}) ->
         user = $rootScope.currentUser
         sectionId = $stateParams.section_id
         topicId = object.topic_id || $stateParams.topic_id
@@ -31,7 +54,7 @@ authServ = ($rootScope, $stateParams) ->
 
 
 
-authServ.$inject = ['$rootScope', '$stateParams']
+authServ.$inject = ['$rootScope', '$stateParams', '$meteor', '$q']
 
 angular.module 'users'
 .service 'authServ', authServ
