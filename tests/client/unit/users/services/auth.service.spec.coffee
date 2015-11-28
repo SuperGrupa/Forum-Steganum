@@ -195,6 +195,7 @@ describe 'Auth Service', ->
                 self:
                   section: false
           }
+          mockedStateParams = {}
           done()
 
         it 'should return false', () ->

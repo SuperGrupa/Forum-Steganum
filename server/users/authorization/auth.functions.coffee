@@ -25,9 +25,12 @@ checkAuth = (what, name, object, userId) ->
     if name == 'post'
         if object.topic_id in user.can[what].in.topic
             return true
-        sectionId = Topics.findOne({ id: object.topic_id }).section_id
-        if sectionId in user.can[what].in.section
-            return true
+
+        foundTopic = Topics.findOne({ id: object.topic_id })
+        if !!foundTopic
+            sectionId = Topics.findOne({ id: object.topic_id }).section_id
+            if sectionId in user.can[what].in.section
+                return true
 
     if name == 'topic'
         if object.section_id in user.can[what].in.section
