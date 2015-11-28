@@ -1,3 +1,11 @@
+isLogged = ->
+    'isLogged': ['authServ', (authServ) ->
+        authServ.isLogged()]
+
+isNotLogged = ->
+    'isNotLogged': ['authServ', (authServ) ->
+        authServ.isNotLogged()]
+
 usersModule = ($stateProvider) ->
 
   $stateProvider
@@ -15,6 +23,7 @@ usersModule = ($stateProvider) ->
     controller: 'LoginCtrl'
     controllerAs: 'logCtrl'
     templateUrl: 'client/users/login/login.html'
+    resolve: isNotLogged()
 
   .state 'register',
     parent: 'users'
@@ -22,6 +31,7 @@ usersModule = ($stateProvider) ->
     controller: 'NewUserCtrl'
     controllerAs: 'nUCtrl'
     templateUrl: 'client/users/new/new.user.html'
+    resolve: isNotLogged()
 
   .state 'profile',
     parent: 'users'
@@ -29,6 +39,7 @@ usersModule = ($stateProvider) ->
     controller: 'ProfileCtrl'
     controllerAs: 'prof'
     templateUrl: 'client/users/profile/profile.html'
+    resolve: isLogged()
 
   return
 
