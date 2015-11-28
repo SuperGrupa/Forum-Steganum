@@ -6,7 +6,7 @@ describe 'Users controller', ->
     email: 'bat@man.pl'
   }
 
-  beforeEach module('forumSteganum')
+  beforeEach module('users')
 
   beforeEach inject(($injector) ->
     $controller = $injector.get('$controller')

@@ -4,7 +4,7 @@ describe 'Topics controller', ->
     TopicsCtrl = { }
     mockedTopicsServ = { }
 
-    beforeEach module 'forumSteganum'
+    beforeEach module 'topics'
 
     beforeEach inject ($injector) ->
         $controller = $injector.get('$controller')

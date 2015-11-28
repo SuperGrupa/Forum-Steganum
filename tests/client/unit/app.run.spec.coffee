@@ -1,4 +1,4 @@
-fdescribe 'App run', ->
+describe 'App run', ->
   $rootScope = {}
   $state = {}
   mockedAuthServ =

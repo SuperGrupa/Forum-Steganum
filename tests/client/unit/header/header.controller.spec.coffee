@@ -8,7 +8,8 @@ describe 'Header controller', ->
   successCallBack = null
   failCallBack = null
 
-  beforeEach module('forumSteganum')
+  beforeEach module('forumSteganum',
+    authServ: {})
 
   beforeEach inject(($injector) ->
     $controller = $injector.get('$controller')
