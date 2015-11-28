@@ -1,19 +1,12 @@
-<<<<<<< HEAD
-@Helpers =
+Helpers =
     login: (roleName) ->
         if !Roles.find({}).count()
             Meteor.call 'seedRoles'
         Meteor.userId = ->
             user = Meteor.users.findOne({ role: roleName })
             return user._id
-=======
-Helpers =
-    login: ->
-        Meteor.userId = -> '1'
->>>>>>> ecafe35e608218320d985c25a799aa5d47ea62dc
         Meteor.user = ->
             user = Meteor.users.findOne({ role: roleName })
-
             return user
     logout: ->
         Meteor.userId = -> ''
