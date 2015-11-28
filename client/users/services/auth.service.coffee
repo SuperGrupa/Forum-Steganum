@@ -1,37 +1,60 @@
-authServ = ($meteor, $state) ->
+authServ = ($rootScope, $stateParams, $meteor, $q) ->
 
-  error = {
-    login: ''
-    register: ''
-  }
+    hasRole: (roleName) ->
+        $meteor.requireValidUser (user) =>
+            if $rootScope.currentUser.role == roleName
+                return true
+            return 'UNAUTHORIZED'
 
-  email: ''
-  password: ''
-  userName: ''
-  error: error
+    stateCan: (what, name) ->
+        $meteor.requireValidUser (user) =>
+            if @.can(what, name)
+                return true
+            return 'UNAUTHORIZED'
 
-  logIn: () ->
-    $meteor.loginWithPassword(this.email, this.password).then (->
-      $state.goBack()
-    ), (err) ->
-      error.login = 'Login error - ' + err
+    isLogged: () ->
+        $meteor.requireUser()
 
-  logout: () ->
-    $meteor.logout()
+    isNotLogged: () ->
+        deferred = $q.defer()
+        if !$rootScope.currentUser
+            deferred.resolve()
+        else
+            deferred.reject('ALREADYLOGGED')
+        deferred.promise
 
-  register: () ->
-    credentials =
-      email: this.email
-      password: this.password
-      username: this.userName
+    can: (what, name, object = {}) ->
+        user = $rootScope.currentUser
+        sectionId = $stateParams.section_id
+        topicId = object.topic_id || $stateParams.topic_id
 
-    $meteor.createUser(credentials).then (->
-      $state.goBack()
-    ), (err) ->
-      error.register = 'Register error - ' + err
+        if !user
+            if name == 'section' && what == 'read'
+                return true
+            else
+                return false
+
+        if !!what && !!name && user.can[what][name]
+            return true
+
+        if name == 'post'
+            if !!topicId && topicId in user.can[what].in.topic
+                return true
+            if !!sectionId && sectionId in user.can[what].in.section
+                return true
+
+        if name == 'topic'
+            if !!sectionId && sectionId in user.can[what].in.section
+                return true
+
+        if !!what && user.can[what].self[name] && user._id == object.userId
+            return true
+
+        return false
 
 
-authServ.$inject = ['$meteor', '$state']
+
+authServ.$inject = ['$rootScope', '$stateParams', '$meteor', '$q']
 
 angular.module 'users'
 .service 'authServ', authServ

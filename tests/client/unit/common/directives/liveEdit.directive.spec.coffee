@@ -66,3 +66,15 @@ describe 'Directive: liveEdit', ->
 
         it 'should call on-save method from declaration', ->
             expect(element.ctrl.onSave).toHaveBeenCalledWith(object)
+
+    describe 'startEditing method', ->
+        beforeEach ->
+            compileElement(object, config.onSave, 'email')
+            spyOn(element.ctrl, 'reverseEditEnabled').and.callThrough()
+            element.ctrl.startEditing()
+
+        it 'should call reverseEditEnabled method', () ->
+            expect(element.ctrl.reverseEditEnabled).toHaveBeenCalled()
+
+        it 'should set focusInput to true', () ->
+            expect(element.ctrl.focusInput).toBe(true)

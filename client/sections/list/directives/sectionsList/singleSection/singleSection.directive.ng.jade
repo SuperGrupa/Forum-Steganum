@@ -4,7 +4,7 @@
             h3 {{ singleDir.section.name }}
             p {{ singleDir.section.description }}
         .icon-area
-            md-icon.edit(md-svg-icon="image:ic_edit_24px", 
+            md-icon.edit(md-svg-icon="image:ic_edit_24px", ng-if="can('update', 'section', singleDir.section)",
                          ui-sref="section.one.edit({section_id: singleDir.section.id})")
-            md-icon.delete(md-svg-icon="action:ic_delete_24px", 
+            md-icon.delete(md-svg-icon="action:ic_delete_24px", ng-if="can('remove', 'section', singleDir.section)",
                          ui-sref="section.one.delete({section_id: singleDir.section.id})")

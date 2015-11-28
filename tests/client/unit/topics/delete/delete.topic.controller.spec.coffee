@@ -13,7 +13,7 @@ describe 'DeleteTopic controller', ->
     topic =
         name: 'Super Best Friends'
 
-    beforeEach module 'forumSteganum'
+    beforeEach module 'topics'
 
     beforeEach (done) ->
         spyOn(mockedTopicsServ, 'getTopicById').and.returnValue

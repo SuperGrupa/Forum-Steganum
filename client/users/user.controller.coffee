@@ -1,11 +1,11 @@
-UserCtrl = (authServ) ->
+UserCtrl = (loginServ) ->
   vm = this
 
-  vm.auth = authServ
+  vm.auth = loginServ
 
   return vm
 
-UserCtrl.$inject = ['authServ']
+UserCtrl.$inject = ['loginServ']
 
 angular.module('users')
 .controller 'UserCtrl', UserCtrl

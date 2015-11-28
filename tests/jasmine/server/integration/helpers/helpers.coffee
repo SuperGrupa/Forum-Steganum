@@ -1,20 +1,12 @@
 Helpers =
-    login: ->
-        Meteor.userId = -> '1'
+    login: (roleName) ->
+        if !Roles.find({}).count()
+            Meteor.call 'seedRoles'
+        Meteor.userId = ->
+            user = Meteor.users.findOne({ role: roleName })
+            return user._id
         Meteor.user = ->
-            user = Meteor.users.findOne({ _id: '1' })
-            if !user
-                user =
-                    _id: '1'
-                    username: 'Nitrooos'
-                    emails: [
-                        address: 'nitrooos@gmail.com'
-                    ]
-                    profile:
-                        firstname: 'Nitr'
-                        lastname: 'Ooos'
-                Meteor.users.insert user
-
+            user = Meteor.users.findOne({ role: roleName })
             return user
     logout: ->
         Meteor.userId = -> ''
@@ -26,7 +18,7 @@ Helpers =
     seed:
         __inSession: (fun, params) ->
             if _.isFunction(fun) && _.isArray(params)
-                Helpers.login()
+                Helpers.login('admin')
                 fun.apply(undefined, params)
                 Helpers.logout()
 
