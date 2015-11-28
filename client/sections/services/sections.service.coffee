@@ -3,7 +3,10 @@ sectionsServ = ($meteor, $state, alertsServ) ->
 
     create: (section) ->
         $meteor.call('addSection', section).then ->
+            alertsServ.success('New Section', 'You\'ve created a section')
             $state.go('section.list')
+        , (error) ->
+            alertsServ.error(error)
 
     getTopics: (section_id) ->
         $meteor.collection ->
