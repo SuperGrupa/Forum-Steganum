@@ -5,6 +5,7 @@ alertsServ = (toastr) ->
 
     getMessage = (data) ->
         return messages[data.error]
+
     success: (title, message) ->
         toastr.success(message, title)
 
