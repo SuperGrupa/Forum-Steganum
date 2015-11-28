@@ -1,14 +1,21 @@
-describe 'App run', ->
+fdescribe 'App run', ->
   $rootScope = {}
   $state = {}
+  mockedAuthServ =
+    can: 'something'
 
-  beforeEach module('forumSteganum')
+  beforeEach module('forumSteganum',
+    authServ: mockedAuthServ)
 
 
   beforeEach inject(($injector) ->
     $state = $injector.get('$state')
     $rootScope = $injector.get('$rootScope')
   )
+
+  describe '$rootScope', ->
+    it 'should bind authServ.can to $rootScope', () ->
+      expect($rootScope.can).toBe(mockedAuthServ.can)
 
   describe 'goBack method on $state', ->
     describe 'is previous state', ->
@@ -41,6 +48,49 @@ describe 'App run', ->
 
       it 'should call go method with "home"', () ->
         expect($state.go).toHaveBeenCalledWith 'home'
+
+  describe '$stateChangeError', ->
+    error = ''
+
+    describe 'AUTH_REQUIRED error', ->
+      beforeEach (done) ->
+        error = 'AUTH_REQUIRED'
+        spyOn($state, 'go').and.returnValue true
+        $rootScope.$emit('$stateChangeError', null, null, null, null, error)
+        done()
+
+      it 'should go to login state', () ->
+        expect($state.go).toHaveBeenCalledWith('login')
+
+    describe 'UNAUTHORIZED error', ->
+      beforeEach (done) ->
+        error = 'UNAUTHORIZED'
+        spyOn($state, 'go').and.returnValue true
+        $rootScope.$emit('$stateChangeError', null, null, null, null, error)
+        done()
+
+      it 'should go to error state with proper params', () ->
+        expect($state.go).toHaveBeenCalledWith('error', { code: 401, text: 'Unauthorized' })
+
+    describe 'ALREADYLOGGED error', ->
+      beforeEach (done) ->
+        error = 'ALREADYLOGGED'
+        spyOn($state, 'go').and.returnValue true
+        $rootScope.$emit('$stateChangeError', null, null, null, null, error)
+        done()
+
+      it 'should go to home state', () ->
+        expect($state.go).toHaveBeenCalledWith('home')
+
+    describe 'else error', ->
+      beforeEach (done) ->
+        error = 'something else'
+        spyOn($state, 'go').and.returnValue true
+        $rootScope.$emit('$stateChangeError', null, null, null, null, error)
+        done()
+
+      it 'should go to error state', () ->
+        expect($state.go).toHaveBeenCalledWith('error')
 
   describe '$stateChangeSuccess', ->
     describe 'from normal state', ->

@@ -7,7 +7,7 @@ appRun = ($rootScope, $state, authServ) ->
     $rootScope.$on '$stateChangeError', (event, toState, toParams, fromState, fromParams, error) ->
         switch error
             when 'AUTH_REQUIRED' then $state.go('login')
-            when 'UNAUTHORIZED' then $state.go('error', { code: 401, text: Unauthorized })
+            when 'UNAUTHORIZED' then $state.go('error', { code: 401, text: 'Unauthorized' })
             when 'ALREADYLOGGED' then $state.go('home')
             else $state.go('error')
 
