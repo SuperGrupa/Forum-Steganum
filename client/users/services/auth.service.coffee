@@ -34,7 +34,7 @@ authServ = ($rootScope, $stateParams, $meteor, $q) ->
             else
                 return false
 
-        if user.can[what][name]
+        if !!what && !!name && user.can[what][name]
             return true
 
         if name == 'post'
@@ -47,7 +47,7 @@ authServ = ($rootScope, $stateParams, $meteor, $q) ->
             if !!sectionId && sectionId in user.can[what].in.section
                 return true
 
-        if user.can[what].self[name] && user._id == object.userId
+        if !!what && user.can[what].self[name] && user._id == object.userId
             return true
 
         return false
