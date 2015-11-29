@@ -44,16 +44,17 @@ describe 'Directive: newPost', ->
     describe 'addPost method success', ->
         post =
             text: 'Im Batman'
-        imagesFilesList = ['Gotham_Night_Panorama.jpg']
+        image =
+            name: 'Gotham_Night_Panorama.jpg'
 
         beforeEach (done) ->
             spyOn(element.ctrl, 'clearPost')
-            element.ctrl.addPost(post, imagesFilesList)
+            element.ctrl.addPost(post, image)
             successCallback()
             done()
 
         it 'should call add method on postsServ with post', () ->
-            expect(mockedPostsServ.add).toHaveBeenCalledWith(post, imagesFilesList)
+            expect(mockedPostsServ.add).toHaveBeenCalledWith(post, image)
 
         it 'should call clearPost method on controller', () ->
             expect(element.ctrl.clearPost).toHaveBeenCalled()
@@ -61,11 +62,12 @@ describe 'Directive: newPost', ->
     describe 'addPost method failure', ->
         post =
             text: ''
-        imagesFilesList = []
+        image =
+            name: ''
 
         beforeEach (done) ->
             spyOn(element.ctrl, 'clearPost')
-            element.ctrl.addPost(post, imagesFilesList)
+            element.ctrl.addPost(post, image)
             successCallback()
             done()
 

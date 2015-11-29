@@ -2,7 +2,8 @@
 
 describe 'Directive: file-chooser', ->
     successCallback = {}
-    files = ['tush.png', 'bad_girl.png']
+    file =
+        name: 'tush.png'
 
     beforeEach module 'common'
     beforeEach module 'templates'
@@ -11,19 +12,16 @@ describe 'Directive: file-chooser', ->
 
     compileElement = (files) ->
         element = new TestElement 'file-chooser'
-        element.create '<file-chooser files="files"></file-chooser>',
-            files: files
+        element.create '<file-chooser file="file"></file-chooser>',
+            file: file
 
     describe 'binding files after compile', ->
         beforeEach (done) ->
-            compileElement(files)
+            compileElement(file)
             done()
 
-        it 'should bind element scope files to files', () ->
-            expect(element.scope.files).toEqual(files)
-
-        it 'should assign empty string to fileName', ->
-            expect(element.scope.fileName).toEqual('')
+        it 'should bind element scope file to file', () ->
+            expect(element.scope.file).toEqual(file)
 
         it 'shouldn\'t have button to delete image file', ->
             expect(element.dom.find('md-icon.delete').length).toBe(0)
@@ -32,9 +30,9 @@ describe 'Directive: file-chooser', ->
          beforeEach ->
              element.scope.removeFile()
 
-         it 'should assign empty array to scope.files and empty string to fileName', ->
-             expect(element.scope.files).toEqual([])
-             expect(element.scope.fileName).toEqual('')
+         it 'should assign object with name: \'\' to scope.file', ->
+             expect(element.scope.file).toEqual
+                name: ''
 
      describe 'scope.changeFile function', ->
          event =
@@ -47,8 +45,5 @@ describe 'Directive: file-chooser', ->
              element.scope.changeFile(event)
 
          it 'should change scope.files to array from event.target.files and fileName to first name from that filenames', ->
-             expect(element.scope.files).toEqual(event.target.files)
-             expect(element.scope.fileName).toEqual('LaGrange.png')
-
-         it 'should have visible element md-icon making possible for user to remove image file before post submit', ->
-             expect(element.dom.find('md-icon.delete').length).toBe(1)
+             expect(element.scope.file).toEqual
+                name: 'LaGrange.png'
