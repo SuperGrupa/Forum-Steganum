@@ -1,8 +1,12 @@
 .menu-left
   md-menu-content(width="3")
-    md-menu-item(ng-repeat="item in [1, 2, 3]")
+    md-menu-item(ui-sref="admin.users")
       md-button
         span(md-menu-align-target)
-          | Option {{item}}
+          | Users
+    md-menu-item(ui-sref="admin.roles")
+      md-button
+        span(md-menu-align-target)
+          | Roles
 .admin-content
   div(ui-view="")

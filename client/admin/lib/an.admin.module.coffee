@@ -19,6 +19,10 @@ adminModule = ($stateProvider) ->
     url: '/users'
     templateUrl: 'client/admin/users/users.html'
     controller: 'usersACtrl as usersA'
+  .state 'admin.roles',
+    url: '/roles'
+    templateUrl: 'client/admin/roles/roles.html'
+    controller: 'rolesACtrl as rolesA'
 
   return
 
