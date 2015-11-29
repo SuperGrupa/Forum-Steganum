@@ -1,3 +1,8 @@
-md-whiteframe.md-whiteframe-z1(layout, layout-align="center center")
-  div
-    h1 Welcome to the admin panel
+.menu-left
+  md-menu-content(width="3")
+    md-menu-item(ng-repeat="item in [1, 2, 3]")
+      md-button
+        span(md-menu-align-target)
+          | Option {{item}}
+.admin-content
+  div(ui-view="")
