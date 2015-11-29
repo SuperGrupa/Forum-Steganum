@@ -1,7 +1,6 @@
 'use strict'
 
 describe 'Directive: file-chooser', ->
-    successCallback = {}
     file =
         name: 'tush.png'
 
