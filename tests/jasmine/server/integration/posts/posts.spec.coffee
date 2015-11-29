@@ -7,7 +7,8 @@ describe 'Posts', ->
         userId: '1'
     posts_before = 0
 
-    Posts.remove { }
+    beforeEach ->
+        Helpers.clear()
 
     describe 'addPost method', ->
         it 'should throw not-authorized error', ->
@@ -22,13 +23,12 @@ describe 'Posts', ->
             expect(Posts.find({}).count()).toEqual(posts_before + 1)
             expect(Posts.find({ text: 'Some example text' }).count()).toBeGreaterThan(0)
 
-        Posts.remove { }
-
     describe 'deletePost method', ->
         beforeEach ->
-            Helpers.seed.post(post)
+            spyOn(Images, 'remove').and.returnValue true
 
-        it 'should remove specific post', ->
+        it 'should remove specific post (without image)', ->
+            Helpers.seed.post(post)
             posts_before = Posts.find({}).count()
 
             local_post = Posts.findOne({ text: 'Some example text' })
@@ -36,6 +36,19 @@ describe 'Posts', ->
 
             Meteor.call 'deletePost', local_post.id
             expect(Posts.find({}).count()).toBe(posts_before - 1)
+            expect(Images.remove).not.toHaveBeenCalled()
+
+        it 'should remove specific post (with image)', ->
+            post.image_id = '123'
+            Helpers.seed.post(post)
+            posts_before = Posts.find({}).count()
+
+            local_post = Posts.findOne({ text: 'Some example text' })
+            expect(local_post).not.toBe undefined
+
+            Meteor.call 'deletePost', local_post.id
+            expect(Posts.find({}).count()).toBe(posts_before - 1)
+            expect(Images.remove).toHaveBeenCalled()
 
     describe 'updatePost method', ->
         beforeEach ->

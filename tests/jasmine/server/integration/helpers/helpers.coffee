@@ -20,6 +20,7 @@ Helpers =
         Meteor.userId = -> ''
         Meteor.user = -> undefined
     clear: ->
+        Images.remove {}
         Posts.remove {}
         Topics.remove {}
         Sections.remove {}
