@@ -9,7 +9,7 @@ fileChooser = ->
             firstFile = _.first(event.target.files)
             if firstFile? && firstFile.name?
                 scope.file = firstFile
-                scope.$apply()
+                scope.$digest()
 
         scope.removeFile = ->
             scope.file =
