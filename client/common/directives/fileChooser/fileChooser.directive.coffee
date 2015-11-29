@@ -3,20 +3,19 @@ fileChooser = ->
     replace: true
     templateUrl: 'client/common/directives/fileChooser/fileChooser.directive.html'
     scope:
-        files: '='
+        file: '='
     link: (scope, element, attrs) ->
-        scope.fileName = ''
-
-        element.on 'change', scope.changeFile
-
         scope.changeFile = (event) ->
-            scope.files = event.target.files
-            scope.fileName = _.first(scope.files).name
-            scope.$apply()
+            firstFile = _.first(event.target.files)
+            if firstFile? && firstFile.name?
+                scope.file = firstFile
+                scope.$apply()
 
         scope.removeFile = ->
-            scope.files = []
-            scope.fileName = ''
+            scope.file =
+                name: ''
+
+        element.on 'change', scope.changeFile
 
 angular.module 'common'
 .directive 'fileChooser', fileChooser

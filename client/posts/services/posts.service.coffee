@@ -1,7 +1,7 @@
 postsServ = ($meteor) ->
-    add: (newPost, imagesFilesList) ->
-        unless _.isEmpty imagesFilesList
-            image = Images.insert _.first(imagesFilesList), (error, fileObj) ->
+    add: (newPost, image) ->
+        unless image.name == ''
+            image = Images.insert image, (error, fileObj) ->
                 if (error)
                     alert error
 
