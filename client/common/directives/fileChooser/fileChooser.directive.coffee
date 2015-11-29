@@ -5,7 +5,11 @@ fileChooser = ->
     scope:
         files: '='
     link: (scope, element, attrs) ->
-        element.on 'change', (event) ->
+        scope.fileName = ''
+
+        element.on 'change', scope.changeFile
+
+        scope.changeFile = (event) ->
             scope.files = event.target.files
             scope.fileName = _.first(scope.files).name
             scope.$apply()
