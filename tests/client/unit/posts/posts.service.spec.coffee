@@ -28,14 +28,41 @@ describe 'Posts Service', ->
     expect(postsServ).toBeDefined()
 
   describe 'add method', ->
-    newPost = 'something'
-    imagesFilesList = ['Something in the Way']      # Easter Egg!
+    newPost = imagesFilesList = null                  # żeby nie pluł się, że nie zna zmiennych...
 
     beforeEach ->
-      postsServ.add(newPost, imagesFilesList)
+      newPost =
+        text: 'something'
+      imagesFilesList = ['Something in the Way']      # Easter Egg!
 
-    it 'should call call method on meteor with "addPost" and newPost', ->
-      expect(mockedMeteor.call).toHaveBeenCalledWith('addPost', newPost)
+    describe 'call with image (success)', ->
+      beforeEach ->
+        spyOn(Images, 'insert').and.returnValue
+          _id: '123'
+        postsServ.add(newPost, imagesFilesList)
+
+      it 'should call call method on meteor with "addPost" and newPost', ->
+        expect(mockedMeteor.call).toHaveBeenCalledWith('addPost', newPost)
+        expect(Images.insert).toHaveBeenCalled()
+        expect(newPost.image_id).toEqual('123')
+
+    describe 'call without image (success)', ->
+      beforeEach ->
+        imagesFilesList = []
+        postsServ.add(newPost, imagesFilesList)
+
+      it 'should call addPost method on meteor with newPost', ->
+          expect(mockedMeteor.call).toHaveBeenCalledWith('addPost', newPost)
+          expect(newPost.image_id).toBe undefined
+
+    describe 'call with image, but with problems (failure)', ->
+      beforeEach ->
+        spyOn(Images, 'insert').and.returnValue null
+        postsServ.add(newPost, imagesFilesList)
+
+      it 'should return from function after problem with uploading an image', ->
+        expect(newPost.image_id).toBe undefined
+        expect(mockedMeteor.call).not.toHaveBeenCalled()
 
   describe 'delete method', ->
     post =

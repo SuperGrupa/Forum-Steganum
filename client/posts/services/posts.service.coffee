@@ -6,7 +6,7 @@ postsServ = ($meteor) ->
                     alert error
 
             # nie udało się przesłać pliku - nie wysyłaj samej treści
-            unless image._id?
+            unless image? && image._id?
                 return
 
         newPost.image_id = image._id if image?
