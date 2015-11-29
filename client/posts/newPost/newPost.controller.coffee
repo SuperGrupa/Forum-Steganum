@@ -1,4 +1,4 @@
-newPostController = (postsServ, $stateParams) ->
+newPostController = (postsServ, alertsServ, $stateParams) ->
     vm = this
     vm.action = postsServ
     vm.image =
@@ -16,11 +16,11 @@ newPostController = (postsServ, $stateParams) ->
             vm.action.add(post, image).then ->
                 vm.clearPost()
         else
-            # TODO jakaś informacja dla usera...
+            alertsServ.error(error: 'emptyPostNotAllowed')
 
     return vm
 
-newPostController.$inject = ['postsServ', '$stateParams']
+newPostController.$inject = ['postsServ', 'alertsServ', '$stateParams']
 
 angular.module('posts')
 .controller 'newPostController', newPostController
