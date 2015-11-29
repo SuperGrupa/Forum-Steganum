@@ -7,12 +7,15 @@ md-toolbar.md-primary
             md-button(ui-sref="section.list")
                 md-icon(md-svg-icon="navigation:ic_menu_24px")
                 .title Forum
+            md-button(ui-sref="admin", ng-if="currentUser.role == 'admin'")
+                md-icon(md-svg-icon="action:ic_settings_24px")
+                .title Admin
             md-button(ui-sref="login", ng-hide="currentUser")
                 md-icon(md-svg-icon="social:ic_person_24px")
                 .title Sing in
             md-button(ui-sref="profile", ng-show="currentUser")
                 md-icon(md-svg-icon="social:ic_person_24px")
-                .title {{currentUser.username}}
+                .title Profile
             md-button(ng-click="headCtrl.logout()", ng-show="currentUser")
                 md-icon(md-svg-icon="action:ic_exit_to_app_24px")
                 .title Sign out
