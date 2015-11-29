@@ -1,12 +1,12 @@
-usersACtrl = () ->
-  vm = this
+usersACtrl = (usersAServ) ->
+  this.users = usersAServ.getAllUsers()
 
-  vm.logout = ->
-      loginServ.logout()
+  this.someFunction = () =>
+    console.log('asd')
 
-  return vm
+  return this
 
-usersACtrl.$inject = []
+usersACtrl.$inject = ['usersAServ']
 
 angular.module('admin')
 .controller 'usersACtrl', usersACtrl

@@ -1,3 +1,19 @@
-md-whiteframe.md-whiteframe-z1(layout, layout-align="center center")
-  div
-    h1 Welcome to the Users panel
+.users-admin
+  md-whiteframe.md-whiteframe-z1(layout, layout-align="center center")
+    div(layout="column")
+      div(layout="row" layout-align="space-between center")
+        p(flex="5")
+        p(flex="15") Username
+        p(flex="15") Role
+        p(flex="20") CreatedAt
+        p(flex="20") E-mail
+        p(flex="20")
+        p(flex="5")
+      div(layout="row" layout-align="space-between center" ng-repeat="user in usersA.users")
+        md-checkbox(flex="5", ng-model="user.selected")
+        p(flex="15") {{ user.username }}
+        p(flex="15") {{ user.role }}
+        p(flex="20") {{ user.createdAt | date: 'HH:MM dd-MM-yyyy' }}
+        p(flex="20") {{ user.emails[0].address }}
+        md-button(flex="20", ng-click="usersA.someFunction()") Show Profile
+        md-icon(flex="5", ng-click="usersA.someFunction()" aria-label="Chat" md-svg-icon="action:ic_settings_24px")
