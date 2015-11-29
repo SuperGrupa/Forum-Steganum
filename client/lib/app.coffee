@@ -10,4 +10,5 @@ angular.module 'forumSteganum', [
   'posts'
   'users'
   'toastr'
+  'error'
  ]

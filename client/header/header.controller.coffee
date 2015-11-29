@@ -1,12 +1,12 @@
-headerCtrl = (authServ) ->
+headerCtrl = (loginServ) ->
   vm = this
 
   vm.logout = ->
-      authServ.logout()
+      loginServ.logout()
 
   return vm
 
-headerCtrl.$inject = ['authServ']
+headerCtrl.$inject = ['loginServ']
 
 angular.module('forumSteganum')
 .controller 'HeaderCtrl', headerCtrl

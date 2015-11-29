@@ -12,7 +12,7 @@ describe 'DeleteSection controller', ->
     section =
         name: 'Super Best Friends'
 
-    beforeEach module 'forumSteganum'
+    beforeEach module 'sections'
 
     beforeEach (done) ->
         spyOn(mockedSectionsServ, 'getSectionById').and.returnValue

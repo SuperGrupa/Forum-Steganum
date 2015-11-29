@@ -13,7 +13,7 @@ describe 'PageOfPosts controller', ->
         ['Post1', 'Post2']
     ]
 
-    beforeEach module 'forumSteganum'
+    beforeEach module 'topics'
 
     beforeEach (done) ->
         spyOn(mockedTopicsServ, 'getPostsWithImages').and.returnValue posts

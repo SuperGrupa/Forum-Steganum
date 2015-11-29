@@ -1,3 +1,3 @@
 ul.section-list
-    li(ng-repeat='section in listDir.sections')
+    li(ng-repeat='section in listDir.sections', ng-if="can('read', 'section', section)")
         single-section(section="section")

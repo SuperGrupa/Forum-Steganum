@@ -1,23 +1,33 @@
 describe 'Posts Service', ->
   postsServ = {}
-  mockedMeteor = {
+  mockedMeteor =
     call: angular.noop
     object: angular.noop
     collection: angular.noop
-  }
+  mockedAlertsServ =
+    success: angular.noop
+    error: angular.noop
   callBack = {}
+  successCallBack = {}
+  failCallBack = {}
 
   beforeEach ->
-    spyOn(mockedMeteor, 'call').and.returnValue true
+    spyOn(mockedMeteor, 'call').and.returnValue
+      then: (success, fail) ->
+          successCallBack = success
+          failCallBack = fail
     spyOn(mockedMeteor, 'object').and.callFake ->
       subscribe: (what) ->
         callBack = what
     spyOn(mockedMeteor, 'collection').and.callFake ->
       subscribe: (what) ->
         callBack = what
+    spyOn(mockedAlertsServ, 'success')
+    spyOn(mockedAlertsServ, 'error')
 
   beforeEach module('posts',
     $meteor: mockedMeteor
+    alertsServ: mockedAlertsServ
   )
 
   beforeEach inject(($injector) ->
@@ -29,6 +39,7 @@ describe 'Posts Service', ->
 
   describe 'add method', ->
     newPost = image = null                            # żeby nie pluł się, że nie zna zmiennych...
+    error = 'You\'ve trusted someone!'
 
     beforeEach ->
       newPost =
@@ -66,24 +77,58 @@ describe 'Posts Service', ->
         expect(newPost.image_id).toBe undefined
         expect(mockedMeteor.call).not.toHaveBeenCalled()
 
+    describe 'successCallBack', ->
+      it 'should call success method on alertsServ', () ->
+        successCallBack()
+        expect(mockedAlertsServ.success).toHaveBeenCalled()
+
+    describe 'failCallBack', ->
+      it 'should call error method on alertsServ with error', ->
+        failCallBack(error)
+        expect(mockedAlertsServ.error).toHaveBeenCalledWith(error)
+
   describe 'delete method', ->
     post =
       id: 'someId'
+    error = 'You\'ve trusted someone!'
+
     beforeEach ->
       postsServ.delete(post)
 
     it 'should call call method on meteor with "addPost" and postId', ->
       expect(mockedMeteor.call).toHaveBeenCalledWith('deletePost', post.id)
 
+    describe 'successCallBack', ->
+      it 'should call success method on alertsServ', () ->
+        successCallBack()
+        expect(mockedAlertsServ.success).toHaveBeenCalled()
+
+    describe 'failCallBack', ->
+      it 'should call error method on alertsServ with error', ->
+        failCallBack(error)
+        expect(mockedAlertsServ.error).toHaveBeenCalledWith(error)
+
   describe 'update method', ->
     post =
       id: 'someId'
       text: 'someText'
+    error = 'You\'ve trusted someone!'
+
     beforeEach ->
       postsServ.update(post)
 
-    it 'should call call method on meteor with "addPost" and postId', ->
+    it 'should call call method on meteor with "updatePost" and postId', ->
       expect(mockedMeteor.call).toHaveBeenCalledWith('updatePost', post.id, post.text)
+
+    describe 'successCallBack', ->
+      it 'should call success method on alertsServ', () ->
+        successCallBack()
+        expect(mockedAlertsServ.success).toHaveBeenCalled()
+
+    describe 'failCallBack', ->
+      it 'should call error method on alertsServ with error', ->
+        failCallBack(error)
+        expect(mockedAlertsServ.error).toHaveBeenCalledWith(error)
 
   describe 'findOwner method', ->
     post =

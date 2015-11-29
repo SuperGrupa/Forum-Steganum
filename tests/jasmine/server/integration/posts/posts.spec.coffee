@@ -11,13 +11,13 @@ describe 'Posts', ->
         Helpers.clear()
 
     describe 'addPost method', ->
-        it 'should throw not-authorized error', ->
+        it 'should throw notLogged error', ->
             Helpers.logout()
             Meteor.call 'addPost', post, (error) ->
-                expect(error).toEqual(new Meteor.Error('not-authorized'))
+                expect(error).toEqual(new Meteor.Error('notLogged'))
 
         it 'should add new post to database', ->
-            Helpers.login()
+            Helpers.login('admin')
             posts_before = Posts.find({}).count()
             Meteor.call 'addPost', post
             expect(Posts.find({}).count()).toEqual(posts_before + 1)
@@ -33,7 +33,8 @@ describe 'Posts', ->
 
             local_post = Posts.findOne({ text: 'Some example text' })
             expect(local_post).not.toBe undefined
-
+            
+            Helpers.login('admin')
             Meteor.call 'deletePost', local_post.id
             expect(Posts.find({}).count()).toBe(posts_before - 1)
             expect(Images.remove).not.toHaveBeenCalled()
@@ -53,6 +54,7 @@ describe 'Posts', ->
     describe 'updatePost method', ->
         beforeEach ->
             Helpers.seed.post(post)
+            Helpers.login('admin')
 
         it 'should update post', ->
             posts_before = Posts.find({}).count()

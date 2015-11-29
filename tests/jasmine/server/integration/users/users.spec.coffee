@@ -8,10 +8,12 @@ describe 'Users', ->
                 expect(error).toEqual(new Meteor.Error(500, 'You are not logged in'))
 
         it 'should update username when logged', ->
-            Helpers.login()
-            Meteor.call 'updateUsername', 'Bartas'
+            Helpers.login('admin')
+            Meteor.call 'updateUsername', 'Bartass'
 
-            expect(Meteor.user().username).toEqual('Bartas')
+            user = Meteor.users.findOne({ role: 'admin' })
+
+            expect(user.username).toEqual('Bartass')
 
     describe 'updateEmail method', ->
         it 'should throw not-authorized exception when user not logged', ->
@@ -20,10 +22,12 @@ describe 'Users', ->
                 expect(error).toEqual(new Meteor.Error(500, 'You are not logged in'))
 
         it 'should update email when logged', ->
-            Helpers.login()
-            Meteor.call 'updateEmail', 'bartas@gmail.com'
+            Helpers.login('admin')
+            Meteor.call 'updateEmail', 'bartas1@gmail.com'
 
-            expect(Meteor.user().emails[0].address).toEqual('bartas@gmail.com')
+            user = Meteor.users.findOne({ role: 'admin' })
+
+            expect(user.emails[0].address).toEqual('bartas1@gmail.com')
 
     describe 'updateProfile method', ->
         profile =
@@ -42,7 +46,9 @@ describe 'Users', ->
                 expect(error).toEqual(new Meteor.Error(500, 'You are not logged in'))
 
         it 'should update profile when logged', ->
-            Helpers.login()
+            Helpers.login('admin')
             Meteor.call 'updateProfile', profile
 
-            expect(Meteor.user().profile).toEqual(profile)
+            user = Meteor.users.findOne({ role: 'admin' })
+
+            expect(user.profile).toEqual(profile)

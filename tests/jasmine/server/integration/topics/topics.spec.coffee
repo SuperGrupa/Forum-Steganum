@@ -10,10 +10,10 @@ describe 'Topics', ->
         it 'should throw not-authorized exception for not logged user', ->
             Helpers.logout()
             Meteor.call 'addTopic', topic, (error) ->
-                expect(error).toEqual(new Meteor.Error('not-authorized'))
+                expect(error).toEqual(new Meteor.Error('notLogged'))
 
         it 'should add new topic after login', ->
-            Helpers.login()
+            Helpers.login('admin')
             topics_before = Topics.find({}).count()
             Meteor.call 'addTopic', topic
             expect(Topics.find({}).count()).toEqual(topics_before + 1)
@@ -21,7 +21,7 @@ describe 'Topics', ->
 
     describe 'updateTopic method', ->
         beforeEach ->
-            Helpers.logout()
+            Helpers.login('admin')
 
         it 'should update topic name and description in database', ->
             local_topic = Topics.findOne({ name: 'Example topic name' })
@@ -42,6 +42,7 @@ describe 'Topics', ->
         beforeEach ->
             Helpers.clear()
             Helpers.seed.topic(topic)
+            Helpers.login('admin')
 
         it 'should delete given topic', ->
             local_topic = Topics.findOne({ name: 'Example topic name' })
@@ -56,6 +57,7 @@ describe 'Topics', ->
         beforeEach ->
             Helpers.clear()
             Helpers.seed.topic(topic)
+            Helpers.login('admin')
 
         it 'should return topic object based on given id', ->
             topic_from_db = Topics.findOne({ name: 'Example topic name' })

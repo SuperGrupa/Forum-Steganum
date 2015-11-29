@@ -22,8 +22,8 @@ describe 'Directive: file-chooser', ->
         it 'should bind element scope file to file', () ->
             expect(element.scope.file).toEqual(file)
 
-        it 'shouldn\'t have button to delete image file', ->
-            expect(element.dom.find('md-icon.delete').length).toBe(0)
+        it 'should have button to delete image file', ->
+            expect(element.dom.find('md-icon.delete').length).toBe(1)
 
      describe 'scope.removeFile function', ->
          beforeEach ->

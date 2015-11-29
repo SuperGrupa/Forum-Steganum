@@ -1,3 +1,5 @@
+auth = require('authFunctions')
+
 Meteor.methods
     updateUsername: (username) ->
         if Meteor.user()
@@ -16,3 +18,6 @@ Meteor.methods
             Meteor.users.update({_id:Meteor.user()._id}, {$set:{"profile": profile}})
         else
             throw new Meteor.Error( 500, 'You are not logged in')
+
+    checkPermissions: (what, name, object) ->
+        auth.can(what, name, object)
