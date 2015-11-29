@@ -10,8 +10,5 @@ Meteor = () ->
 Sections = { }
 Images =
     insert: () -> _id: 'abc'
+    findOne: () -> angular.noop
 
-# Underscore.js
-_ =
-    isEmpty: angular.noop
-    first: angular.noop

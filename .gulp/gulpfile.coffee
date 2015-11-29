@@ -19,6 +19,7 @@ paths =
       'components/angular-aria/angular-aria.js'
       'components/angular-material/angular-material.js'
       'components/angular-ui-router/release/angular-ui-router.js'
+      'components/underscore/underscore-min.js'
     ]
     app: [
       '../client/lib/*.coffee'

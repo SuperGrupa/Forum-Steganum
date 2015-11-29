@@ -41,7 +41,7 @@ describe 'Directive: newPost', ->
         it 'should set $stateParams.topic_id to post.topic_id', () ->
             expect(element.ctrl.post.topic_id).toBe mockedStateParams.topic_id
 
-    describe 'addPost method', ->
+    describe 'addPost method success', ->
         post =
             text: 'Im Batman'
         imagesFilesList = ['Gotham_Night_Panorama.jpg']
@@ -57,3 +57,18 @@ describe 'Directive: newPost', ->
 
         it 'should call clearPost method on controller', () ->
             expect(element.ctrl.clearPost).toHaveBeenCalled()
+
+    describe 'addPost method failure', ->
+        post =
+            text: ''
+        imagesFilesList = []
+
+        beforeEach (done) ->
+            spyOn(element.ctrl, 'clearPost')
+            element.ctrl.addPost(post, imagesFilesList)
+            successCallback()
+            done()
+
+        it 'should not call add method on postsServ', () ->
+            expect(mockedPostsServ.add).not.toHaveBeenCalled()
+            expect(element.ctrl.clearPost).not.toHaveBeenCalled()

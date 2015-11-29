@@ -3,7 +3,6 @@ singlePost = ->
     scope: true
     bindToController:
         post: '='
-        images: '='
     templateUrl: 'client/posts/postsList/singlePost/singlePost.directive.html'
     controllerAs: 'singleDir'
     controller: () ->
