@@ -71,7 +71,6 @@ describe 'Directive: newPost', ->
         beforeEach (done) ->
             spyOn(element.ctrl, 'clearPost')
             element.ctrl.addPost(post, image)
-            successCallback()
             done()
 
         it 'should not call add method on postsServ', () ->
