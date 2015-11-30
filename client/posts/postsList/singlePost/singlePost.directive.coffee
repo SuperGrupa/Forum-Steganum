@@ -7,6 +7,9 @@ singlePost = ->
     controllerAs: 'singleDir'
     controller: () ->
         vm = this
+        vm.postImage = ->
+            Images.findOne({ _id: vm.post.image_id }).url()
+
         return vm
 
 

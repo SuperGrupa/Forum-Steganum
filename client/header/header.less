@@ -45,6 +45,10 @@
         }
 
         md-icon {
+            @media @phone {
+                display: none;
+            }
+
             height: 48px;
             margin: 5px 10px 0 10px;
             width: 48px;
@@ -63,7 +67,7 @@
             }
             &.small {
                 @media @laptop,
-                @desktop {
+                @desktop, @phone {
                     display: none;
                 }
             }

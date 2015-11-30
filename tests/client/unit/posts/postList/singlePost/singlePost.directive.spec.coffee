@@ -18,3 +18,14 @@ describe 'Directive: singlePost', ->
 
     it 'should set mockedPost to scope', ->
         expect(element.scope.post).toBe mockedPost
+
+    describe 'postImage method', ->
+        url = ''
+
+        beforeEach ->
+            spyOn(Images, 'findOne').and.returnValue
+                url: -> 'gotham.png'
+            url = element.ctrl.postImage()
+
+        it 'should return url for post\' image', ->
+            expect(url).toEqual('gotham.png')
