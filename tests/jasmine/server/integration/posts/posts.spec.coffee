@@ -33,9 +33,10 @@ describe 'Posts', ->
             
             Helpers.login('admin')
 
-            return
+            return {
                 posts_before: posts_before
                 local_post: local_post
+            }
 
         beforeEach ->
             spyOn(Images, 'remove').and.returnValue true
