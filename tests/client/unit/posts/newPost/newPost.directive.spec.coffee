@@ -3,12 +3,15 @@
 describe 'Directive: newPost', ->
     mockedPostsServ =
         add: angular.noop
+    mockedAlertsServ =
+        error: angular.noop
     mockedStateParams =
         topic_id: 123
     successCallback = {}
 
     beforeEach module 'posts',
         postsServ: mockedPostsServ
+        alertsServ: mockedAlertsServ
         $stateParams: mockedStateParams
     beforeEach module 'templates'
 

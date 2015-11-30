@@ -24,10 +24,7 @@ describe 'Posts', ->
             expect(Posts.find({ text: 'Some example text' }).count()).toBeGreaterThan(0)
 
     describe 'deletePost method', ->
-        beforeEach ->
-            spyOn(Images, 'remove').and.returnValue true
-
-        it 'should remove specific post (without image)', ->
+        prepareTest = (post) ->
             Helpers.seed.post(post)
             posts_before = Posts.find({}).count()
 
@@ -35,21 +32,27 @@ describe 'Posts', ->
             expect(local_post).not.toBe undefined
             
             Helpers.login('admin')
-            Meteor.call 'deletePost', local_post.id
-            expect(Posts.find({}).count()).toBe(posts_before - 1)
+
+            return
+                posts_before: posts_before
+                local_post: local_post
+
+        beforeEach ->
+            spyOn(Images, 'remove').and.returnValue true
+
+        it 'should remove specific post (without image)', ->
+            config = prepareTest(post)
+
+            Meteor.call 'deletePost', config.local_post.id
+            expect(Posts.find({}).count()).toBe(config.posts_before - 1)
             expect(Images.remove).not.toHaveBeenCalled()
 
         it 'should remove specific post (with image)', ->
             post.image_id = '123'
-            Helpers.seed.post(post)
-            posts_before = Posts.find({}).count()
+            config = prepareTest(post)
 
-            local_post = Posts.findOne({ text: 'Some example text' })
-            expect(local_post).not.toBe undefined
-
-            Helpers.login('admin')
-            Meteor.call 'deletePost', local_post.id
-            expect(Posts.find({}).count()).toBe(posts_before - 1)
+            Meteor.call 'deletePost', config.local_post.id
+            expect(Posts.find({}).count()).toBe(config.posts_before - 1)
             expect(Images.remove).toHaveBeenCalled()
 
     describe 'updatePost method', ->
