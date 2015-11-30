@@ -47,6 +47,7 @@ describe 'Posts', ->
             local_post = Posts.findOne({ text: 'Some example text' })
             expect(local_post).not.toBe undefined
 
+            Helpers.login('admin')
             Meteor.call 'deletePost', local_post.id
             expect(Posts.find({}).count()).toBe(posts_before - 1)
             expect(Images.remove).toHaveBeenCalled()
