@@ -1,8 +1,12 @@
 topicsServ = ($meteor, $state, alertsServ) ->
-    getPosts: (topic_id, page_number, posts_per_page) ->
-        $meteor.collection ->
-            Filter.Posts.by(topic_id, page_number, posts_per_page)
-        .subscribe('postsOfTopic', topic_id, page_number, posts_per_page)
+    getPostsWithImages: (topic_id, page_number, posts_per_page) ->
+        return [
+            $meteor.collection(Images).subscribe('images'),
+            
+            $meteor.collection ->
+                Filter.Posts.by(topic_id, page_number, posts_per_page)
+            .subscribe('postsOfTopic', topic_id, page_number, posts_per_page)
+        ]
     getTopicById: (topic_id) ->
         $meteor.call 'getTopicById', topic_id
     create: (topic) ->

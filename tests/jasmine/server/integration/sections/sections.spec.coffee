@@ -5,7 +5,6 @@ describe 'Sections', ->
         name: 'Example section name'
         description: 'Description of example section'
 
-    # TODO ta metoda jest jeszcze nieużywana w kliencie
     describe 'addSection method', ->
         it 'should throw not-authorized exception for not logged user', ->
             Helpers.logout()

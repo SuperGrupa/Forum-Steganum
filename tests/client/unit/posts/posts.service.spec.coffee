@@ -38,14 +38,44 @@ describe 'Posts Service', ->
     expect(postsServ).toBeDefined()
 
   describe 'add method', ->
-    newPost = 'something'
+    newPost = image = null                            # żeby nie pluł się, że nie zna zmiennych...
     error = 'You\'ve trusted someone!'
 
     beforeEach ->
-      postsServ.add(newPost)
+      newPost =
+        text: 'something'
+      image =
+          name: 'Something in the Way'                # Easter Egg!
 
-    it 'should call call method on meteor with "addPost" and newPost', ->
-      expect(mockedMeteor.call).toHaveBeenCalledWith('addPost', newPost)
+    describe 'call with image (success)', ->
+      beforeEach ->
+        spyOn(Images, 'insert').and.returnValue
+          _id: '123'
+        postsServ.add(newPost, image)
+
+      it 'should call call method on meteor with "addPost" and newPost', ->
+        expect(mockedMeteor.call).toHaveBeenCalledWith('addPost', newPost)
+        expect(Images.insert).toHaveBeenCalled()
+        expect(newPost.image_id).toEqual('123')
+
+    describe 'call without image (success)', ->
+      beforeEach ->
+        image =
+            name: ''
+        postsServ.add(newPost, image)
+
+      it 'should call addPost method on meteor with newPost', ->
+          expect(mockedMeteor.call).toHaveBeenCalledWith('addPost', newPost)
+          expect(newPost.image_id).toBe undefined
+
+    describe 'call with image, but with problems (failure)', ->
+      beforeEach ->
+        spyOn(Images, 'insert').and.returnValue null
+        postsServ.add(newPost, image)
+
+      it 'should return from function after problem with uploading an image', ->
+        expect(newPost.image_id).toBe undefined
+        expect(mockedMeteor.call).not.toHaveBeenCalled()
 
     describe 'successCallBack', ->
       it 'should call success method on alertsServ', () ->

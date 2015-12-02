@@ -2,6 +2,7 @@ alertsServ = (toastr) ->
     messages =
         notLogged: 'You are not logged in'
         notAuthorized: 'You are not authorized to do this action'
+        emptyPostNotAllowed: 'Empty posts are not allowed!'
 
     getMessage = (data) ->
         return messages[data.error]

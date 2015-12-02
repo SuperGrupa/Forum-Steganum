@@ -1,17 +1,25 @@
 Helpers =
     login: (roleName) ->
+        role = roleName
+
         if !Roles.find({}).count()
             Meteor.call 'seedRoles'
+        if !Meteor.users.find({}).count()
+            Meteor.call 'seedUsers'
+
         Meteor.userId = ->
-            user = Meteor.users.findOne({ role: roleName })
-            return user._id
+            user = Meteor.users.findOne({ role: role })
+            if user?
+                user._id
+            else ''
         Meteor.user = ->
-            user = Meteor.users.findOne({ role: roleName })
+            user = Meteor.users.findOne({ role: role })
             return user
     logout: ->
         Meteor.userId = -> ''
         Meteor.user = -> undefined
     clear: ->
+        Images.remove {}
         Posts.remove {}
         Topics.remove {}
         Sections.remove {}
