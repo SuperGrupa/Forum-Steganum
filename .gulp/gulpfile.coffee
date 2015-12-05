@@ -9,6 +9,7 @@ concat              = require 'gulp-concat'
 clean               = require 'gulp-clean'
 rename              = require 'gulp-rename'
 runSequence         = require 'run-sequence'
+shell               = require 'gulp-shell'
 
 paths =
   scripts:
@@ -62,7 +63,7 @@ gulp.task 'templates', ->
   gulp.src(paths.templates)
     .pipe(rename( (path) ->
       if (path.basename != "index")
-        path.basename = path.basename.substring(0, path.basename.length - 3);;
+        path.basename = path.basename.substring(0, path.basename.length - 3)
       path.extname = ".html"
     ))
     .pipe(jade({
@@ -103,3 +104,5 @@ gulp.task 'default', (cb) ->
 
 gulp.task 'dev', (cb) ->
   runSequence 'build', 'ut', cb
+
+gulp.task 'build-algorithm', shell.task('algorithm/build.sh')

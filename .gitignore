@@ -8,3 +8,5 @@ tests/coverage
 .project/
 TODO
 .project
+node_modules
+.steganography

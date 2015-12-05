@@ -1,0 +1,3 @@
+[submodule ".steganography"]
+	path = .steganography
+	url = git@github.com:Nitrooos/JS-Image-Steganography.git
