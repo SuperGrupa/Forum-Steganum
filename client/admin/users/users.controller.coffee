@@ -20,6 +20,10 @@ usersACtrl = ($q, alertsServ, usersAServ, rolesAServ) ->
   this.isUserSelected = () =>
     !_.find this.users, (user) => user.selected == true
 
+  this.removeUser = (user) =>
+    usersAServ.removeUser(user._id)
+
+
   return this
 
 usersACtrl.$inject = ['$q', 'alertsServ', 'usersAServ', 'rolesAServ']

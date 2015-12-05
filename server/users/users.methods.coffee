@@ -28,4 +28,7 @@ Meteor.methods
             user = rolesFunctions.setRoleByName(user, user.role)
             Meteor.users.update({ _id: user._id }, {$set: {'can': user.can, 'role': user.role}})
 
+    deleteUser: (user_id) ->
+        if Meteor.user().role == 'admin'
+            Meteor.users.remove { '_id': user_id }
 
