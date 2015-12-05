@@ -1,4 +1,5 @@
 auth = require('authFunctions')
+rolesFunctions = require('rolesFunctions')
 
 Meteor.methods
     updateUsername: (username) ->
@@ -21,3 +22,10 @@ Meteor.methods
 
     checkPermissions: (what, name, object) ->
         auth.can(what, name, object)
+
+    updateUser: (user) ->
+        if Meteor.user().role == 'admin'
+            user = rolesFunctions.setRoleByName(user, user.role)
+            Meteor.users.update({ _id: user._id }, {$set: {'can': user.can, 'role': user.role}})
+
+
