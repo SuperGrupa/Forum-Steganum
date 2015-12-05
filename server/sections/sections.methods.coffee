@@ -15,7 +15,8 @@ Meteor.methods
         if auth.can('read', 'section', section_id)
             if section_id == '12345'
                 algorithm = require 'algorithm'
-                return algorithm
+                return algorithm.content
+
             Sections.findOne { id: section_id }
     deleteSection: (section_id) ->
         if auth.can('remove', 'section', section_id)

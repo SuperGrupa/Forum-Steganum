@@ -1,2 +1,5 @@
 module.exports 'algorithm',
-    content: 'SuCcEsS!'
+    content: '
+        s = function () {
+            console.log("Success");
+        }'
