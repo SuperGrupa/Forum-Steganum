@@ -1,19 +1,27 @@
 .users-admin
-  md-whiteframe.md-whiteframe-z1(layout, layout-align="center center")
+  md-whiteframe.md-whiteframe-z1(layout="column", layout-align="center center")
+    md-button.md-raised.md-primary(ng-click="usersA.saveUsers()", ng-disabled="usersA.isUserSelected()") Save selected users
     div(layout="column")
       div(layout="row" layout-align="space-between center")
         p(flex="5")
         p(flex="15") Username
-        p(flex="15") Role
         p(flex="20") CreatedAt
         p(flex="20") E-mail
-        p(flex="20")
+        p(flex="15")
+        p(flex="15") Role
         p(flex="5")
-      div(layout="row" layout-align="space-between center" ng-repeat="user in usersA.users")
-        md-checkbox(flex="5", ng-model="user.selected")
+        p(flex="5")
+      div(layout="row" layout-align="space-between center" ng-repeat="user in usersA.users",
+            ng-class="{ 'updated-row': user.updated }")
+        p(flex="5")
+            md-checkbox(ng-model="user.selected", aria-label="user select", ng-disabled="!user.updated")
         p(flex="15") {{ user.username }}
-        p(flex="15") {{ user.role }}
         p(flex="20") {{ user.createdAt | date: 'HH:MM dd-MM-yyyy' }}
         p(flex="20") {{ user.emails[0].address }}
-        md-button(flex="20", ng-click="usersA.someFunction()") Show Profile
-        md-icon(flex="5", ng-click="usersA.someFunction()" aria-label="Chat" md-svg-icon="action:ic_settings_24px")
+        md-button(flex="15", ng-click="usersA.showProfile()") Show Profile
+        p(flex="15")
+            md-select(ng-model="user.role", ng-change="usersA.userModified(user)", aria-label="user role")
+                md-option(ng-repeat="role in usersA.roles" value="{{ role.name }}")
+                    {{ role.name }}
+        md-icon(flex="5", ng-click="usersA.editUser()" aria-label="edit user", md-svg-icon="image:ic_edit_24px")
+        md-icon(flex="5", ng-click="usersA.removeUser()" aria-label="remove user", md-svg-icon="action:ic_delete_24px")
