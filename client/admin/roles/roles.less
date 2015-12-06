@@ -1,0 +1,74 @@
+.roles-admin {
+  md-list {
+    width: 100%;
+  }
+
+  div[layout="column"] {
+    width: 100%;
+  }
+
+  md-icon {
+    margin: 0;
+    cursor: pointer;
+  }
+
+  md-select {
+    margin: 0;
+  }
+
+  .updated-row {
+    color: @role-modified;
+  }
+
+  .header-roles {
+    height: 75px;
+
+    .left {
+      position: absolute;
+      left: 40px;
+
+      p, md-select {
+        margin-right: 10px;
+      }
+    }
+
+    .right {
+      position: absolute;
+      right: 20px;
+    }
+  }
+
+  .row {
+    border-bottom: solid 1px;
+    margin-bottom: 5px;
+
+    .title {
+      margin-left: 5px;
+    }
+
+    .cell {
+      padding: 10px;
+
+      .can-row {
+        width: 100%;
+        display: inline-block;
+
+        .name {
+          margin-top: 3px;
+          display: inline-block;
+
+          &.self {
+            margin-left: 15px;
+          }
+        }
+
+        md-checkbox {
+          margin: 0;
+          float: right;
+        }
+      }
+    }
+
+  }
+
+}
