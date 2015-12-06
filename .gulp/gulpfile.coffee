@@ -9,7 +9,8 @@ concat              = require 'gulp-concat'
 clean               = require 'gulp-clean'
 rename              = require 'gulp-rename'
 runSequence         = require 'run-sequence'
-shell               = require 'gulp-shell'
+uglify              = require 'gulp-uglify'
+fs                  = require 'fs'
 
 paths =
   scripts:
@@ -105,4 +106,16 @@ gulp.task 'default', (cb) ->
 gulp.task 'dev', (cb) ->
   runSequence 'build', 'ut', cb
 
-gulp.task 'build-algorithm', shell.task('algorithm/build.sh')
+gulp.task 'build-algorithm-new-2', () ->
+    gulp.src(['../.steganography/js/*/*.js', '../.steganography/js/*.js'])
+        .pipe(concat('build.min.js'))
+        .pipe uglify mangle: sort: true
+        .pipe(gulp.dest('algorithm'))
+
+    content  = '
+        module.exports "algorithm",
+            content: """'
+    content += fs.readFileSync('algorithm/build.min.js')
+    content += '"""'
+
+    fs.writeFile('../server/steganography/algorithm.coffee', content)
