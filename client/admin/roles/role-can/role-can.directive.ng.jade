@@ -1,0 +1,21 @@
+div
+  .can-row
+    .name Posts:
+    md-checkbox(ng-model="vm.role.can[vm.property].post", aria-label="role select", ng-change="vm.roleModified(vm.role)")
+  .can-row
+    .name Topics:
+    md-checkbox(ng-model="vm.role.can[vm.property].topic", aria-label="role select", ng-change="vm.roleModified(vm.role)")
+  .can-row
+    .name Sections:
+    md-checkbox(ng-model="vm.role.can[vm.property].section", aria-label="role select", ng-change="vm.roleModified(vm.role)")
+  .can-row
+    .name Self:
+  .can-row
+    .name.self Posts:
+    md-checkbox(ng-model="vm.role.can[vm.property].self.post", aria-label="role select", ng-change="vm.roleModified(vm.role)")
+  .can-row
+    .name.self Topics:
+    md-checkbox(ng-model="vm.role.can[vm.property].self.topic", aria-label="role select", ng-change="vm.roleModified(vm.role)")
+  .can-row
+    .name.self Sections:
+    md-checkbox(ng-model="vm.role.can[vm.property].self.section", aria-label="role select", ng-change="vm.roleModified(vm.role)")
