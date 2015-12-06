@@ -22,6 +22,6 @@
         p(flex="15")
             md-select(ng-model="user.role", ng-change="usersA.userModified(user)", aria-label="user role")
                 md-option(ng-repeat="role in usersA.roles" value="{{ role.name }}")
-                    {{ role.name }}
+                    | {{ role.name }}
         md-icon(flex="5", ng-click="usersA.editUser(user)" aria-label="edit user", md-svg-icon="image:ic_edit_24px")
         md-icon(flex="5", ng-click="usersA.removeUser(user)" aria-label="remove user", md-svg-icon="action:ic_delete_24px")
