@@ -7,6 +7,7 @@
           md-option(ng-repeat="role in rolesA.roles" ng-value="role.name")
             | {{ role.name }}
         md-button.md-raised.md-primary(ng-click="rolesA.saveDefaultRole()", ng-disabled="rolesA.isDefaultChanged()") Save default role
+      md-button.center.md-raised.md-primary(ng-click="rolesA.addNewRole()") Add new role
       md-button.right.md-raised.md-primary(ng-click="rolesA.saveRoles()", ng-disabled="rolesA.isRoleSelected()") Save selected roles
     div(layout="column")
       .row(layout="row" layout-align="space-between center")

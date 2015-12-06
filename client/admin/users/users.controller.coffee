@@ -21,8 +21,8 @@ usersACtrl = ($q, alertsServ, usersAServ, rolesAServ) ->
     !_.find this.users, (user) => user.selected == true
 
   this.removeUser = (user) =>
-    usersAServ.removeUser(user._id)
-
+    if (confirm("Are you sure to delete this user: " + user.username + "?"))
+      usersAServ.removeUser(user._id)
 
   return this
 
