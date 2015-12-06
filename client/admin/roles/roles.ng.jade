@@ -3,8 +3,8 @@
     div.header-roles(layout="row", layout-align="space-between center")
       div.left(layout="row", layout-align="space-between center")
         p Default role:
-        md-select(ng-model="rolesA.defaultRole", ng-change="rolesA.defaultModified()", aria-label="default role")
-          md-option(ng-repeat="role in rolesA.roles" ng-value="role.name")
+        md-select(ng-model="rolesA.defaultRole", aria-label="default role")
+          md-option(ng-repeat="role in rolesA.roles" ng-value="role")
             | {{ role.name }}
         md-button.md-raised.md-primary(ng-click="rolesA.saveDefaultRole()", ng-disabled="rolesA.isDefaultChanged()") Save default role
       md-button.center.md-raised.md-primary(ng-click="rolesA.addNewRole()") Add new role
