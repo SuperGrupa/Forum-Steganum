@@ -4,7 +4,7 @@ roleCan = ->
     role: '='
     property: '@'
   bindToController: true
-  templateUrl: 'client/admin/roles/role-can/role-can.directive.html'
+  templateUrl: 'client/admin/roles/roleCan/roleCan.directive.html'
   controllerAs: 'vm'
   controller: () ->
     this.roleModified = (role) =>
