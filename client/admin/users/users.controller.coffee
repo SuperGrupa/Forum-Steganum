@@ -15,10 +15,10 @@ usersACtrl = ($q, alertsServ, usersAServ, rolesAServ) ->
           updatedUsers++
 
     $q.all(promises).then () =>
-      alertsServ.success('Updated', 'You\'ve updated ' + updatedUsers + 'users.')
+      alertsServ.success('Updated', 'You\'ve updated ' + updatedUsers + ' users.')
 
   this.isUserSelected = () =>
-    !_.find this.users, (user) => user.selected == true
+    !!_.find this.users, (user) => user.selected == true
 
   this.removeUser = (user) =>
     if (confirm("Are you sure to delete this user: " + user.username + "?"))

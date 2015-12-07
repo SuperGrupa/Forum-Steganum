@@ -12,7 +12,6 @@ module.exports = (config) ->
       '../.gulp/www/templates/**/*.html'
 
       'client/mocks/**/*.coffee'
-      'client/unit/tests.helper.js'
 
       '../client/lib/*.coffee'
       '../client/**/lib/*.coffee'

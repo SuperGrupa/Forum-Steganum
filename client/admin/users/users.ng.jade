@@ -1,6 +1,6 @@
 .users-admin
   md-whiteframe.md-whiteframe-z1(layout="column", layout-align="center center")
-    md-button.md-raised.md-primary(ng-click="usersA.saveUsers()", ng-disabled="usersA.isUserSelected()") Save selected users
+    md-button.md-raised.md-primary(ng-click="usersA.saveUsers()", ng-disabled="!usersA.isUserSelected()") Save selected users
     div(layout="column")
       div(layout="row" layout-align="space-between center")
         p(flex="5")
