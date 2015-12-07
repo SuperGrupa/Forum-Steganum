@@ -33,5 +33,8 @@
     "karma-ubuntu-reporter": "0.0.3",
     "phantomjs": "^1.9.11",
     "run-sequence": "~1.0.0"
+  },
+  "devDependencies": {
+    "angular-unit-testing-helpers": "0.0.2"
   }
 }

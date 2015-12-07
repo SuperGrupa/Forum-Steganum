@@ -5,6 +5,7 @@ module.exports = (config) ->
 
     # list of files / patterns to load in the browser
     files: [
+      '../.gulp/node_modules/angular-unit-testing-helpers/test-helpers.js'
       '../.gulp/www/js/vendor.js'
       '../.gulp/components/angular-mocks/angular-mocks.js'
 
