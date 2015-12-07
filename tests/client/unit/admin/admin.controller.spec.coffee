@@ -1,4 +1,4 @@
-fdescribe 'Admin controller', ->
+describe 'Admin controller', ->
   adminCtrl = {}
 
   beforeEach module('admin')

@@ -24,8 +24,8 @@ describe 'Directive: newPost', ->
         done()
 
     beforeEach ->
-        element = new TestElement 'newPost'
-        element.create '<new-post></new-post>'
+        element = new TestElement()
+        element.createDirective 'newPost', '<new-post></new-post>'
 
     it 'should compile', ->
         expect(element.dom).toBeDefined()

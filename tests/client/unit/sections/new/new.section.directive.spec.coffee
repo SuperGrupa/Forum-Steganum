@@ -10,8 +10,8 @@ describe 'Directive: newSection', ->
     beforeEach module 'templates'
 
     beforeEach ->
-        element = new TestElement 'newSection'
-        element.create '<new-section></new-section>'
+        element = new TestElement()
+        element.createDirective 'newSection', '<new-section></new-section>'
 
     it 'should compile', ->
         expect(element.dom).toBeDefined()

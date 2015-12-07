@@ -9,8 +9,8 @@ describe 'Directive: singlePost', ->
         text: 'someText'
 
     beforeEach ->
-        element = new TestElement 'singlePost'
-        element.create '<single-post post="post"></single-post>',
+        element = new TestElement()
+        element.createDirective 'singlePost', '<single-post post="post"></single-post>',
             post: mockedPost
 
     it 'should compile', ->

@@ -7,8 +7,8 @@ describe 'Directive: showMessage', ->
     element = {}
 
     compileElement = (message, type) ->
-        element = new TestElement 'showMessage'
-        element.create '<show-message message="message" type="' + type + '"></show-message>',
+        element = new TestElement()
+        element.createDirective 'showMessage', '<show-message message="message" type="' + type + '"></show-message>',
             message: message
 
 
