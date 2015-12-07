@@ -20,7 +20,6 @@ Meteor.methods
 
     updateRole: (role) ->
         if Meteor.user().role == 'admin'
-            console.log role.default
             Roles.update({ _id: role._id }, {$set: {'can': role.can, 'name': role.name, 'default': role.default}})
             users = Meteor.users.find('role': role.name).fetch()
             users.forEach (user) =>
