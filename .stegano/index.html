@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>Show Image Dimensions Locally</title>
+        <link rel="text/css" href="css/main.css">
+        <script type="text/javascript" src="js/lib/main.js"></script>
+        <script type="text/javascript" src="js/access.js"></script>
+        <script type="text/javascript" src="js/integration/common.js"></script>
+        <script type="text/javascript" src="js/integration/canvas.js"></script>
+        <script type="text/javascript" src="js/integration/input.js"></script>
+        <script type="text/javascript" src="js/algorithm/common.js"></script>
+        <script type="text/javascript" src="js/algorithm/hiding.js"></script>
+        <script type="text/javascript" src="js/algorithm/retrieving.js"></script>
+        <script type="text/javascript">
+            window.addEventListener('load', function () {
+                // blokuj wysyłanie formularza
+                document.getElementById('image-form').addEventListener('submit', function () {
+                    return false;
+                });
+
+                // na kliknięcie przycisku "Load" ładuj obrazek
+                document.getElementById('load-image').addEventListener('click', function () {
+                    // otrzymano od serwera algorytm
+                    stegano.run();
+                    
+                    // przejście na stronę dodawania nowego postu
+                    stegano.module('integration').run();
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <form action="#" id="image-form">
+            <input type="file" id="image-file" />
+            <input type="button" value='Load' id="load-image"/>
+        </form>
+    </body>
+</html>
