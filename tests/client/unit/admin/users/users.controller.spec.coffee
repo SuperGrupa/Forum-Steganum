@@ -1,4 +1,4 @@
-fdescribe 'UsersA controller', ->
+describe 'UsersA controller', ->
   usersACtrl = {}
   mockedUsersAServ = new TestServ()
   mockedRolesAServ = new TestServ()
@@ -32,15 +32,15 @@ fdescribe 'UsersA controller', ->
     mockedAlertsServ.addMethod('success')
     done()
 
-  beforeEach module('admin',
-    $q: mockedQ
-    alertsServ: mockedAlertsServ
-    usersAServ: mockedUsersAServ
-    rolesAServ: mockedRolesAServ
-    )
+  beforeEach module('admin')
 
   beforeEach ->
-    usersACtrl = new TestElement().createCtrl('usersACtrl')
+    usersACtrl = new TestElement().createCtrl('usersACtrl',
+      $q: mockedQ
+      alertsServ: mockedAlertsServ
+      usersAServ: mockedUsersAServ
+      rolesAServ: mockedRolesAServ
+    )
 
 
   it 'should initialize', ->
@@ -53,7 +53,7 @@ fdescribe 'UsersA controller', ->
     it 'should bind roles to this', () ->
       expect(usersACtrl.roles).toEqual roles
 
-  describe 'userModified metho', ->
+  describe 'userModified method', ->
     beforeEach (done) ->
       usersACtrl.userModified(usersACtrl.users[0])
       done()
