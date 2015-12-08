@@ -9,4 +9,4 @@ tests/coverage
 TODO
 .project
 node_modules
-.steganography
+.steganography/nbproject

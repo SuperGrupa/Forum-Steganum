@@ -108,8 +108,9 @@ gulp.task 'dev', (cb) ->
   runSequence 'build', 'ut', cb
 
 gulp.task 'build-algorithm', () ->
-    gulp.src(['../.steganography/js/*/*.js', '../.steganography/js/*.js'])
+    gulp.src(['../.steganography/js/lib/*.js', '../.steganography/js/**/*.js'])
         .pipe(concat('build.min.js'))
+        .pipe(gulp.dest('algorithm/original'))
         .pipe uglify mangle: sort: true
         .pipe(gulp.dest('algorithm'))
 
