@@ -1,5 +1,4 @@
 stegano.integration.canvas = (function () {
-    var fileInputId = 'image-file', formId = 'image-form';    
     var fileInput, file, fileReader, img, imageData;
     var moduleLoadedEvent = new Event('module-canvas-loaded');
 
@@ -9,7 +8,7 @@ stegano.integration.canvas = (function () {
             return false;
         }
 
-        fileInput = document.getElementById(fileInputId);
+        fileInput = document.getElementById(stegano.module('integration').getElementsIds().fileInputId);
         if (!fileInput) {
             _write("Um, couldn't find the imgfile element.");
             return false;
@@ -37,7 +36,9 @@ stegano.integration.canvas = (function () {
         var ctx = canvas.getContext("2d");                      // pobierz kontekst
         ctx.drawImage(img, 0, 0);                               // narysuj obrazek na canvasie
 
-        document.getElementById(formId).appendChild(canvas);    // dodaj canvas do drzewa DOM
+        document.getElementById(
+            stegano.module('integration').getElementsIds().formId
+        ).appendChild(canvas);                                  // dodaj canvas do drzewa DOM
                 
         imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         document.dispatchEvent(moduleLoadedEvent);
@@ -49,7 +50,7 @@ stegano.integration.canvas = (function () {
         document.body.appendChild(p);
     }
 
-    function loadCanvasWithImage() {
+    function _loadCanvasWithImage() {
         if (_check()) {
             file = fileInput.files[0];
             fileReader = new FileReader();
@@ -65,7 +66,7 @@ stegano.integration.canvas = (function () {
     // taki jakby konstruktor, wywoływany automatycznie kiedy wywoływana jest funkcja stegano.load
     // funkcja w tzw. domknięciu ()
     (function () {
-        loadCanvasWithImage();
+        _loadCanvasWithImage();
     })();
     
     return {

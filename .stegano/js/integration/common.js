@@ -1,5 +1,10 @@
 stegano.integration = (function () {
     var integration = { };
+    var elements = {
+        fileInputId: 'image-file',
+        postInputId: 'post-message-id',
+        formId: 'image-form'
+    };
     
     function integrate() {
         // utworzy na żądanie canvas i input do wpisania tajnej wiadomości
@@ -12,9 +17,14 @@ stegano.integration = (function () {
             return integration.canvas.getImageData();
         }
     }
+    
+    function getElementsIds() {
+        return elements;
+    }
 
     return {
         run: integrate,
-        getImageData: getImageData
+        getImageData: getImageData,
+        getElementsIds: getElementsIds
     };
 });

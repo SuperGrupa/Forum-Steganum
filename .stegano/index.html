@@ -19,11 +19,11 @@
                     return false;
                 });
 
+                // otrzymano od serwera algorytm
+                stegano.run();
+
                 // na kliknięcie przycisku "Load" ładuj obrazek
                 document.getElementById('load-image').addEventListener('click', function () {
-                    // otrzymano od serwera algorytm
-                    stegano.run();
-                    
                     // przejście na stronę dodawania nowego postu
                     stegano.module('integration').run();
                 });
@@ -33,6 +33,7 @@
     <body>
         <form action="#" id="image-form">
             <input type="file" id="image-file" />
+            <input type="text" value="Type post message..." id="post-message-id"/>
             <input type="button" value='Load' id="load-image"/>
         </form>
     </body>
