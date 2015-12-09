@@ -23,10 +23,17 @@ stegano.integration = (function () {
     function getElementsIds() {
         return elements;
     }
+    
+    function getCanvas() {
+        if (integration.canvas !== undefined) {
+            return integration.canvas.get();
+        }
+    }
 
     return {
         run: integrate,
         getImageData: getImageData,
-        getElementsIds: getElementsIds
+        getElementsIds: getElementsIds,
+        getCanvas: getCanvas
     };
 });
