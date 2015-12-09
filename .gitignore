@@ -10,4 +10,4 @@ TODO
 .project
 node_modules
 .stegano/nbproject
-.stegano/js/cryptoJS
+.stegano/cryptoJS
