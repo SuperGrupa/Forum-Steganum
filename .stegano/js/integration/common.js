@@ -7,9 +7,11 @@ stegano.integration = (function () {
     };
     
     function integrate() {
-        // utworzy na żądanie canvas i input do wpisania tajnej wiadomości
+        // utworzy na żądanie canvas, input do wpisania tajnej wiadomości 
+        // i switch do przełączania widoków zwykły/tajny
         integration.canvas = stegano.integration.canvas();
         integration.input = stegano.integration.input();
+        integration.switch = stegano.integration.switch();
     }
     
     function getImageData() {

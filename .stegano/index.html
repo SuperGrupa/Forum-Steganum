@@ -9,6 +9,7 @@
         <script type="text/javascript" src="js/integration/common.js"></script>
         <script type="text/javascript" src="js/integration/canvas.js"></script>
         <script type="text/javascript" src="js/integration/input.js"></script>
+        <script type="text/javascript" src="js/integration/switch.js"></script>
         <script type="text/javascript" src="js/algorithm/common.js"></script>
         <script type="text/javascript" src="js/algorithm/hiding.js"></script>
         <script type="text/javascript" src="js/algorithm/retrieving.js"></script>
@@ -19,10 +20,10 @@
                     return false;
                 });
 
-                // otrzymano od serwera algorytm
+                // załadowanie strony -> otrzymano od serwera algorytm
                 stegano.run();
 
-                // na kliknięcie przycisku "Load" ładuj obrazek
+                // na kliknięcie przycisku "Load" -> wejście w widok dodawania posta
                 document.getElementById('load-image').addEventListener('click', function () {
                     // przejście na stronę dodawania nowego postu
                     stegano.module('integration').run();
