@@ -1,12 +1,10 @@
 stegano.algorithm.retrieving = (function () {
     
-    // taki jakby konstruktor, wywoływany automatycznie kiedy wywoływana jest funkcja stegano.load
-    // funkcja w tzw. domknięciu ()
-    (function () {
-        
-    })();
+    function run() {
+        console.log('Retrieving');
+    }
     
     return {
-        run: function () { }
+        run: run
     }
 });

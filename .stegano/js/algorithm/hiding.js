@@ -1,12 +1,10 @@
 stegano.algorithm.hiding = (function () {
-    
-    // taki jakby konstruktor, wywoływany automatycznie kiedy wywoływana jest funkcja stegano.load
-    // funkcja w tzw. domknięciu ()
-    (function () {
-        
-    })();
+
+    function run() {
+        console.log('Hiding');
+    }
     
     return {
-        run: function () { }
+        run: run
     }
 });
