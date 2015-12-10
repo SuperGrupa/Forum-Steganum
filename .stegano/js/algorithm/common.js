@@ -1,8 +1,5 @@
 stegano.algorithm = (function () {
-    var algorithms = {
-        hiding: { },
-        retrieving: { }
-    };
+    var algorithms = { };
     
     // taki jakby konstruktor, wywoływany automatycznie kiedy wywoływana jest funkcja stegano.load
     // funkcja w tzw. domknięciu ()

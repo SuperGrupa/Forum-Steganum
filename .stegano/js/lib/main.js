@@ -17,7 +17,9 @@ stegano = (function () {
         if (_check()) {
             modules.integration = stegano.integration();
             modules.algorithm = stegano.algorithm();
+            modules.image = stegano.image();
             modules.events = stegano.events();
+            modules.helpers = stegano.helpers();
         } else {
             throw "Your browser cannot support stegano module! Update or install a modern browser!"
         }

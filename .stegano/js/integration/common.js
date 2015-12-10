@@ -14,12 +14,6 @@ stegano.integration = (function () {
         integration.switch = stegano.integration.switch();
     }
     
-    function getImageData() {
-        if (integration.canvas !== undefined) {
-            return integration.canvas.getImageData();
-        }
-    }
-    
     function getElementsIds() {
         return elements;
     }
