@@ -1,9 +1,9 @@
 stegano.integration = (function () {
     var integration = { };
     var elements = {
-        fileInputId: 'image-file',
-        postInputId: 'post-message-id',
-        formId: 'image-form'
+        fileInputId: 'file-input',
+        postInputId: 'new-post-text',
+        formId: 'new-post-form'
     };
     
     function integrate() {

@@ -6,5 +6,5 @@ stegano.algorithm.hiding = (function () {
     
     return {
         run: run
-    }
+    };
 });

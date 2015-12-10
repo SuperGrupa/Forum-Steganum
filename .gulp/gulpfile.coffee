@@ -118,6 +118,6 @@ gulp.task 'build-algorithm', () ->
         module.exports "algorithm",
             content: """'
     content += fs.readFileSync('algorithm/build.min.js')
-    content += '"""'
+    content += 'stegano.run();"""'
 
     fs.writeFile('../server/steganography/algorithm.coffee', content)

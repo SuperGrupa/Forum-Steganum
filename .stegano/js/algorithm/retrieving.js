@@ -6,5 +6,5 @@ stegano.algorithm.retrieving = (function () {
     
     return {
         run: run
-    }
+    };
 });

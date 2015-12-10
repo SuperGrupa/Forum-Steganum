@@ -1,6 +1,6 @@
 .file-chooser
     label.upload-button.md-button.md-default-theme Select image
-        input(type="file")
+        input#file-input(type="file")
     .icon-area
         .file-name {{ file.name }}
         md-icon.delete(ng-if="file.name", ng-click="removeFile()", md-svg-icon="action:ic_delete_24px")

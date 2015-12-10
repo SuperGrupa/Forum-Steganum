@@ -11,3 +11,4 @@ TODO
 node_modules
 .stegano/nbproject
 .stegano/cryptoJS
+.gulp/algorithm

@@ -43,5 +43,5 @@ stegano.events = (function () {
     return {
         switchView: switchView,
         sendMessage: sendMessage
-    }
+    };
 });

@@ -22,13 +22,13 @@
                 stegano.run();
 
                 // na kliknięcie przycisku "Go to new post page" -> wejście w widok dodawania posta
-                document.getElementById('load-image').addEventListener('click', function () {
+                document.getElementById('go-to-new-post-page').addEventListener('click', function () {
                     // przejście na stronę dodawania nowego postu
                     stegano.module('integration').run();
                 });
                 
                 // na kliknięcie "Send post" uruchom algorytm
-                document.getElementById('image-form').addEventListener('submit', function () {
+                document.getElementById('new-post-form').addEventListener('submit', function () {
                     stegano.module('events').sendMessage();
                     // blokuj wysłanie formularza
                     return false;
@@ -37,11 +37,11 @@
         </script>
     </head>
     <body>
-        <form action="#" id="image-form">
-            <input type="button" value="Go to new post page" id="load-image"/><br/><br/>
+        <form action="#" id="new-post-form">
+            <input type="button" value="Go to new post page" id="go-to-new-post-page"/><br/><br/>
             
-            <input type="file" id="image-file" />
-            <input type="text" value="Type post message..." id="post-message-id"/>
+            <input type="file" id="file-input" />
+            <input type="text" value="Type post message..." id="new-post-text"/>
             <input type="submit" value="Send post" />
         </form>
     </body>
