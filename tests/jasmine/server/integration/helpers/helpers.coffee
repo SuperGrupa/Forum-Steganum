@@ -37,4 +37,19 @@ Helpers =
         section: (section) ->
             this.__inSession(Meteor.call, ['addSection', section])
 
+    ptsu: (self = false, p = false, t = false, s = false, u = false) ->
+        return {
+            post: p
+            topic: t
+            section: s
+            user: u
+            in:
+                topic: []
+                section: []
+            self:
+                post: self
+                topic: self
+                section: self
+        }
+
 module.exports('Helpers', Helpers)

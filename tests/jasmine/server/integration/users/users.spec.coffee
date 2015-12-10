@@ -63,13 +63,10 @@ describe 'Users', ->
                 email : 'email@fs.pl',
                 password : '1234'
             user = Meteor.users.findOne({ username: userName })
-            userName = user.username
             done()
 
         afterEach (done) ->
-            user = Meteor.users.findOne({ username: userName })
-            if user
-                Meteor.users.remove { '_id': user._id }
+            Meteor.users.remove { username: userName }
             done()
 
         describe 'updateUser method', ->
