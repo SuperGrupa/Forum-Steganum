@@ -32,7 +32,6 @@ stegano.integration = (function () {
 
     return {
         run: integrate,
-        getImageData: getImageData,
         getElementsIds: getElementsIds,
         getCanvas: getCanvas
     };
