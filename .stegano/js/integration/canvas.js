@@ -3,7 +3,7 @@ stegano.integration.canvas = (function () {
     
     function _run() {
         canvas = document.createElement('canvas');              // utwórz własny canvas
-        canvas.setAttribute('style', 'display:none');           // ukryj go
+        //canvas.setAttribute('style', 'display:none');           // ukryj go
         canvas.width = 0;
         canvas.height = 0;
 
