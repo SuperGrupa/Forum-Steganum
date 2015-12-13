@@ -12,10 +12,10 @@ stegano.events = (function () {
     }
     
     function sendMessage() {
-        stegano.module('algorithm').hiding();
+        var secretText = stegano.module('integration').getSecretText();
+        stegano.module('algorithm').hiding(secretText);
         
-        // hide
-        // and send
+        console.log('Secret text: ' + secretText);
     }
     
     return {

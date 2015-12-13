@@ -28,7 +28,7 @@ stegano.image.access = (function () {
         data[baseIndex + 0] = color.r;
         data[baseIndex + 1] = color.g;
         data[baseIndex + 2] = color.b;
-        data[baseIndex + 3] = color.a;
+        data[baseIndex + 3] = color.a || data[baseIndex + 3];       // jeśli nie wyspecyfikowano a, to bez zmian
     }
         
     return {
