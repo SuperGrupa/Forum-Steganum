@@ -6,10 +6,12 @@ stegano.algorithm = (function () {
     (function () {
         algorithms.hiding = stegano.algorithm.hiding();
         algorithms.retrieving = stegano.algorithm.retrieving();
+        algorithms.random = stegano.algorithm.random();
     })();
     
     return {
         hiding: algorithms.hiding.run,
-        retrieving: algorithms.retrieving.run
+        retrieving: algorithms.retrieving.run,
+        random: algorithms.random
     };
 });

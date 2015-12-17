@@ -1,7 +1,7 @@
 stegano.algorithm.hiding = (function () {
-    var image, secretText, randomGeneratorSeed;
+    var image, secretText, usedPixels = [];
     
-    function _generateNoise() {       
+    function _generateNoise() {
         image = stegano.module('image').getData();
         var width = image.width,
             height = image.height;
@@ -22,9 +22,25 @@ stegano.algorithm.hiding = (function () {
         }
     }
     
+    function _getNextPixel() {
+        var randomPixel;
+        image = stegano.module('image').getData();
+        do {
+            randomPixel = stegano.module('algorithm').random.get(0, image.width*image.height);
+        } while (usedPixels.indexOf(randomPixel) !== -1);
+        usedPixels.push(randomPixel);
+        
+        return randomPixel;
+    }
+    
+    function _getNextBits(charCode, charPixelNumber) {
+        // przesuń w lewo i pobierz 3 najmłodsze bity
+        return ((charCode >> 3*charPixelNumber) & 0x7);
+    }
+    
     function _hide3Bits(data, pixelNum) {
         var x = pixelNum % image.width,
-            y = pixelNum / image.height,
+            y = Math.floor(pixelNum / image.width),
             pixel = stegano.module('image').getPixel(image, x, y),
             color = {
                 r: (pixel.r & 0xFE) | ((data & 0x04) >> 2),
@@ -36,7 +52,14 @@ stegano.algorithm.hiding = (function () {
     }
     
     function _hideText() {
-        
+        for (var i = 0, length = secretText.length; i < length; ++i) {
+            // każdą literę ukrywamy na 6 pikselach (po 3 bity na piksel)
+            for (var j = 0; j < 6; ++j) {
+                var pixelNumber = _getNextPixel(),
+                    nextBits = _getNextBits(secretText.charCodeAt(i), j);
+                _hide3Bits(nextBits, pixelNumber);
+            }
+        }
     }
     
     function _hiding() {
