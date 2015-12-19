@@ -50,7 +50,7 @@ rolesACtrl = ($scope, $q, alertsServ, rolesAServ) ->
     else
       if (confirm("Are you sure to delete this role: " + role.name + "?"))
         if role._id == undefined
-          this.roles  = _.without(this.roles, _.findWhere(this.roles, {name: role.name, _id: role._id}))
+          this.roles  = _.without(this.roles, _.findWhere(this.roles, { name: role.name }))
         else
           rolesAServ.removeRole(role)
 
