@@ -11,8 +11,8 @@ describe 'Directive: postList', ->
     mockedPosts = ['post1', 'post2']
 
     beforeEach ->
-        element = new TestElement 'postsList'
-        element.create '<posts-list posts="posts"></posts-list>',
+        element = new TestElement()
+        element.createDirective 'postsList', '<posts-list posts="posts"></posts-list>',
             posts: mockedPosts
 
     it 'should compile', ->

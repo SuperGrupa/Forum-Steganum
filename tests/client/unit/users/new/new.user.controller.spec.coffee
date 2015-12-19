@@ -2,7 +2,7 @@ describe 'Login controller', ->
   $scope = {}
   $controller = {}
   NewUserCtrl = {}
-  mockedAuthServ = {}
+  mockedLoginServ = {}
   initEmail = 'super@man.pl'
   initName = 'ClarkKent'
 
@@ -11,13 +11,13 @@ describe 'Login controller', ->
   beforeEach inject(($injector) ->
     $controller = $injector.get('$controller')
     $scope = $injector.get('$rootScope').$new()
-    mockedAuthServ = {
+    mockedLoginServ = {
       email: initEmail
       userName: initName
     }
     NewUserCtrl = $controller('NewUserCtrl as nUCtrl',
       $scope: $scope
-      authServ: mockedAuthServ
+      loginServ: mockedLoginServ
     )
   )
 
@@ -35,11 +35,11 @@ describe 'Login controller', ->
         done()
 
       it 'should not change authServ.userName', () ->
-        expect(mockedAuthServ.userName).toBe initEmail.split("@").shift()
+        expect(mockedLoginServ.userName).toBe initEmail.split("@").shift()
 
     describe 'no email', ->
       beforeEach (done) ->
-        mockedAuthServ.email = ''
+        mockedLoginServ.email = ''
         NewUserCtrl.regForm = {
           userName:
             $dirty: false
@@ -48,7 +48,7 @@ describe 'Login controller', ->
         done()
 
       it 'should not change authServ.userName', () ->
-        expect(mockedAuthServ.userName).toBe initName
+        expect(mockedLoginServ.userName).toBe initName
 
     describe 'dirty userName input', ->
       beforeEach (done) ->
@@ -60,5 +60,5 @@ describe 'Login controller', ->
         done()
 
       it 'should not change authServ.userName', () ->
-        expect(mockedAuthServ.userName).toBe initName
+        expect(mockedLoginServ.userName).toBe initName
 

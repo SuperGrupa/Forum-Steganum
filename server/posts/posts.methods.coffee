@@ -1,19 +1,26 @@
+auth = require('authFunctions')
+Counters = require 'Counters'
+
 Meteor.methods
     addPost: (post) ->
-        if !Meteor.userId()
-            throw new (Meteor.Error)('not-authorized')
-        Posts.insert
-            id: incrementCounter(Counters, 'post_id').toString()
-            text: post.text
-            createdAt: new Date
-            updatedAt: new Date
-            topic_id: post.topic_id
-            userId: Meteor.userId()
+        if auth.can('create', 'post', post)
+            Posts.insert
+                id: incrementCounter(Counters, 'post_id').toString()
+                text: post.text
+                createdAt: new Date
+                updatedAt: new Date
+                topic_id: post.topic_id
+                image_id: post.image_id
+                userId: Meteor.userId()
     deletePost: (postId) ->
-        # TODO autoryzacja czy jest adminem...
-        Posts.remove { id: postId }
-    editPost: (postId, text) ->
-        # TODO autoryzacja czy jest twórcą posta...
-        Posts.update { id: postId }, $set:
-                                        text: text
-                                        updatedAt: new Date
+        if auth.can('remove', 'post', postId)
+            post = Posts.findOne({ id: postId }, { fields: { image_id: 1 } })
+            if post.image_id?
+                Images.remove { _id: post.image_id }         # obrazki mają standardowe id od Mongo
+
+            Posts.remove { id: postId }
+    updatePost: (postId, text) ->
+        if auth.can('update', 'post', postId)
+            Posts.update { id: postId }, $set:
+                                            text: text
+                                            updatedAt: new Date

@@ -1,17 +1,22 @@
 form.new-post {
     width: 100%;
-    height: 100%;
     padding: 10px;
-    @media @phone,
-    @tablet {
+    @media @phone, @tablet {
         padding-right: 20px;
     }
 
     textarea {
         min-height: 50px;
-        width: 50%;
-        @media @phone,
-        @tablet {
+        width: 80%;
+        resize: vertical;
+
+        margin: 0px;
+        border: 1px solid #ACACCC;
+        border-radius: 3px;
+        padding: 5px;
+        .box-sizing(border-box);
+
+        @media @phone, @tablet {
             width: 100%;
         }
     }

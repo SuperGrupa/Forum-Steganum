@@ -1,32 +1,32 @@
-@Helpers =
-    login: ->
-        Meteor.userId = -> '1'
-        Meteor.user = ->
-            user = Meteor.users.findOne({ _id: '1' })
-            if !user
-                user =
-                    _id: '1'
-                    username: 'Nitrooos'
-                    emails: [
-                        address: 'nitrooos@gmail.com'
-                    ]
-                    profile:
-                        firstname: 'Nitr'
-                        lastname: 'Ooos'
-                Meteor.users.insert user
+Helpers =
+    login: (roleName) ->
+        role = roleName
 
+        if !Roles.find({}).count()
+            Meteor.call 'seedRoles'
+        if !Meteor.users.find({}).count()
+            Meteor.call 'seedUsers'
+
+        Meteor.userId = ->
+            user = Meteor.users.findOne({ role: role })
+            if user?
+                user._id
+            else ''
+        Meteor.user = ->
+            user = Meteor.users.findOne({ role: role })
             return user
     logout: ->
         Meteor.userId = -> ''
         Meteor.user = -> undefined
     clear: ->
+        Images.remove {}
         Posts.remove {}
         Topics.remove {}
         Sections.remove {}
     seed:
         __inSession: (fun, params) ->
             if _.isFunction(fun) && _.isArray(params)
-                Helpers.login()
+                Helpers.login('admin')
                 fun.apply(undefined, params)
                 Helpers.logout()
 
@@ -36,3 +36,20 @@
             this.__inSession(Meteor.call, ['addTopic', topic])
         section: (section) ->
             this.__inSession(Meteor.call, ['addSection', section])
+
+    ptsu: (self = false, p = false, t = false, s = false, u = false) ->
+        return {
+            post: p
+            topic: t
+            section: s
+            user: u
+            in:
+                topic: []
+                section: []
+            self:
+                post: self
+                topic: self
+                section: self
+        }
+
+module.exports('Helpers', Helpers)

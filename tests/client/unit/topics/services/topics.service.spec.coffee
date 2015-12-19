@@ -19,19 +19,27 @@ describe 'Topics Service', ->
     mockedState =
         go: angular.noop
         goBack: angular.noop
+    mockedAlertsServ =
+        success: angular.noop
+        error: angular.noop
     successCallBack = {}
+    failCallBack = {}
 
     beforeEach ->
         spyOn(mockedMeteor, 'call').and.returnValue
-            then: (success) ->
+            then: (success, error) ->
                 successCallBack = success
+                failCallBack = error
         spyOn(Filter.Posts, 'by')
         spyOn(mockedState, 'go')
         spyOn(mockedState, 'goBack')
+        spyOn(mockedAlertsServ, 'success')
+        spyOn(mockedAlertsServ, 'error')
 
     beforeEach module('topics',
         $meteor: mockedMeteor
         $state: mockedState
+        alertsServ: mockedAlertsServ
     )
 
     beforeEach inject ($injector) ->
@@ -40,13 +48,13 @@ describe 'Topics Service', ->
     it 'should initialize', ->
         expect(topicsServ).toBeDefined()
 
-    describe 'getPosts method', ->
+    describe 'getPostsWithImages method', ->
         topic_id = 1
         page_number = 2
         posts_per_page = 10
 
         beforeEach ->
-            topicsServ.getPosts(topic_id, page_number, posts_per_page)
+            topicsServ.getPostsWithImages(topic_id, page_number, posts_per_page)
             collectionCallBack()
 
         it 'should call by method on Filter.Posts with proper arguments', ->
@@ -67,31 +75,64 @@ describe 'Topics Service', ->
             expect(mockedMeteor.call).toHaveBeenCalledWith('getTopicById', 1)
 
     describe 'create method', ->
+        error = 'Earth doesn\'t exist anymore'
+
         beforeEach ->
             topicsServ.create(topic)
-            successCallBack()
 
         it 'should call addTopic method on $meteor.call with topic', ->
             expect(mockedMeteor.call).toHaveBeenCalledWith('addTopic', topic)
 
-        it 'should call go method on $state on successCallBack', () ->
-            expect(mockedState.go).toHaveBeenCalledWith('section.one.show', id: topic.section_id)
+
+        describe 'successCallBack', ->
+            beforeEach (done) ->
+                successCallBack()
+                done()
+
+            it 'should call success method on alertsServ', () ->
+                expect(mockedAlertsServ.success).toHaveBeenCalled()
+
+            it 'should call go method on $state on successCallBack', () ->
+                expect(mockedState.go).toHaveBeenCalledWith('section.one.show', id: topic.section_id)
+
+        describe 'failCallBack', ->
+            it 'should call error method on alertsServ with error', ->
+                failCallBack(error)
+                expect(mockedAlertsServ.error).toHaveBeenCalledWith(error)
+
 
     describe 'update method', ->
+        error = 'Earth doesn\'t exist anymore'
+
         beforeEach ->
             topic.name = 'Updated name'
             topic.description = 'Updated description'
 
             topicsServ.update(topic)
-            successCallBack()
 
         it 'should call updateTopic method on $meteor.call with topic', ->
             expect(mockedMeteor.call).toHaveBeenCalledWith('updateTopic', topic)
 
-        it 'should call goBack method on $state on successCallBack', () ->
-            expect(mockedState.goBack).toHaveBeenCalled()
+        describe 'successCallBack', ->
+            beforeEach (done) ->
+                successCallBack()
+                done()
+
+            it 'should call success method on alertsServ', () ->
+                expect(mockedAlertsServ.success).toHaveBeenCalled()
+
+            it 'should call goBack method on $state on successCallBack', () ->
+                expect(mockedState.goBack).toHaveBeenCalled()
+
+        describe 'failCallBack', ->
+            it 'should call error method on alertsServ with error', ->
+                failCallBack(error)
+                expect(mockedAlertsServ.error).toHaveBeenCalledWith(error)
+
 
     describe 'delete method', ->
+        error = 'Earth doesn\'t exist anymore'
+
         beforeEach ->
             topicsServ.delete('1')
             successCallBack()
@@ -99,5 +140,19 @@ describe 'Topics Service', ->
         it 'should call deleteTopic method on $meteor.call with topic_id', ->
             expect(mockedMeteor.call).toHaveBeenCalledWith('deleteTopic', '1')
 
-        it 'should call goBack method on $state on successCallBack', () ->
-            expect(mockedState.goBack).toHaveBeenCalled()
+        describe 'successCallBack', ->
+            beforeEach (done) ->
+                successCallBack()
+                done()
+
+            it 'should call success method on alertsServ', () ->
+                expect(mockedAlertsServ.success).toHaveBeenCalled()
+
+            it 'should call goBack method on $state on successCallBack', () ->
+                expect(mockedState.goBack).toHaveBeenCalled()
+
+        describe 'failCallBack', ->
+            it 'should call error method on alertsServ with error', ->
+                failCallBack(error)
+                expect(mockedAlertsServ.error).toHaveBeenCalledWith(error)
+

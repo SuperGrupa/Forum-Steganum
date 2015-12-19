@@ -1,3 +1,9 @@
+resolveObject = (what, name) ->
+    'isLogged': ['authServ', (authServ) ->
+        authServ.isLogged()]
+    'userCan': ['authServ', (authServ) ->
+        authServ.stateCan(what, name)]
+
 sectionsModule = ($stateProvider) ->
     $stateProvider.state('section',
         url: '/section'
@@ -9,6 +15,10 @@ sectionsModule = ($stateProvider) ->
     ).state('section.list',
         url: 's'
         templateUrl: 'client/sections/list/list.sections.html'
+    ).state('section.new',
+        url: '/new'
+        templateUrl: 'client/sections/new/new.section.html'
+        resolve: resolveObject('create', 'section')
     ).state('section.one',
         # ten stan jest abstrakcyjny, ponieważ jego potomkiem jest oprócz section.one.show także
         # topic i topic.new w module topics
@@ -20,16 +30,19 @@ sectionsModule = ($stateProvider) ->
         templateUrl: 'client/sections/show/show.section.html'
         controller: 'ShowSectionCtrl'
         controllerAs: 'showSectionCtrl'
+        resolve: resolveObject('read', 'section')
     ).state('section.one.delete',
         url: '/delete'
         templateUrl: 'client/sections/delete/delete.section.html'
         controller: 'DeleteSectionCtrl'
         controllerAs: 'delSecCtrl'
+        resolve: resolveObject('remove', 'section')
     ).state('section.one.edit',
         url: '/edit'
         templateUrl: 'client/sections/edit/edit.section.html'
         controller: 'EditSectionCtrl'
         controllerAs: 'edit'
+        resolve: resolveObject('update', 'section')
     )
     return
 

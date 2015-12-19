@@ -1,7 +1,26 @@
 head
+  meta(name="viewport" content="width=device-width,initial-scale=1")
   base(href="/")
   title Forum-Steganum
 body(ng-app='forumSteganum')
   header(ui-view="header")
   div.main(ui-view="main")
-  footer(ui-view="footer")
+  footer(ui-view="footer", ng-if="!state.$current.includes['admin']")
+  div(ng-controller="BuildCtrl as build")
+    div.build-info(ng-if="build.info")
+      p Build Info
+      p(ng-if="build.info.branch")
+        span Branch:
+        span(ng-bind="build.info.branch")
+      p(ng-if="build.info.date")
+        span Date:
+        span(ng-bind="build.info.date")
+      p(ng-if="build.info.number")
+        span Number of Build:
+        span(ng-bind="build.info.number")
+      p(ng-if="build.info.id")
+        span Id of Build:
+        span(ng-bind="build.info.id")
+      p(ng-if="build.info.tag")
+        span Tag:
+        span(ng-bind="build.info.tag")

@@ -6,11 +6,14 @@ script:
 - meteor run --test
 - cd .gulp && gulp
 before_script:
+- sudo apt-get update
 - sudo apt-get install expect
 - cd .gulp
 - npm install
 - cd ../
 - curl https://install.meteor.com/ | sh
+- chmod a+x build.variables.sh
+- "./build.variables.sh"
 after_success:
 - cd ../
 - "expect deploy.exp"

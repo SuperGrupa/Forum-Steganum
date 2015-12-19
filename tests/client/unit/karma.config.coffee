@@ -5,13 +5,13 @@ module.exports = (config) ->
 
     # list of files / patterns to load in the browser
     files: [
+      '../.gulp/node_modules/angular-unit-testing-helpers/test-helpers.js'
       '../.gulp/www/js/vendor.js'
       '../.gulp/components/angular-mocks/angular-mocks.js'
 
       '../.gulp/www/templates/**/*.html'
 
-      'client/unit/mocks.js'
-      'client/unit/tests.helper.js'
+      'client/mocks/**/*.coffee'
 
       '../client/lib/*.coffee'
       '../client/**/lib/*.coffee'
@@ -43,6 +43,7 @@ module.exports = (config) ->
     preprocessors:
       '../client/**/*.coffee': ['coverage']
       'client/unit/**/*.coffee': ['coffee']
+      'client/mocks/**/*.coffee': ['coffee']
       '../.gulp/www/templates/**/*.html': ['ng-html2js']
 
     # web server port

@@ -1,3 +1,5 @@
+Helpers = require 'Helpers'
+
 describe 'Posts', ->
     post =
         text: 'Some example text'
@@ -5,45 +7,65 @@ describe 'Posts', ->
         userId: '1'
     posts_before = 0
 
-    Posts.remove { }
+    beforeEach ->
+        Helpers.clear()
 
     describe 'addPost method', ->
-        it 'should throw not-authorized error', ->
+        it 'should throw notLogged error', ->
             Helpers.logout()
             Meteor.call 'addPost', post, (error) ->
-                expect(error).toEqual(new Meteor.Error('not-authorized'))
+                expect(error).toEqual(new Meteor.Error('notLogged'))
 
         it 'should add new post to database', ->
-            Helpers.login()
+            Helpers.login('admin')
             posts_before = Posts.find({}).count()
             Meteor.call 'addPost', post
             expect(Posts.find({}).count()).toEqual(posts_before + 1)
             expect(Posts.find({ text: 'Some example text' }).count()).toBeGreaterThan(0)
 
-        Posts.remove { }
-
     describe 'deletePost method', ->
-        beforeEach ->
+        prepareTest = (post) ->
             Helpers.seed.post(post)
-
-        it 'should remove specific post', ->
             posts_before = Posts.find({}).count()
 
             local_post = Posts.findOne({ text: 'Some example text' })
             expect(local_post).not.toBe undefined
+            
+            Helpers.login('admin')
 
-            Meteor.call 'deletePost', local_post.id
-            expect(Posts.find({}).count()).toBe(posts_before - 1)
+            return {
+                posts_before: posts_before
+                local_post: local_post
+            }
 
-    describe 'editPost method', ->
+        beforeEach ->
+            spyOn(Images, 'remove').and.returnValue true
+
+        it 'should remove specific post (without image)', ->
+            config = prepareTest(post)
+
+            Meteor.call 'deletePost', config.local_post.id
+            expect(Posts.find({}).count()).toBe(config.posts_before - 1)
+            expect(Images.remove).not.toHaveBeenCalled()
+
+        it 'should remove specific post (with image)', ->
+            post.image_id = '123'
+            config = prepareTest(post)
+
+            Meteor.call 'deletePost', config.local_post.id
+            expect(Posts.find({}).count()).toBe(config.posts_before - 1)
+            expect(Images.remove).toHaveBeenCalled()
+
+    describe 'updatePost method', ->
         beforeEach ->
             Helpers.seed.post(post)
+            Helpers.login('admin')
 
         it 'should update post', ->
             posts_before = Posts.find({}).count()
 
             local_post = Posts.findOne({ text: 'Some example text' })
-            Meteor.call 'editPost', local_post.id, 'Some updated text'
+            Meteor.call 'updatePost', local_post.id, 'Some updated text'
 
             expect(Posts.find({}).count()).toBe(posts_before)
 

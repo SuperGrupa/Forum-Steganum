@@ -1,14 +1,14 @@
-NewUserCtrl = (authServ) ->
+NewUserCtrl = (loginServ) ->
     vm = this
 
     vm.updateLogin = ->
-      if authServ.email && !vm.regForm['userName'].$dirty
-        authServ.userName = authServ.email.split("@").shift()
+      if loginServ.email && !vm.regForm['userName'].$dirty
+        loginServ.userName = loginServ.email.split("@").shift()
 
     return vm
 
 
-NewUserCtrl.$inject = ['authServ']
+NewUserCtrl.$inject = ['loginServ']
 
 angular.module('users')
 .controller 'NewUserCtrl', NewUserCtrl
