@@ -1,3 +1,5 @@
+RolesFunctions = require('rolesFunctions')
+
 Meteor.methods
     seedRoles: ->
         # usuń wszystkie role
@@ -27,39 +29,24 @@ Meteor.methods
         Roles.insert role for role in roles
 
 
-ptsu = (self = false, p = false, t = false, s = false, u = false) ->
-    return {
-        post: p
-        topic: t
-        section: s
-        user: u
-        in:
-            topic: []
-            section: []
-        self:
-            post: self
-            topic: self
-            section: self
-    }
-
 RolesObject =
     admin:
-        create: ptsu(true, true, true, true, true)
-        read: ptsu(true, true, true, true, true)
-        update: ptsu(true, true, true, true, true)
-        remove: ptsu(true, true, true, true, true)
+        create: RolesFunctions.ptsu(true, true, true, true, true)
+        read: RolesFunctions.ptsu(true, true, true, true, true)
+        update: RolesFunctions.ptsu(true, true, true, true, true)
+        remove: RolesFunctions.ptsu(true, true, true, true, true)
     moderator:
-        create: ptsu(true, true, true, true)
-        read: ptsu(true, true, true, true)
-        update: ptsu(true, true, true, true)
-        remove: ptsu(true, true, false, true)
+        create: RolesFunctions.ptsu(true, true, true, true)
+        read: RolesFunctions.ptsu(true, true, true, true)
+        update: RolesFunctions.ptsu(true, true, true, true)
+        remove: RolesFunctions.ptsu(true, true, false, true)
     user:
-        create: ptsu(true, true, true)
-        read: ptsu(true, true, true, true)
-        update: ptsu(true)
-        remove: ptsu()
+        create: RolesFunctions.ptsu(true, true, true)
+        read: RolesFunctions.ptsu(true, true, true, true)
+        update: RolesFunctions.ptsu(true)
+        remove: RolesFunctions.ptsu()
     banned:
-        create: ptsu()
-        read: ptsu()
-        update: ptsu()
-        remove: ptsu()
+        create: RolesFunctions.ptsu()
+        read: RolesFunctions.ptsu()
+        update: RolesFunctions.ptsu()
+        remove: RolesFunctions.ptsu()

@@ -52,3 +52,48 @@ describe 'Users', ->
             user = Meteor.users.findOne({ role: 'admin' })
 
             expect(user.profile).toEqual(profile)
+
+    describe 'admin panel', ->
+        user = {}
+        userName = 'someUsername'
+
+        beforeEach (done) ->
+            Accounts.createUser
+                username: userName,
+                email : 'email@fs.pl',
+                password : '1234'
+            user = Meteor.users.findOne({ username: userName })
+            done()
+
+        afterEach (done) ->
+            Meteor.users.remove { username: userName }
+            done()
+
+        describe 'updateUser method', ->
+            it 'should throw not-authorized exception when not admin', ->
+                Helpers.logout()
+                Meteor.call 'updateUser', user, (error) ->
+                    expect(error).toEqual(new Meteor.Error('notAuthorized'))
+
+            it 'should update user when admin', ->
+                Helpers.login('admin')
+                user.role = 'moderator'
+                Meteor.call 'updateUser', user
+
+                user = Meteor.users.findOne({ username: userName })
+
+                expect(user.role).toEqual('moderator')
+
+
+        describe 'deleteUser method', ->
+            it 'should throw not-authorized exception when not admin', ->
+                Helpers.logout()
+                Meteor.call 'deleteUser', user, (error) ->
+                    expect(error).toEqual(new Meteor.Error('notAuthorized'))
+
+            it 'should remove user when admin', ->
+                Helpers.login('admin')
+                user = Meteor.users.findOne({ username: userName })
+                Meteor.call 'deleteUser', user._id
+
+                expect(Meteor.users.findOne({ username: userName })).toBeFalsy()

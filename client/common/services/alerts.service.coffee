@@ -13,6 +13,9 @@ alertsServ = (toastr) ->
     error: (error) ->
         toastr.error(getMessage(error), 'Error')
 
+    warning: (title, message) ->
+        toastr.warning(message, title)
+
 alertsServ.$inject = ['toastr']
 
 angular.module 'common'

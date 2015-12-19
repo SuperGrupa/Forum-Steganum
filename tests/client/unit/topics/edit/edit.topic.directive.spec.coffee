@@ -36,8 +36,8 @@ describe 'Directive: editTopic', ->
     beforeEach module 'templates'
 
     beforeEach ->
-        element = new TestElement 'editTopic'
-        element.create '<edit-topic></edit-topic>'
+        element = new TestElement()
+        element.createDirective 'editTopic', '<edit-topic></edit-topic>'
         successSectionCallback(section)
         successTopicCallback(topic)
 

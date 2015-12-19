@@ -1,4 +1,5 @@
 auth = require('authFunctions')
+rolesFunctions = require('rolesFunctions')
 
 Meteor.methods
     updateUsername: (username) ->
@@ -19,5 +20,16 @@ Meteor.methods
         else
             throw new Meteor.Error( 500, 'You are not logged in')
 
-    checkPermissions: (what, name, object) ->
-        auth.can(what, name, object)
+    updateUser: (user) ->
+        if Meteor.user() && Meteor.user().role == 'admin'
+            user = rolesFunctions.setRoleByName(user, user.role)
+            Meteor.users.update({ _id: user._id }, {$set: {'can': user.can, 'role': user.role}})
+        else
+            throw new (Meteor.Error)('notAuthorized')
+
+    deleteUser: (user_id) ->
+        if Meteor.user() && Meteor.user().role == 'admin'
+            Meteor.users.remove { '_id': user_id }
+        else
+            throw new (Meteor.Error)('notAuthorized')
+

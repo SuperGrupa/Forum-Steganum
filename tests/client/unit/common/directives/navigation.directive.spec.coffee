@@ -25,8 +25,8 @@ describe 'Directive: navigation', ->
         done()
 
     compileElement = (sectionId, topicId) ->
-        element = new TestElement 'navigation'
-        element.create '<navigation section-id="' + sectionId + '" topic-id="' + topicId + '"></navigation>'
+        element = new TestElement()
+        element.createDirective 'navigation', '<navigation section-id="' + sectionId + '" topic-id="' + topicId + '"></navigation>'
 
     describe 'without ids', ->
         beforeEach (done) ->

@@ -10,8 +10,8 @@ describe 'Directive: file-chooser', ->
     element = {}
 
     compileElement = (files) ->
-        element = new TestElement 'file-chooser'
-        element.create '<file-chooser file="file"></file-chooser>',
+        element = new TestElement()
+        element.createDirective 'fileChooser', '<file-chooser file="file"></file-chooser>',
             file: file
 
     describe 'binding files after compile', ->

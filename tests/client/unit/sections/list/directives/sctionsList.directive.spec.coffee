@@ -11,9 +11,10 @@ describe 'Directive: sectionsList', ->
     mockedSections = ['section1', 'section2']
 
     beforeEach ->
-        element = new TestElement 'sectionsList'
-        element.create '<sections-list sections="sections"></sections-list>',
+        element = new TestElement()
+        element.createDirective 'sectionsList', '<sections-list sections="sections"></sections-list>',
             sections: mockedSections
+            can: -> true
 
     it 'should compile', ->
         expect(element.dom).toBeDefined()
