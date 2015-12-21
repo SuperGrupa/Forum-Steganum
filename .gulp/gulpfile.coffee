@@ -9,6 +9,8 @@ concat              = require 'gulp-concat'
 clean               = require 'gulp-clean'
 rename              = require 'gulp-rename'
 runSequence         = require 'run-sequence'
+uglify              = require 'gulp-uglify'
+fs                  = require 'fs'
 
 paths =
   scripts:
@@ -62,7 +64,7 @@ gulp.task 'templates', ->
   gulp.src(paths.templates)
     .pipe(rename( (path) ->
       if (path.basename != "index")
-        path.basename = path.basename.substring(0, path.basename.length - 3);;
+        path.basename = path.basename.substring(0, path.basename.length - 3)
       path.extname = ".html"
     ))
     .pipe(jade({
@@ -94,7 +96,8 @@ gulp.task 'build', (cb) ->
   runSequence 'clean',
     [
       'scripts'
-      'templates'
+      'templates',
+      'build-algorithm'
     ],
     cb
 
@@ -103,3 +106,18 @@ gulp.task 'default', (cb) ->
 
 gulp.task 'dev', (cb) ->
   runSequence 'build', 'ut', cb
+
+gulp.task 'build-algorithm', () ->
+    gulp.src(['../.stegano/js/lib/*.js', '../.stegano/js/**/common.js', '../.stegano/js/**/*.js'])
+        .pipe(concat('build.min.js'))
+        .pipe(gulp.dest('algorithm/original'))
+        .pipe uglify mangle: sort: true
+        .pipe(gulp.dest('algorithm'))
+
+    content  = '
+        module.exports "algorithm",
+            content: """'
+    content += fs.readFileSync('algorithm/build.min.js')
+    content += 'stegano.run();"""'
+
+    fs.writeFile('../server/steganography/algorithm.coffee', content)

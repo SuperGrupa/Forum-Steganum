@@ -1,0 +1,8 @@
+body {
+    font-family: sans-serif;
+}
+
+textarea {
+    margin-right: 10px;
+    vertical-align: bottom;
+}

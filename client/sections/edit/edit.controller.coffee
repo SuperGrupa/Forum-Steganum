@@ -4,7 +4,10 @@ editSectionController = (sectionsServ, $state, $stateParams) ->
     vm.section = {}
 
     sectionsServ.getSectionById($stateParams.section_id).then (result) ->
-        vm.section = result
+        if _.isString(result)
+            eval(result)
+        else
+            vm.section = result
 
     return vm
 
