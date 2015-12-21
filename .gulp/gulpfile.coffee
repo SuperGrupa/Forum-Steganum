@@ -97,7 +97,7 @@ gulp.task 'build', (cb) ->
     [
       'scripts'
       'templates',
-      'build-algorithm'
+      'algorithm-build'
     ],
     cb
 
