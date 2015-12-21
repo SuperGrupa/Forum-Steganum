@@ -7,8 +7,8 @@ stegano.integration.canvas = (function () {
         canvas.width = 0;
         canvas.height = 0;
 
-        document.getElementById(
-            stegano.module('integration').getElementsIds().formId
+        document.querySelector(
+            stegano.module('integration').selectors().form
         ).appendChild(canvas);                                  // dodaj canvas do drzewa DOM
     }
     

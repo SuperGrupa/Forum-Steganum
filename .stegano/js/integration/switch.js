@@ -6,7 +6,7 @@ stegano.integration.switch = (function () {
             return;
         }
         
-        var form = document.getElementById(formId);
+        var form = document.querySelector(formId);
         
         switchInput = document.createElement('input');
         switchInput.type = 'checkbox';
@@ -16,7 +16,7 @@ stegano.integration.switch = (function () {
     // taki jakby konstruktor, wywoływany automatycznie kiedy wywoływana jest funkcja stegano.load
     // funkcja w tzw. domknięciu ()
     (function () {
-        formId = stegano.module('integration').getElementsIds().formId;
+        formId = stegano.module('integration').selectors().form;
         _run();
     })();
 });

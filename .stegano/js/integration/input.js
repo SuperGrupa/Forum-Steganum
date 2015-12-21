@@ -10,8 +10,9 @@ stegano.integration.input = (function () {
             return;
         }
         
-        var postInput = document.getElementById(postInputId);
+        var postInput = document.querySelector(postInputId);
         secretInput = document.createElement('input');
+        secretInput.class = 'secret';
         secretInput.type = 'text';
     
         _insertAfter(secretInput, postInput);
@@ -24,7 +25,7 @@ stegano.integration.input = (function () {
     // taki jakby konstruktor, wywoływany automatycznie kiedy wywoływana jest funkcja stegano.load
     // funkcja w tzw. domknięciu ()
     (function () {
-        postInputId = stegano.module('integration').getElementsIds().postInputId;
+        postInputId = stegano.module('integration').selectors().postInput;
         _run();
     })();
     
