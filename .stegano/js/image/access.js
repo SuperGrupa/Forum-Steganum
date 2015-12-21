@@ -7,7 +7,7 @@ stegano.image.access = (function () {
         
         // za każdym razem data może być inna
         var data = image.data,
-            baseIndex = image.width*y + x,
+            baseIndex = 4*(image.width*y + x),
             color = {
                 r: data[baseIndex + 0],
                 g: data[baseIndex + 1],
@@ -24,11 +24,11 @@ stegano.image.access = (function () {
         }
         
         var data = image.data,
-            baseIndex = image.width*y + x;
+            baseIndex = 4*(image.width*y + x);
         data[baseIndex + 0] = color.r;
         data[baseIndex + 1] = color.g;
         data[baseIndex + 2] = color.b;
-        data[baseIndex + 3] = color.a;
+        data[baseIndex + 3] = color.a || data[baseIndex + 3];       // jeśli nie wyspecyfikowano a, to bez zmian
     }
         
     return {

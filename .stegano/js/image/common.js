@@ -8,6 +8,7 @@ stegano.image = (function () {
     
     return {
         load: submodules.loader.loadImage,
+        save: submodules.loader.saveImage,
         getData: submodules.loader.getImageData,
         getPixel: submodules.access.getPixel,
         setPixel: submodules.access.setPixel

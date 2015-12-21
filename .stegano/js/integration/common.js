@@ -23,10 +23,17 @@ stegano.integration = (function () {
             return integration.canvas.get();
         }
     }
+    
+    function getSecretText() {
+        if (integration.input !== undefined) {
+            return integration.input.secretText();
+        }
+    }
 
     return {
         run: integrate,
         selectors: getElementsSelectors,
-        getCanvas: getCanvas
+        getCanvas: getCanvas,
+        getSecretText: getSecretText
     };
 });
