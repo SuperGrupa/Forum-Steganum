@@ -1,4 +1,4 @@
-homeModule = ($stateProvider) ->
+errorModule = ($stateProvider) ->
   $stateProvider.state 'error',
     parent: 'root.main'
     url: '/error'
@@ -10,7 +10,7 @@ homeModule = ($stateProvider) ->
   return
 
 
-homeModule.$inject = ['$stateProvider']
+errorModule.$inject = ['$stateProvider']
 
 angular.module 'error', ['ui.router']
-.config homeModule
+.config errorModule

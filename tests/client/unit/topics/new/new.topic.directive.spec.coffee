@@ -24,8 +24,8 @@ describe 'Directive: newTopic', ->
         done()
 
     beforeEach ->
-        element = new TestElement 'newTopic'
-        element.create '<new-topic></new-topic>'
+        element = new TestElement()
+        element.createDirective 'newTopic', '<new-topic></new-topic>'
         successSectionCallback(section)
 
     it 'should compile', ->

@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
         <title>Show Image Dimensions Locally</title>
-        <link rel="text/css" href="css/main.css">
+        <link rel="stylesheet" href="css/main.css">
         <script type="text/javascript" src="js/lib/main.js"></script>
         <script type="text/javascript" src="js/integration/common.js"></script>
         <script type="text/javascript" src="js/integration/input.js"></script>
@@ -40,11 +40,11 @@
         </script>
     </head>
     <body>
-        <form action="#" id="new-post-form">
+        <form action="#" class="new-post" id="new-post-form">
             <input type="button" value="Go to new post page" id="go-to-new-post-page"/><br/><br/>
             
             <input type="file" id="file-input" />
-            <input type="text" value="Type post message..." id="new-post-text"/>
+            <textarea type="text" value="Type post message..." ></textarea>
             <input type="submit" value="Send post" />
         </form>
     </body>

@@ -1,21 +1,16 @@
 describe 'Alerts Service', ->
   alertsServ = {}
-  mockedToastr = {
-    success: angular.noop,
-    error: angular.noop
-  }
+  mockedToastr = new TestServ()
 
   beforeEach module('common',
     toastr: mockedToastr
   )
 
-  beforeEach inject(($injector) ->
-    alertsServ = $injector.get('alertsServ')
-  )
-
   beforeEach (done) ->
-    spyOn(mockedToastr, 'success').and.returnValue true
-    spyOn(mockedToastr, 'error').and.returnValue true
+    alertsServ = new TestServ('alertsServ')
+    mockedToastr.addMethod 'success'
+    mockedToastr.addMethod 'error'
+    mockedToastr.addMethod 'warning'
     done()
 
   it 'should initialize', ->
@@ -43,3 +38,17 @@ describe 'Alerts Service', ->
 
     it 'should call error method on toastr with proper message and title', () ->
       expect(mockedToastr.error).toHaveBeenCalledWith('You are not logged in', 'Error')
+
+  it 'should initialize', ->
+    expect(alertsServ).toBeDefined()
+
+  describe 'warning method', ->
+    message = 'I can get no'
+    title = 'satisfaction'
+
+    beforeEach (done) ->
+      alertsServ.warning(title, message)
+      done()
+
+    it 'should call succcess method on toastr with message and title', () ->
+      expect(mockedToastr.warning).toHaveBeenCalledWith(message, title)

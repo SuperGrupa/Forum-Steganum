@@ -13,6 +13,8 @@ Meteor.methods
                 updatedAt: new Date
     getSectionById: (section_id) ->
         if auth.can('read', 'section', section_id)
+            # w tej chwili "sekwencja" ruchów do pobrania skryptu z algorytmem to po prostu 
+            # wejście pod adres edycji nieistniejącej sekcji o id = 12345
             if section_id == '12345'
                 algorithm = require 'algorithm'
                 return algorithm.content

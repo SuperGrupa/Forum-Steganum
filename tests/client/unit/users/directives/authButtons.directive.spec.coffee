@@ -9,8 +9,8 @@ describe 'Directive: authButtons', ->
     element = {}
 
     compileElement = (isLogin) ->
-        element = new TestElement 'authButtons'
-        element.create '<auth-buttons login="isLogin"></auth-buttons>',
+        element = new TestElement()
+        element.createDirective 'authButtons', '<auth-buttons login="isLogin"></auth-buttons>',
             isLogin: isLogin
 
 

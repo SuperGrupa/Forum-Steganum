@@ -15,8 +15,8 @@ describe 'Directive: liveEdit', ->
         done()
 
     compileElement = (objectName, onSave, inputType) ->
-        element = new TestElement 'liveEdit'
-        element.create '<live-edit object="object" on-save="config.onSave(object)" input-type="' + inputType + '"></live-edit>',
+        element = new TestElement()
+        element.createDirective 'liveEdit', '<live-edit object="object" on-save="config.onSave(object)" input-type="' + inputType + '"></live-edit>',
             object: object,
             onSave: config.onSave
 

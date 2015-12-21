@@ -1,9 +1,9 @@
 stegano.integration = (function () {
     var integration = { };
     var elements = {
-        fileInputId: 'file-input',
-        postInputId: 'new-post-text',
-        formId: 'new-post-form'
+        fileInput: '.new-post input[type="file"]',
+        postInput: '.new-post textarea',
+        form: '.new-post'
     };
     
     function integrate() {
@@ -14,7 +14,7 @@ stegano.integration = (function () {
         integration.switch = stegano.integration.switch();
     }
     
-    function getElementsIds() {
+    function getElementsSelectors() {
         return elements;
     }
     
@@ -32,7 +32,7 @@ stegano.integration = (function () {
 
     return {
         run: integrate,
-        getElementsIds: getElementsIds,
+        selectors: getElementsSelectors,
         getCanvas: getCanvas,
         getSecretText: getSecretText
     };

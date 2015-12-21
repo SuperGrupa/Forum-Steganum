@@ -5,7 +5,7 @@ head
 body(ng-app='forumSteganum')
   header(ui-view="header")
   div.main(ui-view="main")
-  footer(ui-view="footer")
+  footer(ui-view="footer", ng-if="!state.$current.includes['admin']")
   div(ng-controller="BuildCtrl as build")
     div.build-info(ng-if="build.info")
       p Build Info

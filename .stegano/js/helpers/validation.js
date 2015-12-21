@@ -7,7 +7,7 @@ stegano.helpers.validation = (function () {
     
     function _fileNameFromInput() {
         // TO POWINNO BYĆ W AKCJI WYWOŁYWANEJ NA KLIKNIĘCIE "SEND"
-        var fileInput = document.getElementById(stegano.module('integration').getElementsIds().fileInputId);
+        var fileInput = document.querySelector(stegano.module('integration').selectors().fileInput);
         if (!fileInput) {
             _write("Um, couldn't find the imgfile element.");
             return false;

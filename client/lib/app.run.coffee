@@ -1,5 +1,6 @@
 appRun = ($rootScope, $state, authServ) ->
     $rootScope.can = authServ.can
+    $rootScope.state = $state
 
     $state.goBack = ->
         if $state.previous.name then $state.go($state.previous, $state.previousParams) else $state.go('home')

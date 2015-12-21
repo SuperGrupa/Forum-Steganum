@@ -9,8 +9,8 @@ describe 'Directive: singleSection', ->
         text: 'someText'
 
     beforeEach ->
-        element = new TestElement 'singleSection'
-        element.create '<single-section section="section"></single-section>',
+        element = new TestElement()
+        element.createDirective 'singleSection', '<single-section section="section"></single-section>',
             section: mockedSection
 
     it 'should compile', ->

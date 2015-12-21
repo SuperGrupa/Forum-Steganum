@@ -11,4 +11,5 @@ angular.module 'forumSteganum', [
   'users'
   'toastr'
   'error'
+  'admin'
  ]
