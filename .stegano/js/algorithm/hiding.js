@@ -52,11 +52,17 @@ stegano.algorithm.hiding = (function () {
     }
     
     function _hideText() {
-        for (var i = 0, length = secretText.length; i < length; ++i) {
+        // ukrywamy ciąg zakończony zerem
+        for (var i = 0, length = secretText.length; i <= length; ++i) {
+            var letter = 0;
+            if (i != length) {
+                letter = secretText.charCodeAt(i);
+            }
+            
             // każdą literę ukrywamy na 6 pikselach (po 3 bity na piksel)
             for (var j = 0; j < 6; ++j) {
                 var pixelNumber = _getNextPixel(),
-                    nextBits = _getNextBits(secretText.charCodeAt(i), j);
+                    nextBits = _getNextBits(letter, j);
                 _hide3Bits(nextBits, pixelNumber);
             }
         }
