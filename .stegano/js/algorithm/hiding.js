@@ -77,6 +77,9 @@ stegano.algorithm.hiding = (function () {
         _hideText();
         
         stegano.module('image').save();
+        
+        // czyścimy po sobie
+        usedPixels = [];
     }
     
     function run(secretToHide) {
@@ -86,7 +89,7 @@ stegano.algorithm.hiding = (function () {
         var fileName = stegano.module('helpers').validation.fileNameFromInput();
         if (fileName) {
             secretText = secretToHide;
-            stegano.module('image').load(fileName, _hiding);
+            stegano.module('image').loadFromFile(fileName, _hiding);
         }
     }
     

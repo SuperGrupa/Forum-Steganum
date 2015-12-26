@@ -20,13 +20,27 @@ stegano.image.loader = (function () {
         callback();
     }
 
-    function loadImage(file, cb) {
+    function loadImageFromFile(file, cb) {
         callback = cb;
         
         canvas = stegano.module('integration').getCanvas();
         fileReader = new FileReader();
         fileReader.onload = _createImage;
         fileReader.readAsDataURL(file);
+    }
+    
+    function loadImageFromImgElement(img, cb) {
+        callback = cb;
+        
+        canvas = stegano.module('integration').getCanvas();
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        
+        callback();
     }
     
     function saveImage() {
@@ -38,7 +52,8 @@ stegano.image.loader = (function () {
     }
     
     return {
-        loadImage: loadImage,
+        loadImageFromFile: loadImageFromFile,
+        loadImageFromImgElement: loadImageFromImgElement,
         saveImage: saveImage,
         getImageData: getImageData
     };
