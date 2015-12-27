@@ -11,6 +11,8 @@ rename              = require 'gulp-rename'
 runSequence         = require 'run-sequence'
 uglify              = require 'gulp-uglify'
 fs                  = require 'fs'
+argv                = require('yargs').argv
+protractor          = require('gulp-angular-protractor')
 
 paths =
   scripts:
@@ -32,7 +34,7 @@ paths =
       '../tests/client/unit/**/*.coffee'
     ]
     e2etests: [
-      '../tests/client/e2e/**/*.scenario.coffee'
+      '../tests/e2e/**/*.scenario.coffee'
     ]
   templates: ['../client/**/*.jade']
 
@@ -72,6 +74,30 @@ gulp.task 'templates', ->
     }))
     .on('error', notify.onError((error) -> error.message))
     .pipe(gulp.dest(destinations.templates))
+
+gulp.task 'test:e2e', ->
+  args = undefined
+  protractorTests = undefined
+  gutil.log gutil.colors.blue('Starting e2e test')
+  baseURL = ''
+  if !!argv.port
+    baseURL = 'http://localhost:' + argv.port
+  else
+    baseURL = 'http://localhost:50560'
+  args = [
+    '--baseUrl'
+    baseURL
+  ]
+  if !!argv.debug
+    args.push 'debug'
+  protractorTests = paths.scripts.e2etests
+  # --specs='path to specs'
+  if !!argv.specs
+    protractorTests = argv.specs.split(',')
+  gulp.src(protractorTests).pipe protractor(
+    configFile: '../tests/e2e/protractor.config.js'
+    args: args)
+  return
 
 
 tests = (cb, singleRun) ->
