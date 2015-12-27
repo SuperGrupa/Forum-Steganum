@@ -84,8 +84,6 @@ stegano.algorithm.hiding = (function () {
     }
     
     function run(secretToHide) {
-        console.log('Hiding');
-        
         // załadowanie nazwy pliku i obrazka na canvas
         var fileName = stegano.module('helpers').validation.fileNameFromInput();
         if (fileName) {

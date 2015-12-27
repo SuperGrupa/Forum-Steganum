@@ -3,6 +3,9 @@ stegano.algorithm.random = (function () {
     
     // newSeed powinno być tablicą 32 elementową (32 liczby x 32 bity każda = 1024 bity ziarna-klucza)
     function setSeed(newSeed) {
+        // nowa sekwencja zawsze startuje od p = 0
+        p = 0;
+        
         // test czy newSeed jest tablicą 32-elementową
         if (Object.prototype.toString.call(newSeed) === Object.prototype.toString.call([]) &&
             newSeed.length >= 32)

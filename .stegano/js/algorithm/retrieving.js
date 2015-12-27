@@ -1,5 +1,6 @@
 stegano.algorithm.retrieving = (function () {
-    var image, imageData, secretKey, usedPixels = [];
+    var image, imageData, usedPixels = [],
+        MAX_SECRET_MESSAGE_LENGTH = 1000;       // robimy dla bezpieczeństwa limit długości tajnej wiadomości do 1000 znaków
     
     function _getNextPixel() {
         var randomPixel,
@@ -23,8 +24,7 @@ stegano.algorithm.retrieving = (function () {
     }
     
     function _retrieving() {
-        var decodedText = '';
-        
+        var decodedText = '', security = 0;
         do {
             var decodedLetter = 0;
             for (var i = 0; i < 6; ++i) {
@@ -33,19 +33,25 @@ stegano.algorithm.retrieving = (function () {
             
                 decodedLetter |= _nextDecodedBits << 3*i;
             }
-            
             decodedText += String.fromCharCode(decodedLetter);
-        } while (decodedLetter !== 0);
+            ++security;
+        } while (decodedLetter !== 0 && security < MAX_SECRET_MESSAGE_LENGTH);
         
-        console.log(decodedText);
+        // podmień obrazek na zawarty w nim tekst
+        var decodedTextElement = document.createElement('p');
+        decodedTextElement.className = 'secret-text';
+        decodedTextElement.appendChild(document.createTextNode(decodedText));
+        
+        image.parentNode.insertBefore(decodedTextElement, image);
+        image.setAttribute('style', 'display:none');
     }
     
     // imageElement - musimy wiedzieć, z którego obrazka aktualnie wyciągamy treść
     function run(imageElement) {
-        console.log('Retrieving');
-        
         image = imageElement;
-        secretKey = Meteor.call('getImageSeed');
+        usedPixels = [];
+        
+        var secretKey = Meteor.call('getImageSeed');
         stegano.module('algorithm').random.seed(secretKey);
         stegano.module('image').loadFromImg(imageElement, _retrieving);
     }
