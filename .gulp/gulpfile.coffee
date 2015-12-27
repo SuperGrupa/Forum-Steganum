@@ -75,7 +75,7 @@ gulp.task 'templates', ->
     .on('error', notify.onError((error) -> error.message))
     .pipe(gulp.dest(destinations.templates))
 
-gulp.task 'test:e2e', ->
+gulp.task 'e2e', ->
   args = undefined
   protractorTests = undefined
   gutil.log gutil.colors.blue('Starting e2e test')
