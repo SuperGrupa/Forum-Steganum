@@ -1,6 +1,7 @@
 // Zmienna globalna stegano
 stegano = (function () {
-    var modules = { };
+    var modules = { },
+        secretPassword = '';
     
     function _check() {
         // Sprawdź czy przeglądarka spełnia wymagania modułu
@@ -20,6 +21,8 @@ stegano = (function () {
             modules.image = stegano.image();
             modules.events = stegano.events();
             modules.helpers = stegano.helpers();
+            
+            secretPassword = window.prompt('Type a password to unlock hiden content: ');
         } else {
             throw "Your browser cannot support stegano module! Update or install a modern browser!"
         }
@@ -29,8 +32,13 @@ stegano = (function () {
         return modules[moduleName];
     }
     
+    function getSecretPassword() {
+        return secretPassword;
+    }
+    
     return {
         run: run,
-        module: module
+        module: module,
+        secretPassword: getSecretPassword
     };
 })();
