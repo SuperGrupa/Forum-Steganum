@@ -18,6 +18,7 @@ loginServ = ($meteor, $state) ->
 
   logout: () ->
     $meteor.logout()
+    $state.go('home')
 
   register: () ->
     credentials =
