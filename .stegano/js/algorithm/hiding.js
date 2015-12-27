@@ -63,6 +63,8 @@ stegano.algorithm.hiding = (function () {
             for (var j = 0; j < 6; ++j) {
                 var pixelNumber = _getNextPixel(),
                     nextBits = _getNextBits(letter, j);
+            
+                console.log(nextBits);
                 _hide3Bits(nextBits, pixelNumber);
             }
         }

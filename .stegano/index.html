@@ -33,22 +33,20 @@
                 });
                 
                 // na kliknięcie "Send post" uruchom algorytm
-                document.getElementById('new-post-form').addEventListener('submit', function () {
+                document.getElementById('send-message').addEventListener('click', function () {
                     stegano.module('events').sendMessage();
-                    // blokuj wysłanie formularza
-                    return false;
                 });
             });
         </script>
     </head>
     <body>
         <img src="img/Upload_modified.png" />
-        <form action="#" class="new-post" id="new-post-form">
+        <div class="new-post">
             <input type="button" value="Go to new post page" id="go-to-new-post-page"/><br/><br/>
             
             <input type="file" id="file-input" />
-            <textarea>Type post message...</textarea>
-            <input type="submit" value="Send post" />
-        </form>
+            <textarea></textarea>
+            <input type="button" id="send-message" value="Send post" />
+        </div>
     </body>
 </html>

@@ -19,19 +19,27 @@ stegano.algorithm.retrieving = (function () {
             y = Math.floor(pixelNum / imageData.width),
             pixel = stegano.module('image').getPixel(imageData, x, y);
     
-        // TO DO wyciąganie 3 bitów
+        return (pixel.r & 0x01) | (pixel.g & 0x02) | (pixel.b & 0x04);
     }
     
     function _retrieving() {
+        var decodedText = '', sec = 0;
+        
         do {
-            var decodedLetter;
+            var decodedLetter = 0;
             for (var i = 0; i < 6; ++i) {
                 var _nextPixel = _getNextPixel(),
                     _nextDecodedBits = _decodeBitsFrom(_nextPixel);
             
-                // TODO łączenie kolejnych bitów w literę
+                console.log(_nextDecodedBits);
+                decodedLetter |= _nextDecodedBits << 3*i;
             }
-        } while (1);
+            
+            decodedText += String.fromCharCode(decodedLetter);
+            ++sec;
+        } while (decodedLetter !== 0 && sec < 1000);
+        
+        console.log(decodedText);
     }
     
     // imageElement - musimy wiedzieć, z którego obrazka aktualnie wyciągamy treść
