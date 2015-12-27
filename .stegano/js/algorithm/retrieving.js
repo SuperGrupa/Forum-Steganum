@@ -19,11 +19,11 @@ stegano.algorithm.retrieving = (function () {
             y = Math.floor(pixelNum / imageData.width),
             pixel = stegano.module('image').getPixel(imageData, x, y);
     
-        return (pixel.r & 0x01) | (pixel.g & 0x02) | (pixel.b & 0x04);
+        return ((pixel.r & 0x01) << 2) | ((pixel.g & 0x01) << 1) | (pixel.b & 0x01);
     }
     
     function _retrieving() {
-        var decodedText = '', sec = 0;
+        var decodedText = '';
         
         do {
             var decodedLetter = 0;
@@ -31,13 +31,11 @@ stegano.algorithm.retrieving = (function () {
                 var _nextPixel = _getNextPixel(),
                     _nextDecodedBits = _decodeBitsFrom(_nextPixel);
             
-                console.log(_nextDecodedBits);
                 decodedLetter |= _nextDecodedBits << 3*i;
             }
             
             decodedText += String.fromCharCode(decodedLetter);
-            ++sec;
-        } while (decodedLetter !== 0 && sec < 1000);
+        } while (decodedLetter !== 0);
         
         console.log(decodedText);
     }
