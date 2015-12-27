@@ -33,12 +33,11 @@ http://forum-steganum.meteor.com/
 
 # Odpalenie testów funkcjonalnych całej aplikacji
 
-równolegle:
-
     meteor
 
+i równolegle (nowe okno/karta konsoli):
 
     cd .gulp && npm install
     gulp e2e --port numerPortu
 
-numerPortu - port na którym odpalane są testy integracyjne klienta poleceniem `meteor` ([velocity] jasmine-client-integration)
+`numerPortu` - port na którym odpalane są testy integracyjne klienta poleceniem `meteor` ([velocity] jasmine-client-integration)
