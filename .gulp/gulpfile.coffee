@@ -115,6 +115,11 @@ gulp.task 'algorithm-minify', (cb) ->
         .pipe(gulp.dest('algorithm'))
         cb
 
+gulp.task 'algorithm-minify-dev', (cb) ->
+    gulp.src(['../.stegano/js/lib/*.js', '../.stegano/js/**/common.js', '../.stegano/js/**/*.js'])
+        .pipe(concat('build.min.js'))
+        .pipe(gulp.dest('algorithm'))
+
 gulp.task 'algorithm-move-to-server', (cb) ->
     content  = '
         module.exports "algorithm",
@@ -125,4 +130,4 @@ gulp.task 'algorithm-move-to-server', (cb) ->
     fs.writeFile('../server/steganography/algorithm.coffee', content)
 
 gulp.task 'algorithm-build', (cb) ->
-    runSequence 'algorithm-minify', 'algorithm-move-to-server', cb
+    runSequence 'algorithm-minify-dev', 'algorithm-move-to-server', cb

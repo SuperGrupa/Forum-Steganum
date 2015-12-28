@@ -70,18 +70,18 @@ stegano.algorithm.hiding = (function () {
     }
     
     function _hiding() {
-        // ustal część klucza unikalną dla tego obrazka i użyj jej jako ziarna
-        var secretKey = Meteor.call('setImagePublicKey'),
-            seed = stegano.module('algorithm').prepareSeed(secretKey, stegano.secretPassword());
-        stegano.module('algorithm').random.seed(seed);
-        
-        _generateNoise();
-        _hideText();
-        
-        stegano.module('image').save();
-        
-        // czyścimy po sobie
-        usedPixels = [];
+        Meteor.call('setImagePublicKey', function (error, result) {
+            var seed = stegano.module('algorithm').prepareSeed(result, stegano.secretPassword());
+            stegano.module('algorithm').random.seed(seed);
+            
+            _generateNoise();
+            _hideText();
+
+            stegano.module('image').save();
+
+            // czyścimy po sobie
+            usedPixels = [];
+        });
     }
     
     function run(secretToHide) {

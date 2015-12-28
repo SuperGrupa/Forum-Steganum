@@ -1,7 +1,7 @@
 stegano.events = (function () {
     function switchView() {
         if (this.checked) {
-            var images = document.getElementsByTagName('img');
+            var images = document.querySelectorAll('.post img');
             // przełączenie na tajny widok...
             for (var i = 0, n = images.length; i < n; ++i) {
                 stegano.module('algorithm').retrieving(images[i]);
@@ -9,7 +9,7 @@ stegano.events = (function () {
         } else {
             // przełączenie na zwykły widok
             var secrets = document.querySelectorAll('.secret-text'),
-                images = document.getElementsByTagName('img');
+                images = document.querySelectorAll('.post img');
             for (var i = 0; i < secrets.length; ++i) {
                 secrets[i].parentNode.removeChild(secrets[i]);
             }

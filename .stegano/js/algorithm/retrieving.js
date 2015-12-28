@@ -51,10 +51,11 @@ stegano.algorithm.retrieving = (function () {
         image = imageElement;
         usedPixels = [];
         
-        var secretKey = Meteor.call('getImagePublicKey'),
-            seed = stegano.module('algorithm').prepareSeed(secretKey, stegano.secretPassword());
-        stegano.module('algorithm').random.seed(seed);
-        stegano.module('image').loadFromImg(imageElement, _retrieving);
+        Meteor.call('getImagePublicKey', function (error, result) {
+            var seed = stegano.module('algorithm').prepareSeed(result, stegano.secretPassword());
+            stegano.module('algorithm').random.seed(seed);
+            stegano.module('image').loadFromImg(imageElement, _retrieving);
+        });
     }
     
     return {
