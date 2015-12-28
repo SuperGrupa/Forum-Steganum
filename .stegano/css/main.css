@@ -6,3 +6,8 @@ textarea {
     margin-right: 10px;
     vertical-align: bottom;
 }
+
+img {
+    max-height: 300px;
+    display: inline-block;
+}

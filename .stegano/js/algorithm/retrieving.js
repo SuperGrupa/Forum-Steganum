@@ -51,8 +51,9 @@ stegano.algorithm.retrieving = (function () {
         image = imageElement;
         usedPixels = [];
         
-        var secretKey = Meteor.call('getImageSeed');
-        stegano.module('algorithm').random.seed(secretKey);
+        var secretKey = Meteor.call('getImageSeed'),
+            seed = stegano.module('algorithm').prepareSeed(secretKey, stegano.secretPassword());
+        stegano.module('algorithm').random.seed(seed);
         stegano.module('image').loadFromImg(imageElement, _retrieving);
     }
     

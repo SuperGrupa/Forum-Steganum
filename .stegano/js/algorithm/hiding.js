@@ -1,5 +1,5 @@
 stegano.algorithm.hiding = (function () {
-    var image, secretText, secretKey, usedPixels = [];
+    var image, secretText, usedPixels = [];
     
     function _generateNoise() {
         image = stegano.module('image').getData();
@@ -71,8 +71,9 @@ stegano.algorithm.hiding = (function () {
     
     function _hiding() {
         // ustal część klucza unikalną dla tego obrazka i użyj jej jako ziarna
-        secretKey = Meteor.call('setImageSeed');
-        stegano.module('algorithm').random.seed(secretKey);
+        var secretKey = Meteor.call('setImageSeed'),
+            seed = stegano.module('algorithm').prepareSeed(secretKey, stegano.secretPassword());
+        stegano.module('algorithm').random.seed(seed);
         
         _generateNoise();
         _hideText();
