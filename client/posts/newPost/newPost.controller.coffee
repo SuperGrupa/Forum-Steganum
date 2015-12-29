@@ -1,4 +1,4 @@
-newPostController = (postsServ, alertsServ, $stateParams) ->
+newPostController = (postsServ, alertsServ, $stateParams, $timeout) ->
     vm = this
     vm.action = postsServ
     vm.image =
@@ -17,10 +17,15 @@ newPostController = (postsServ, alertsServ, $stateParams) ->
                 vm.clearPost()
         else
             alertsServ.error(error: 'emptyPostNotAllowed')
+    
+    $timeout ->
+        if stegano?
+            stegano.module('integration').run()
 
     return vm
 
-newPostController.$inject = ['postsServ', 'alertsServ', '$stateParams']
+newPostController.$inject = ['postsServ', 'alertsServ', '$stateParams', '$timeout']
 
 angular.module('posts')
 .controller 'newPostController', newPostController
+
