@@ -29,9 +29,7 @@ stegano.image.loader = (function () {
         fileReader.readAsDataURL(file);
     }
     
-    function loadImageFromImgElement(img, cb) {
-        callback = cb;
-        
+    function loadImageFromImgElement(img, cb, cbArgs) {
         canvas = stegano.module('integration').getCanvas();
         canvas.width = img.naturalWidth;
         canvas.height = img.naturalHeight;
@@ -40,7 +38,7 @@ stegano.image.loader = (function () {
         ctx.drawImage(img, 0, 0);
         imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         
-        callback();
+        cb.apply(undefined, cbArgs || []);
     }
     
     function saveImage() {

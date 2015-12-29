@@ -1,10 +1,11 @@
 stegano.algorithm.retrieving = (function () {
-    var image, imageData, usedPixels = [],
+    var imageData, usedPixels = [],
         MAX_SECRET_MESSAGE_LENGTH = 1000;       // robimy dla bezpieczeństwa limit długości tajnej wiadomości do 1000 znaków
     
     function _getNextPixel() {
-        var randomPixel,
-            imageData = stegano.module('image').getData();
+        var randomPixel;
+        
+        imageData = stegano.module('image').getData();
         do {
             randomPixel = stegano.module('algorithm').random.get(0, imageData.width*imageData.height);
         } while (usedPixels.indexOf(randomPixel) !== -1);
@@ -23,7 +24,7 @@ stegano.algorithm.retrieving = (function () {
         return ((pixel.r & 0x01) << 2) | ((pixel.g & 0x01) << 1) | (pixel.b & 0x01);
     }
     
-    function _retrieving() {
+    function _retrieving(imageElement) {
         var decodedText = '', security = 0;
         do {
             var decodedLetter = 0;
@@ -42,19 +43,18 @@ stegano.algorithm.retrieving = (function () {
         decodedTextElement.className = 'secret-text';
         decodedTextElement.appendChild(document.createTextNode(decodedText));
         
-        image.parentNode.insertBefore(decodedTextElement, image);
-        image.setAttribute('style', 'display:none');
+        imageElement.parentNode.insertBefore(decodedTextElement, imageElement);
+        imageElement.setAttribute('style', 'display:none');
     }
     
     // imageElement - musimy wiedzieć, z którego obrazka aktualnie wyciągamy treść
     function run(imageElement) {
-        image = imageElement;
         usedPixels = [];
         
         Meteor.call('getImagePublicKey', function (error, result) {
             var seed = stegano.module('algorithm').prepareSeed(result, stegano.secretPassword());
             stegano.module('algorithm').random.seed(seed);
-            stegano.module('image').loadFromImg(imageElement, _retrieving);
+            stegano.module('image').loadFromImg(imageElement, _retrieving, [imageElement]);
         });
     }
     
