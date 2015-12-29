@@ -44,7 +44,6 @@ stegano.algorithm.retrieving = (function () {
         decodedTextElement.appendChild(document.createTextNode(decodedText));
         
         imageElement.parentNode.insertBefore(decodedTextElement, imageElement);
-        imageElement.setAttribute('style', 'display:none');
     }
     
     // imageElement - musimy wiedzieć, z którego obrazka aktualnie wyciągamy treść

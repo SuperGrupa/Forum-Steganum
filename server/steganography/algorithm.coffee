@@ -102,20 +102,26 @@ stegano.events = (function () {
     function switchView() {
         if (this.checked) {
             var images = document.querySelectorAll('.post img');
-            // przełączenie na tajny widok...
+            // ukryj nieistotne częsci postów (oryginalnt tekst i obrazki)
+            $('.post .live-edit, .post img').hide();
+            // ukryj całe posty bez obrazków (na pewno nie zawierają tajnej wiadomości)
+            $('md-list-item:has(.post):not(:has(img))').hide();
+
+            // odzyskaj tajne wiadomości z obrazków
             for (var i = 0, n = images.length; i < n; ++i) {
                 stegano.module('algorithm').retrieving(images[i]);
             }
         } else {
-            // przełączenie na zwykły widok
-            var secrets = document.querySelectorAll('.secret-text'),
-                images = document.querySelectorAll('.post img');
+            // przełączenie na zwykły widok - usuń tajne wiadomości
+            var secrets = document.querySelectorAll('.secret-text');
             for (var i = 0; i < secrets.length; ++i) {
                 secrets[i].parentNode.removeChild(secrets[i]);
             }
-            for (var i = 0; i < images.length; ++i) {
-                images[i].setAttribute('style', '');
-            }
+            
+            // pokaż całość postów (oryginalnt tekst i obrazki)
+            $('.post .live-edit, .post img').show();
+            // przywróc poprzednio widoczne normalne posty
+            $('md-list-item:has(.post):not(:has(img))').show();
         }
     }
     
@@ -386,7 +392,6 @@ stegano.algorithm.retrieving = (function () {
         decodedTextElement.appendChild(document.createTextNode(decodedText));
         
         imageElement.parentNode.insertBefore(decodedTextElement, imageElement);
-        imageElement.setAttribute('style', 'display:none');
     }
     
     // imageElement - musimy wiedzieć, z którego obrazka aktualnie wyciągamy treść
