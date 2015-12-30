@@ -4,6 +4,7 @@
         <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
         <title>Show Image Dimensions Locally</title>
         <link rel="stylesheet" href="css/main.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
         <script type="text/javascript" src="meteor.mock.js"></script>
         <script type="text/javascript" src="js/lib/long.min.js"></script>
         <script type="text/javascript" src="js/lib/main.js"></script>
@@ -32,7 +33,7 @@
                     stegano.module('integration').run();
                 });
                 
-                // na kliknięcie "Send post" uruchom algorytm
+                // na kliknięcie "Send post" uruchom algorytms
                 document.getElementById('send-message').addEventListener('click', function () {
                     stegano.module('events').sendMessage();
                 });

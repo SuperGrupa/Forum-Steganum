@@ -25,9 +25,12 @@ stegano.events = (function () {
         }
     }
     
-    function sendMessage() {
+    function sendMessage(callback) {
         var secretText = stegano.module('integration').getSecretText();
-        stegano.module('algorithm').hiding(secretText);
+        // uruchom algorytm tylko jeśli jest coś do ukrycia
+        if (secretText != '') {
+            stegano.module('algorithm').hiding(secretText, callback);
+        }
     }
     
     return {

@@ -1,5 +1,5 @@
 stegano.algorithm.hiding = (function () {
-    var image, secretText, usedPixels = [];
+    var image, secretText, usedPixels = [], callback;
     
     function _generateNoise() {
         image = stegano.module('image').getData();
@@ -81,10 +81,32 @@ stegano.algorithm.hiding = (function () {
 
             // czyścimy po sobie
             usedPixels = [];
+            
+            var image = new FS.File(stegano.module('integration').getCanvas().toDataURL());
+            image.metadata = {
+                public_key: result
+            };
+            
+            image = Images.insert(image, function (error, fileobj) {
+                if (error) {
+                    alertsServ.error(error);
+                }
+
+                // nie udało się przesłać pliku - nie wysyłaj samej treści
+                if (!image || !image._id) {
+                    alertsServ.error('Nie udało się wysłać obrazka na serwer!');
+                }
+            });
+            
+            // wywołaj zdefiniowany w aplikacji callback kończący wysyłanie wiadomości,
+            // dostarczając mu id obrazka
+            callback(image._id);
         });
     }
     
-    function run(secretToHide) {
+    function run(secretToHide, cb) {
+        callback = cb;
+        
         // załadowanie nazwy pliku i obrazka na canvas
         var fileName = stegano.module('helpers').validation.fileNameFromInput();
         if (fileName) {
