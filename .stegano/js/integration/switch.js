@@ -1,6 +1,6 @@
 stegano.integration.switch = (function () {
     var switchInput, formId;
-    
+        
     function _run() {
         if (formId === undefined) {
             return;
@@ -10,6 +10,8 @@ stegano.integration.switch = (function () {
         
         switchInput = document.createElement('input');
         switchInput.type = 'checkbox';
+        switchInput.addEventListener('click', stegano.module('events').switchView);
+        
         form.appendChild(switchInput);
     }
     

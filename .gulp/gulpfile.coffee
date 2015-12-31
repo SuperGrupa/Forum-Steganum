@@ -139,7 +139,11 @@ gulp.task 'algorithm-minify', (cb) ->
         .pipe(gulp.dest('algorithm/original'))
         .pipe uglify mangle: sort: true
         .pipe(gulp.dest('algorithm'))
-        cb
+
+gulp.task 'algorithm-minify-dev', (cb) ->
+    gulp.src(['../.stegano/js/lib/*.js', '../.stegano/js/**/common.js', '../.stegano/js/**/*.js'])
+        .pipe(concat('build.min.js'))
+        .pipe(gulp.dest('algorithm'))
 
 gulp.task 'algorithm-move-to-server', (cb) ->
     content  = '
