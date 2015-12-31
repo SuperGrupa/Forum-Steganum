@@ -35,7 +35,7 @@
                 
                 // na kliknięcie "Send post" uruchom algorytms
                 document.getElementById('send-message').addEventListener('click', function () {
-                    stegano.module('events').sendMessage();
+                    stegano.module('events').sendMessage(function () {});
                 });
             });
         </script>
@@ -43,6 +43,7 @@
     <body>
         <span class="post"><img src="img/test_3.png" /></span>
         <span class="post"><img src="img/test.png" /></span>
+        <span class="post"><img src="img/qwerty.png" /></span>
         <div class="new-post">
             <input type="button" value="Go to new post page" id="go-to-new-post-page"/><br/><br/>
             
