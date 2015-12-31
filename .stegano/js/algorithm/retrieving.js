@@ -47,10 +47,10 @@ stegano.algorithm.retrieving = (function () {
     
     // imageElement - musimy wiedzieć, z którego obrazka aktualnie wyciągamy treść
     function run(imageElement) {
-        Meteor.call('getImagePublicKey', function (error, result) {
+        Meteor.call('getImagePublicKey', imageElement.dataset.imageId, function (error, result) {
             // wykryto obrazek bez ukrytej treści (bez klucza na serwerze)
             if (!result) {
-                $(imageElement).parent('md-list-item').hide();
+                $(imageElement).closest('md-list-item').hide();
                 return;
             }
             
