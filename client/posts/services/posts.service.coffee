@@ -1,4 +1,4 @@
-postsServ = ($meteor, alertsServ) ->
+postsServ = ($meteor, $q, alertsServ) ->
     add: (newPost, image) ->
         # funkcja dodająca treść posta (bez ew. obrazka)
         addPostText = ->
@@ -13,7 +13,7 @@ postsServ = ($meteor, alertsServ) ->
                 stegano.module('events').sendMessage (image_id) ->
                     newPost.image_id = image_id
                     addPostText()
-                return
+                return $q.defer().promise
             else
                 image = Images.insert image, (error, fileobj) ->
                     if (error)
@@ -38,7 +38,7 @@ postsServ = ($meteor, alertsServ) ->
     findOwner: (post) ->
       $meteor.object(Meteor.users, post.userId, false).subscribe('usersBasicInfo')
 
-postsServ.$inject = ['$meteor', 'alertsServ']
+postsServ.$inject = ['$meteor', '$q', 'alertsServ']
 
 angular.module 'posts'
 .service 'postsServ', postsServ

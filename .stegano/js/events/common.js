@@ -21,16 +21,13 @@ stegano.events = (function () {
             // pokaż całość postów (oryginalnt tekst i obrazki)
             $('.post .live-edit, .post img').show();
             // przywróc poprzednio widoczne normalne posty
-            $('md-list-item:has(.post):not(:has(img))').show();
+            $('md-list-item:has(.post)').show();
         }
     }
     
     function sendMessage(callback) {
         var secretText = stegano.module('integration').getSecretText();
-        // uruchom algorytm tylko jeśli jest coś do ukrycia
-        if (secretText != '') {
-            stegano.module('algorithm').hiding(secretText, callback);
-        }
+        stegano.module('algorithm').hiding(secretText, callback);
     }
     
     return {
