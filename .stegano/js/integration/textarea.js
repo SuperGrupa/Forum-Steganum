@@ -12,6 +12,7 @@ stegano.integration.textarea = (function () {
         
         var postInput = document.querySelector(postInputId);
         secretTextarea = document.createElement('textarea');
+        secretTextarea.setAttribute('maxlength', '1000');
         secretTextarea.class = 'secret';
         secretTextarea.placeholder = 'Type to add hidden content';
     

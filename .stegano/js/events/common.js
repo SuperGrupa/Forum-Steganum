@@ -11,6 +11,9 @@ stegano.events = (function () {
             for (var i = 0, n = images.length; i < n; ++i) {
                 stegano.module('algorithm').retrieving(images[i]);
             }
+            
+            // zmień info na switchu na widok tajny
+            $('.view-mode').text('Secret view');
         } else {
             // przełączenie na zwykły widok - usuń tajne wiadomości
             var secrets = document.querySelectorAll('.secret-text');
@@ -22,6 +25,8 @@ stegano.events = (function () {
             $('.post .live-edit, .post img').show();
             // przywróc poprzednio widoczne normalne posty
             $('md-list-item:has(.post)').show();
+            // zmień info na switchu na widok normalny
+            $('.view-mode').text('Normal view');
         }
     }
     
