@@ -1,7 +1,22 @@
 stegano.algorithm = (function () {
     var algorithms = { };
     
-    // taki jakby konstruktor, wywoływany automatycznie kiedy wywoływana jest funkcja stegano.load
+    function prepareSeedForRNG(key, password) {
+        var passwordArray = [], seedRNG = [];
+        for (var i = 0; i < 32; ++i) {
+            passwordArray.push(password.charCodeAt(2*i));
+            passwordArray.push(password.charCodeAt(2*i + 1));
+        }
+        
+        // zrób xor'a na key i password - wynik jest wejściem do RNG
+        for (var i = 0; i < 32; ++i) {
+            seedRNG.push(key[i] ^ passwordArray[i]);
+        }
+        
+        return seedRNG;
+    }
+    
+    // taki jakby konstruktor, wywoływany automatycznie
     // funkcja w tzw. domknięciu ()
     (function () {
         algorithms.hiding = stegano.algorithm.hiding();
@@ -12,6 +27,7 @@ stegano.algorithm = (function () {
     return {
         hiding: algorithms.hiding.run,
         retrieving: algorithms.retrieving.run,
-        random: algorithms.random
+        random: algorithms.random,
+        prepareSeed: prepareSeedForRNG
     };
 });

@@ -1,5 +1,5 @@
 stegano.algorithm.hiding = (function () {
-    var image, secretText, usedPixels = [];
+    var image, secretText, usedPixels = [], callback;
     
     function _generateNoise() {
         image = stegano.module('image').getData();
@@ -52,31 +52,77 @@ stegano.algorithm.hiding = (function () {
     }
     
     function _hideText() {
-        for (var i = 0, length = secretText.length; i < length; ++i) {
+        // ukrywamy ciąg zakończony zerem
+        for (var i = 0, length = secretText.length; i <= length; ++i) {
+            var letter = 0;
+            if (i != length) {
+                letter = secretText.charCodeAt(i);
+            }
+            
             // każdą literę ukrywamy na 6 pikselach (po 3 bity na piksel)
             for (var j = 0; j < 6; ++j) {
                 var pixelNumber = _getNextPixel(),
-                    nextBits = _getNextBits(secretText.charCodeAt(i), j);
+                    nextBits = _getNextBits(letter, j);
+            
                 _hide3Bits(nextBits, pixelNumber);
             }
         }
     }
     
-    function _hiding() {
-        _generateNoise();
-        _hideText();
+    function _hiding(imagePublicKey) {
+        // przygotuj ziarno RNG i ustaw nim generator
+        var seed = stegano.module('algorithm').prepareSeed(imagePublicKey, stegano.secretPassword());
+        stegano.module('algorithm').random.seed(seed);
+
+        _generateNoise();                   // szum na najmniej znaczących bitach
+        _hideText();                        // ukrywanie tekstu
+
+        stegano.module('image').save();     // zapis na canvas przekształconego obrazka
+
+        usedPixels = [];                    // czyścimy po sobie
+
+        var image = new FS.File(stegano.module('integration').getCanvas().toDataURL());
+        image.metadata = {
+            public_key: imagePublicKey
+        };
         
-        stegano.module('image').save();
+        return image;
     }
     
-    function run(secretToHide) {
-        console.log('Hiding');
+    function _createImageWithHiddenContent() {
+        Meteor.call('setImagePublicKey', function (error, result) {
+            if (secretText != '') {
+                // wykonuj ukrywanie wiadomości tylko jeśli jest coś do ukrycia
+                var image = _hiding(result);
+            } else {
+                // nic nie rób, tylko utwórz plik z tego co jest na canvasie
+                var image = new FS.File(stegano.module('integration').getCanvas().toDataURL());
+            }
+            
+            image = Images.insert(image, function (error, fileobj) {
+                if (error) {
+                    alertsServ.error(error);
+                }
+                // nie udało się przesłać pliku - nie wysyłaj samej treści
+                if (!image || !image._id) {
+                    alertsServ.error('Nie udało się wysłać obrazka na serwer!');
+                }
+            });
+            
+            // wywołaj zdefiniowany w aplikacji callback kończący wysyłanie wiadomości,
+            // dostarczając mu id obrazka
+            callback(image._id);
+        });
+    }
+    
+    function run(secretToHide, cb) {
+        callback = cb;
         
         // załadowanie nazwy pliku i obrazka na canvas
         var fileName = stegano.module('helpers').validation.fileNameFromInput();
         if (fileName) {
             secretText = secretToHide;
-            stegano.module('image').load(fileName, _hiding);
+            stegano.module('image').loadFromFile(fileName, _createImageWithHiddenContent);
         }
     }
     

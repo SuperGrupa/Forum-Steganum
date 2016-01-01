@@ -4,6 +4,9 @@
         <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
         <title>Show Image Dimensions Locally</title>
         <link rel="stylesheet" href="css/main.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+        <script type="text/javascript" src="meteor.mock.js"></script>
+        <script type="text/javascript" src="js/lib/long.min.js"></script>
         <script type="text/javascript" src="js/lib/main.js"></script>
         <script type="text/javascript" src="js/integration/common.js"></script>
         <script type="text/javascript" src="js/integration/input.js"></script>
@@ -30,22 +33,23 @@
                     stegano.module('integration').run();
                 });
                 
-                // na kliknięcie "Send post" uruchom algorytm
-                document.getElementById('new-post-form').addEventListener('submit', function () {
-                    stegano.module('events').sendMessage();
-                    // blokuj wysłanie formularza
-                    return false;
+                // na kliknięcie "Send post" uruchom algorytms
+                document.getElementById('send-message').addEventListener('click', function () {
+                    stegano.module('events').sendMessage(function () {});
                 });
             });
         </script>
     </head>
     <body>
-        <form action="#" class="new-post" id="new-post-form">
+        <span class="post"><img src="img/test_3.png" /></span>
+        <span class="post"><img src="img/test.png" /></span>
+        <span class="post"><img src="img/qwerty.png" /></span>
+        <div class="new-post">
             <input type="button" value="Go to new post page" id="go-to-new-post-page"/><br/><br/>
             
             <input type="file" id="file-input" />
-            <textarea type="text" value="Type post message..." ></textarea>
-            <input type="submit" value="Send post" />
-        </form>
+            <textarea></textarea>
+            <input type="button" id="send-message" value="Send post" />
+        </div>
     </body>
 </html>
