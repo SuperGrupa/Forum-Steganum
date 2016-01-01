@@ -1,5 +1,5 @@
-stegano.integration.input = (function () {
-    var postInputId, secretInput;
+stegano.integration.textarea = (function () {
+    var postInputId, secretTextarea;
     
     function _insertAfter(newNode, refNode) {
         refNode.parentNode.insertBefore(newNode, refNode.nextSibling);
@@ -11,15 +11,15 @@ stegano.integration.input = (function () {
         }
         
         var postInput = document.querySelector(postInputId);
-        secretInput = document.createElement('input');
-        secretInput.class = 'secret';
-        secretInput.type = 'text';
+        secretTextarea = document.createElement('textarea');
+        secretTextarea.class = 'secret';
+        secretTextarea.placeholder = 'Type to add hidden content';
     
-        _insertAfter(secretInput, postInput);
+        _insertAfter(secretTextarea, postInput);
     }
     
     function secretText() {
-        return secretInput.value;
+        return secretTextarea.value;
     }
     
     // taki jakby konstruktor, wywoływany automatycznie kiedy wywoływana jest funkcja stegano.load

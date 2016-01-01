@@ -1,5 +1,5 @@
 stegano.integration.switch = (function () {
-    var switchInput, formId;
+    var onoffSwitch, formId;
         
     function _run() {
         if (formId === undefined) {
@@ -8,11 +8,14 @@ stegano.integration.switch = (function () {
         
         var form = document.querySelector(formId);
         
-        switchInput = document.createElement('input');
-        switchInput.type = 'checkbox';
-        switchInput.addEventListener('click', stegano.module('events').switchView);
+        onoffSwitch = document.createElement('div');
+        onoffSwitch.className = 'onoffswitch';
+        onoffSwitch.innerHTML =
+            '<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch">' +
+            '<label class="onoffswitch-label" for="myonoffswitch"></label>';
         
-        form.appendChild(switchInput);
+        form.appendChild(onoffSwitch);        
+        $('.onoffswitch input').click(stegano.module('events').switchView);        
     }
     
     // taki jakby konstruktor, wywoływany automatycznie kiedy wywoływana jest funkcja stegano.load

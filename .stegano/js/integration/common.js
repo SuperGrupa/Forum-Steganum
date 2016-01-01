@@ -10,7 +10,7 @@ stegano.integration = (function () {
         // utworzy na żądanie canvas, input do wpisania tajnej wiadomości 
         // i switch do przełączania widoków zwykły/tajny
         integration.canvas = stegano.integration.canvas();
-        integration.input = stegano.integration.input();
+        integration.textarea = stegano.integration.textarea();
         integration.switch = stegano.integration.switch();
     }
     
@@ -25,8 +25,8 @@ stegano.integration = (function () {
     }
     
     function getSecretText() {
-        if (integration.input !== undefined) {
-            return integration.input.secretText();
+        if (integration.textarea !== undefined) {
+            return integration.textarea.secretText();
         }
     }
 
