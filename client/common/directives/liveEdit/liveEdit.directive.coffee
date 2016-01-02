@@ -4,6 +4,7 @@ liveEdit = ->
     scope: true
     bindToController:
         object: '='
+        updateWhen: '='
         onSave: '&'
         inputType: '@'
     templateUrl: 'client/common/directives/liveEdit/liveEdit.directive.html'
