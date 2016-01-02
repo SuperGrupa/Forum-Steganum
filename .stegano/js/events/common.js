@@ -2,22 +2,21 @@ stegano.events = (function () {
     var viewMode = 'Normal';
     
     function switchView() {
-        viewMode = this.checked ? 'Secret' : 'Normal';
+        viewMode = $('.view-switch input').prop('checked') ? 'Secret' : 'Normal';
         
-        if (this.checked) {
+        if (viewMode === 'Secret') {
             var images = document.querySelectorAll('.post img');
             // ukryj nieistotne częsci postów (oryginalnt tekst i obrazki)
             $('.post .live-edit, .post img').hide();
             // ukryj całe posty bez obrazków (na pewno nie zawierają tajnej wiadomości)
             $('md-list-item:has(.post):not(:has(img))').hide();
+            // zmień info na switchu na widok tajny
+            $('.view-mode').text(viewMode + ' view');
 
             // odzyskaj tajne wiadomości z obrazków
             for (var i = 0, n = images.length; i < n; ++i) {
                 stegano.module('algorithm').retrieving(images[i]);
             }
-            
-            // zmień info na switchu na widok tajny
-            $('.view-mode').text(viewMode + ' view');
         } else {
             // przełączenie na zwykły widok - usuń tajne wiadomości
             var secrets = document.querySelectorAll('.secret-text');
