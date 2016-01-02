@@ -112,6 +112,9 @@ stegano.algorithm.hiding = (function () {
             // wywołaj zdefiniowany w aplikacji callback kończący wysyłanie wiadomości,
             // dostarczając mu id obrazka
             callback(image._id);
+            
+            // wyczyść pola do wpisywania treści posta po utworzeniu wiadomości
+            $('.new-post textarea').val('');
         });
     }
     
