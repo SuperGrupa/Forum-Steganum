@@ -1,6 +1,6 @@
 # prywatna funkcja, która sprawdza, czy użytkownik osiągnął poprzedni krok sekwencji
 # oraz czy z osiąganiem kolejnego "wyrobił się" w czasie
-checkStep: (number, informations, updatedAtMost = 10) ->
+checkStep = (number, informations, updatedAtMost = 10) ->
     currentUserId = Meteor.userId()
     # przejdź dalej tylko jeśli aktualnym krokiem jest number 
     # jeśli nie, resetuj sekwencję dla tego użytkownika
