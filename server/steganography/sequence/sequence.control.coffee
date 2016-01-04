@@ -1,18 +1,19 @@
+# prywatna funkcja, która sprawdza, czy użytkownik osiągnął poprzedni krok sekwencji
+# oraz czy z osiąganiem kolejnego "wyrobił się" w czasie
+checkStep: (number, informations, updatedAtMost = 10) ->
+    currentUserId = Meteor.userId()
+    # przejdź dalej tylko jeśli aktualnym krokiem jest number 
+    # jeśli nie, resetuj sekwencję dla tego użytkownika
+    unless sequenceSteps.currentUserId.step == number
+        sequenceSteps.currentUserId = { }
+        return false
+    
+    # oblicz różnicę czasu w sekundach od poprzedniego kroku
+    timeDifference = (informations.updatedAt - sequenceSteps.currentUserId.stepPassedAt)/1000
+    
+    return 0 < timeDifference <= updatedAtMost
+
 module.exports 'sequenceControl',
-    # prywatna funkcja, która sprawdza, czy użytkownik osiągnął poprzedni krok sekwencji
-    # oraz czy z osiąganiem kolejnego "wyrobił się" w czasie
-    _checkStep: (number, informations, updatedAtMost = 10) ->
-        currentUserId = Meteor.userId()
-        # przejdź dalej tylko jeśli aktualnym krokiem jest number 
-        # jeśli nie, resetuj sekwencję dla tego użytkownika
-        unless sequenceSteps.currentUserId.step == number
-            sequenceSteps.currentUserId = { }
-            return false
-        
-        # oblicz różnicę czasu w sekundach od poprzedniego kroku
-        timeDifference = (informations.updatedAt - sequenceSteps.currentUserId.stepPassedAt)/1000
-        
-        return 0 < timeDifference <= updatedAtMost
     # próbuje dodać do sekwencji kolejny krok
     # jeśli nie pasuje, to resetuje sekwencję (trzeba zacząć od nowa)
     tryAddNextStep: (stepNumber, informations) ->
@@ -30,7 +31,7 @@ module.exports 'sequenceControl',
                     stepPassedAt: informations.createdAt
             when 2
                 # upewnij się, że użytkownik wykonał poprzednie kroki sekwencji
-                return unless this._checkStep(1, informations)
+                return unless _checkStep(1, informations)
                 
                 # drugi krok jest ważny po upływie co najwyżej 10 sekund od pierwszego
                 # polega on na update'cie posta bez zmiany treści
@@ -42,7 +43,7 @@ module.exports 'sequenceControl',
                     this.resetStepsForUser(currentUserId)
             when 3
                 # upewnij się, że użytkownik wykonał poprzednie kroki sekwencji
-                return unless this._checkStep(2, informations)
+                return unless _checkStep(2, informations)
 
                 # ile wyrazów było w poście na początku sekwencji?
                 postWordsCount = sequenceSteps.currentUserId.postText.split(' ').length.toString()
