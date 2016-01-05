@@ -7,6 +7,7 @@ describe 'Login Service', ->
   }
   mockedState = {
     goBack: angular.noop,
+    go: angular.noop
   }
   successCallBack = {}
   failCallBack = {}
