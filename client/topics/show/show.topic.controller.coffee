@@ -7,6 +7,10 @@ ShowTopicCtrl = (topicsServ, $stateParams) ->
 
     [vm.topic.images, vm.topic.posts] = topicsServ.getPostsWithImages(vm.topic.id, vm.page_number, 10)
 
+    vm.loadMorePosts = () ->
+        vm.page_number += 1
+        console.log vm.page_number
+
     return vm
 
 

@@ -1,4 +1,6 @@
 .posts-list
+    .load-more-btn
+        md-button.md-raised Load more...
     md-whiteframe.md-whiteframe-z1(layout, layout-align="left center")
         md-list
             md-list-item(ng-repeat='post in listDir.posts', ng-if="can('read', 'post', post)")
