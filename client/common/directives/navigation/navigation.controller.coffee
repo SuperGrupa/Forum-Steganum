@@ -2,12 +2,12 @@ navigationController = ($meteor) ->
     vm = this
 
     if !!vm.sectionId
-        $meteor.call('getSectionById', vm.sectionId).then ->
-            vm.section = Filter.Sections.by(vm.sectionId)
+        $meteor.call('getSectionById', vm.sectionId).then (result) ->
+            vm.section = result
 
     if !!vm.topicId
-        $meteor.call('getTopicById', vm.topicId).then ->
-            vm.topic = Filter.Topics.by.id(vm.topicId)
+        $meteor.call('getTopicById', vm.topicId).then (result) ->
+            vm.topic = result
 
     return vm
 

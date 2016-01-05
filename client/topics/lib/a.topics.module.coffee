@@ -16,11 +16,11 @@ topicsModule = ($stateProvider) ->
         url: '/new'
         templateUrl: 'client/topics/new/new.topic.html'
         resolve: resolveObject('create', 'topic')
-    ).state('topic.posts',
-        url: '/:topic_id/page/:page_number'
-        templateUrl: 'client/topics/page/page.of.posts.html'
-        controller: 'PageOfPostsCtrl'
-        controllerAs: 'page'
+    ).state('topic.show',
+        url: '/:topic_id'
+        templateUrl: 'client/topics/show/show.topic.html'
+        controller: 'ShowTopicCtrl'
+        controllerAs: 'show'
         resolve: resolveObject('read', 'topic')
     ).state('topic.edit',
         url: '/:topic_id/edit'

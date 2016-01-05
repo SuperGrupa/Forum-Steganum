@@ -1,6 +1,6 @@
-PageOfPostsCtrl = (topicsServ, $stateParams) ->
+ShowTopicCtrl = (topicsServ, $stateParams) ->
     vm = this
-    vm.page_number = $stateParams.page_number
+    vm.page_number = 1
     vm.topic =
         id: $stateParams.topic_id
         section_id: $stateParams.section_id
@@ -10,7 +10,7 @@ PageOfPostsCtrl = (topicsServ, $stateParams) ->
     return vm
 
 
-PageOfPostsCtrl.$inject = ['topicsServ', '$stateParams']
+ShowTopicCtrl.$inject = ['topicsServ', '$stateParams']
 
 angular.module('topics')
-.controller 'PageOfPostsCtrl', PageOfPostsCtrl
+.controller 'ShowTopicCtrl', ShowTopicCtrl
