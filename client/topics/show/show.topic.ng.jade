@@ -1,3 +1,5 @@
 navigation(section-id="{{ show.topic.section_id }}", topic-id="{{ show.topic.id }}")
+.load-more-btn
+    md-button.md-raised(ng-click="show.loadMorePosts()") Load more...
 posts-list(posts="show.topic.posts")
 new-post(ng-if="can('create', 'post')")
