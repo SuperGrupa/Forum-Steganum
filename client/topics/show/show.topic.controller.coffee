@@ -5,10 +5,12 @@ ShowTopicCtrl = (topicsServ, $stateParams) ->
         id: $stateParams.topic_id
         section_id: $stateParams.section_id
 
-
-    do vm.loadMorePosts = () ->
+    vm.loadMorePosts = () ->
         vm.page_number += 1
-        [vm.topic.images, vm.topic.posts] = topicsServ.getPostsWithImages(vm.topic.id, vm.page_number, 10)
+        [vm.topic.images, vm.topic.posts] = topicsServ.getPostsWithImages(vm.topic.id, vm.page_number)
+
+    # załaduj ostatnie 10 postów
+    vm.loadMorePosts()
 
     return vm
 
