@@ -2,7 +2,7 @@
     Posts:
         by: (topic_id, page_number, posts_per_page) ->
             Posts.find topic_id: topic_id,
-                sort: createdAt: 1
+                sort: createdAt: -1
                 limit: page_number*posts_per_page
     Topics:
         by:
