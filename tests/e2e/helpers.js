@@ -23,5 +23,37 @@ module.exports = {
     logoutButton.isDisplayed().then(function() {
       logoutButton.click();
     });
+  },
+
+  addSection: function(name, description) {
+    element(By.css('[ui-sref="section.new"]')).click();
+
+    var nameInput = element(By.css('[ng-model="new.section.name"]'));
+    nameInput.clear().then(function() {
+      nameInput.sendKeys(name);
+    });
+
+    var descriptionInput = element(By.css('[ng-model="new.section.description"]'));
+    descriptionInput.clear().then(function() {
+      descriptionInput.sendKeys(description);
+    });
+
+    element(By.css('[type="submit"]')).click();
+  },
+
+  editSection: function(which, name, description) {
+    element.all(By.css('.edit')).get(which).click();
+
+    var nameInput = element(By.css('[ng-model="edit.section.name"]'));
+    nameInput.clear().then(function() {
+      nameInput.sendKeys(name);
+    });
+
+    var descriptionInput = element(By.css('[ng-model="edit.section.description"]'));
+    descriptionInput.clear().then(function() {
+      descriptionInput.sendKeys(description);
+    });
+
+    element(By.css('[type="submit"]')).click();
   }
 }
