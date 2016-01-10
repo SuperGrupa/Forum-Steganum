@@ -5,12 +5,12 @@ module.exports = {
   run: function() {
     describe('Sections scenario', function() {
       var newSection = {
-        name: 'someName',
-        description: 'someDescription'
+        name: 'someSectionName',
+        description: 'someSectionDescription'
       };
       var editSection = {
         name: 'updatedName',
-        description: 'updatedDescription'
+        description: 'updatedSectionDescription'
       };
 
 
