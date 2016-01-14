@@ -16,5 +16,9 @@ exports.config = {
 
     multiCapabilities: [{
         'browserName': 'chrome'
-    }]
+    }],
+
+    onPrepare: function() {
+        browser.driver.manage().window().maximize();
+    }
 };

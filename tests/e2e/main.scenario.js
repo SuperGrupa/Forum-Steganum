@@ -1,7 +1,9 @@
 'use strict';
-describe('Main scenario', function() {
-  it('should load the main page', function() {
-    browser.get('/');
-    expect(browser.isElementPresent(By.css('body'))).toBe(true);
-  });
-});
+var sections = require('./sections.scenario');
+var topics = require('./topics.scenario');
+var posts = require('./posts.scenario');
+
+sections.run();
+topics.run();
+posts.run();
+
