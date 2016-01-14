@@ -15,7 +15,7 @@ module.exports = {
     var loginButton = element(By.css('[ng-click="userCtrl.auth.logIn()"]'));
     loginButton.click();
 
-    browser.sleep(100);
+    browser.sleep(300);
   },
 
   logout: function() {
