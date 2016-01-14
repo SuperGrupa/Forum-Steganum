@@ -1,18 +1,20 @@
 'use strict';
 
-class AuthHelpers {
+let MainClass = require('../lib/main.class');
+
+class AuthHelpers extends MainClass {
+  constructor() {
+    super()
+  }
+
   loginAs(login, password) {
     browser.get('/users/login');
 
     let loginInput = element(By.css('[ng-model="userCtrl.auth.email"]'));
-    loginInput.clear().then(() => {
-      loginInput.sendKeys(login);
-    });
+    this.inputOn(loginInput, login);
 
     let passwordInput = element(By.css('[ng-model="userCtrl.auth.password"]'));
-    passwordInput.clear().then(() => {
-      passwordInput.sendKeys(password);
-    });
+    this.inputOn(passwordInput, password);
 
     let loginButton = element(By.css('[ng-click="userCtrl.auth.logIn()"]'));
     loginButton.click();
