@@ -7,10 +7,6 @@ class SectionClass extends MainClass {
     super()
   }
 
-  get sections() {
-    return element.all(By.repeater('section in listDir.sections'));
-  }
-
   addSection(name, description) {
     element(By.css('[ui-sref="section.new"]')).click();
 

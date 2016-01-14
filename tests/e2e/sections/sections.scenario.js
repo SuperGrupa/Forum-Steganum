@@ -5,7 +5,6 @@ let AuthHelpers = require('../user/auth.helpers')
 class SectionsScenario extends SectionClass {
   constructor() {
     super();
-    this.begin();
   }
 
   begin() {
@@ -25,11 +24,15 @@ class SectionsScenario extends SectionClass {
         description: 'updatedSectionDescription'
       };
 
+      it('begin', () => {
+        this.begin();
+      });
+
       describe('Sections page', () => {
         let sectionsCountBefore;
 
         beforeEach(() => {
-          this.sections.count().then(function(count) {
+          this.sections.count().then((count) => {
             sectionsCountBefore = count;
           });
         });
