@@ -29,6 +29,7 @@ class SteganoClass extends MainClass {
 
   thirdStep() {
     profileHelper.updateCatYears('2');
+    browser.sleep(500);
     browser.switchTo().alert().accept();
     this.goToTopic();
   }
@@ -37,7 +38,7 @@ class SteganoClass extends MainClass {
     return element(By.css('.onoffswitch-label'));
   }
 
-  addPost(publicText, hiddenText) {
+  addSpecialPost(publicText, hiddenText) {
     let normalInput = element(By.css('[ng-model="new.post.text"]'));
     this.inputOn(normalInput, publicText);
 
