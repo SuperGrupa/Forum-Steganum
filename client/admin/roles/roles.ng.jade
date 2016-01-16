@@ -1,14 +1,15 @@
 .roles-admin
   md-whiteframe.md-whiteframe-z1(layout="column", layout-align="center center")
-    div.header-roles(layout="row", layout-align="space-between center")
-      div.left(layout="row", layout-align="space-between center")
-        p Default role:
-        md-select(ng-model="rolesA.defaultRole", aria-label="default role")
+    div.header-roles(layout="column")
+      div.left(layout="row", layout-align="space-between left")
+        p.margins Default role:
+        md-select.margins(ng-model="rolesA.defaultRole", aria-label="default role")
           md-option(ng-repeat="role in rolesA.roles" ng-value="role")
             | {{ role.name }}
-        md-button.md-raised.md-primary(ng-click="rolesA.saveDefaultRole()", ng-disabled="rolesA.defaultRole.default") Save default role
-      md-button.center.md-raised.md-primary(ng-click="rolesA.addNewRole()") Add new role
-      md-button.right.md-raised.md-primary(ng-click="rolesA.saveRoles()", ng-disabled="!rolesA.isRoleSelected()") Save selected roles
+        md-button.margins.md-raised.md-primary(ng-click="rolesA.saveDefaultRole()", ng-disabled="rolesA.defaultRole.default") Save default role
+      div(layout="row", layout-align="space-between left")
+        md-button.margins.md-raised.md-primary(ng-click="rolesA.addNewRole()") Add new role
+        md-button.margins.md-raised.md-primary(ng-click="rolesA.saveRoles()", ng-disabled="!rolesA.isRoleSelected()") Save selected roles
     div(layout="column")
       .row(layout="row" layout-align="space-between center")
         .title(flex="5")

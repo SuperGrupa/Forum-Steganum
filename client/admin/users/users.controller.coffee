@@ -1,4 +1,5 @@
 usersACtrl = ($q, alertsServ, usersAServ, rolesAServ) ->
+  this.WIP = true;
   this.users = usersAServ.getAllUsers()
   this.roles = rolesAServ.getAllRoles()
 
