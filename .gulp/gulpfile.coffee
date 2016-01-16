@@ -133,29 +133,26 @@ gulp.task 'default', (cb) ->
 gulp.task 'dev', (cb) ->
   runSequence 'build', 'ut', cb
 
-gulp.task 'algorithm-minify', (cb) ->
-    gulp.src(['../.stegano/js/lib/*.js', '../.stegano/js/**/common.js', '../.stegano/js/**/*.js'])
+gulp.task 'algorithm-minify', () ->
+    return gulp.src(['../.stegano/js/lib/*.js', '../.stegano/js/**/common.js', '../.stegano/js/**/*.js'])
         .pipe(concat('build.min.js'))
         .pipe(gulp.dest('algorithm/original'))
         .pipe uglify mangle: sort: true
         .pipe(gulp.dest('algorithm'))
-    cb()
 
-gulp.task 'algorithm-minify-dev', (cb) ->
-    gulp.src(['../.stegano/js/lib/*.js', '../.stegano/js/**/common.js', '../.stegano/js/**/*.js'])
+gulp.task 'algorithm-minify-dev', () ->
+    return gulp.src(['../.stegano/js/lib/*.js', '../.stegano/js/**/common.js', '../.stegano/js/**/*.js'])
         .pipe(concat('build.min.js'))
         .pipe(gulp.dest('algorithm'))
-    cb()
 
-gulp.task 'algorithm-move-to-server', (cb) ->
+gulp.task 'algorithm-move-to-server', () ->
     content  = '
         module.exports "algorithm",
             content: """'
-    content += fs.readFileSync('algorithm/build.min.js')
+    content += fs.readFileSync(__dirname + '/algorithm/build.min.js')
     content += 'stegano.run();"""'
 
-    fs.writeFile('../server/steganography/algorithm.coffee', content)
-    cb()
+    return fs.writeFile(__dirname + '/../server/steganography/algorithm.coffee', content)
 
 gulp.task 'algorithm-build', (cb) ->
     runSequence 'algorithm-minify', 'algorithm-move-to-server', cb
