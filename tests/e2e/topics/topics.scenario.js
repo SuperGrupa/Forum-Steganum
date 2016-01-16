@@ -1,6 +1,7 @@
 'use strict';
 let TopicClass = require('./topic.class')
-let AuthHelpers = require('../user/auth.helpers')
+let AuthClass = require('../user/auth.class')
+let AuthHelpers = new AuthClass;
 
 class TopicsScenario extends TopicClass {
   constructor() {
