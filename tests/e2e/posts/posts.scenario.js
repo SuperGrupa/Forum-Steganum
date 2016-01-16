@@ -60,6 +60,13 @@ class PostsScenario extends PostClass {
           expect(this.posts.first().getText()).toContain(editPost.text);
           expect(this.posts.first().getText()).toContain('admin');
         });
+
+        it('should add post with image', () => {
+          this.addImage();
+          this.addPost(newPost.text);
+
+          expect(this.posts.last().element(By.css('img')).isPresent()).toBeTruthy();
+        });
       });
 
       it('should logout', () => {
