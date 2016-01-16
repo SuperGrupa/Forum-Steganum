@@ -28,6 +28,29 @@ class SteganoScenario extends AuthClass {
         expect(this.email).toEqual(email);
       });
 
+      it('logout', () => {
+        this.logout();
+      });
+
+      it('should login with the same email', () => {
+        this.loginAs(email, password);
+        expect(this.login).toEqual(username);
+        expect(this.email).toEqual(email);
+      });
+
+      it('logout', () => {
+        this.logout();
+      });
+
+      it('should login with the same username', () => {
+        this.loginAs(username, password);
+        expect(this.login).toEqual(username);
+        expect(this.email).toEqual(email);
+      });
+
+      it('logout', () => {
+        this.logout();
+      });
     });
   }
 }
