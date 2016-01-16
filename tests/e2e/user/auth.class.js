@@ -7,8 +7,32 @@ class AuthClass extends MainClass {
     super()
   }
 
-  get userName() {
-    return element(By.css)
+  adminUsersMenuClick() {
+    element(By.css('[ui-sref="admin.users"]')).click();
+  }
+
+  get users() {
+    return element.all(By.repeater('user in usersA.users'));
+  }
+
+  get lastUserRole() {
+    return this.users.last().all(By.css('md-select span')).first().getText();
+  }
+
+  get saveUsersButton() {
+    return element(By.css('[ng-click="usersA.saveUsers()"]'));
+  }
+
+  changeLastUserRole(which) {
+    this.users.last().element(By.css('[ng-model="user.role"]')).click();
+    browser.sleep(500)
+    element(By.css(`[value="${which}"]`)).click();
+  }
+
+  removeLastUser() {
+    this.users.last().element(By.css('[ng-click="usersA.removeUser(user)"]')).click();
+    browser.sleep(500);
+    browser.switchTo().alert().accept();
   }
 
   typeEmail(email) {
