@@ -6,9 +6,9 @@ var stegano = require('./steganography/stegano.scenario');
 var users = require('./user/users.scenario');
 var adminPanel = require('./user/admin.scenario');
 
-// sections.run();
-// topics.run();
-// posts.run();
-// stegano.run();
+sections.run();
+topics.run();
+posts.run();
+stegano.run();
 users.run();
 adminPanel.run();

@@ -67,8 +67,89 @@ class AdminScenario extends AuthClass {
 
         it('remove last user', () => {
           this.removeLastUser();
-          expect(this.users.count()).toBe(usersCountBefore - 1)
+          expect(this.users.count()).toBe(usersCountBefore - 1);
         });
+      });
+
+      describe('roles', () => {
+        it('got to roles', () => {
+          this.adminRolesMenuClick();
+        });
+
+        let rolesCountBefore;
+
+        beforeEach(() => {
+          this.roles.count().then((count) => {
+            rolesCountBefore = count;
+          });
+        });
+
+        it('should not contain admin user', () => {
+          expect(this.roles.getText()).not.toContain('admin');
+        });
+
+        it('default role should be user', () => {
+          expect(this.defalutRole).toEqual('user');
+        });
+
+        it('save default role button should be disabled', () => {
+          expect(this.saveDefaultButton.getAttribute('disabled')).toBeTruthy();
+        });
+
+        it('change default role', () => {
+          this.changeDefaultRole(1);
+          expect(this.defalutRole).toEqual('moderator');
+        });
+
+        describe('new user', () => {
+          let username = 'random' + Math.floor(Math.random() * 10000);
+          let email = username + '@fs.com';
+          let password = 'supersecret';
+
+          it('should have moderator role', () => {
+            this.logout();
+            this.registerAs(email, username, password);
+            this.logout();
+            this.begin();
+            this.adminUsersMenuClick();
+            expect(this.lastUserRole).toEqual('moderator');
+          });
+
+          it('go back to roles and change default role', () => {
+            this.removeLastUser();
+            this.adminRolesMenuClick();
+            this.changeDefaultRole(2);
+            expect(this.defalutRole).toEqual('user');
+          });
+        });
+
+        it('save roles button should be disabled', () => {
+          expect(this.saveRolesButton.getAttribute('disabled')).toBeTruthy();
+        });
+
+        it('add new role', () => {
+          this.addNewRoleButton.click();
+          expect(this.roles.count()).toBe(rolesCountBefore + 1)
+        });
+
+        it('save roles button should not be disabled', () => {
+          expect(this.saveRolesButton.getAttribute('disabled')).toBeFalsy();
+        });
+
+        it('save role', () => {
+          this.saveRolesButton.click();
+          browser.get('/admin/roles');
+          expect(this.roles.count()).toBe(4);
+        });
+
+        it('delete role', () => {
+          this.removeRole(2);
+          expect(this.roles.count()).toBe(3);
+        });
+      });
+
+      it('logout', () => {
+        this.logout();
       });
     });
   }

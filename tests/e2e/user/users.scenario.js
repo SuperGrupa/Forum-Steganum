@@ -8,8 +8,6 @@ class SteganoScenario extends AuthClass {
   }
 
   begin() {
-    browser.get('/');
-    browser.sleep(500);
   }
 
   run() {
@@ -17,10 +15,6 @@ class SteganoScenario extends AuthClass {
       let username = 'random' + Math.floor(Math.random() * 10000);
       let email = username + '@fs.com';
       let password = 'supersecret';
-
-      it('begin', () => {
-        this.begin();
-      });
 
       it('should create account', () => {
         this.registerAs(email, username, password);

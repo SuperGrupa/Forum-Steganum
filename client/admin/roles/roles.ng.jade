@@ -19,7 +19,7 @@
         .title(flex="20") Update
         .title(flex="20") Delete
         .title(flex="5")
-      .row(layout="row" layout-align="space-between center" ng-repeat="role in rolesA.roles",
+      .row(layout="row" layout-align="space-between center" ng-repeat="role in rolesA.roles | orderBy : 'name'",
             ng-class="{ 'updated-row': role.updated }", ng-if="role.name != 'admin'")
         .cell(flex="5")
           md-checkbox(ng-model="role.selected", aria-label="role select", ng-disabled="!role.updated")

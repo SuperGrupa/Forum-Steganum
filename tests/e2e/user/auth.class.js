@@ -11,6 +11,10 @@ class AuthClass extends MainClass {
     element(By.css('[ui-sref="admin.users"]')).click();
   }
 
+  adminRolesMenuClick() {
+    element(By.css('[ui-sref="admin.roles"]')).click();
+  }
+
   get users() {
     return element.all(By.repeater('user in usersA.users'));
   }
@@ -31,6 +35,40 @@ class AuthClass extends MainClass {
 
   removeLastUser() {
     this.users.last().element(By.css('[ng-click="usersA.removeUser(user)"]')).click();
+    browser.sleep(500);
+    browser.switchTo().alert().accept();
+  }
+
+  get roles() {
+    return element.all(By.repeater('role in rolesA.roles'));
+  }
+
+  get defalutRole() {
+    return element.all(By.css('md-select span')).first().getText();
+  }
+
+  get saveDefaultButton() {
+    return element(By.css('[ng-click="rolesA.saveDefaultRole()"]'));
+  }
+
+  get saveRolesButton() {
+    return element(By.css('[ng-click="rolesA.saveRoles()"]'));
+  }
+
+  get addNewRoleButton() {
+    return element(By.css('[ng-click="rolesA.addNewRole()"]'));
+  }
+
+  changeDefaultRole(which) {
+    element(By.css('[ng-model="rolesA.defaultRole"]')).click();
+    browser.sleep(500);
+    element(By.css('md-select-menu')).all(By.repeater('role in rolesA.roles')).get(which).click();
+    browser.sleep(500);
+    this.saveDefaultButton.click();
+  }
+
+  removeRole(which) {
+    this.roles.get(which).element(By.css('[ng-click="rolesA.removeRole(role)"]')).click();
     browser.sleep(500);
     browser.switchTo().alert().accept();
   }
@@ -72,6 +110,7 @@ class AuthClass extends MainClass {
 
   registerAs(email, login, password) {
     browser.get('/users/register');
+    browser.sleep(500);
 
     this.typeEmail(email);
 
