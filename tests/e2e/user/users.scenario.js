@@ -2,7 +2,7 @@
 
 let AuthClass = require('./auth.class')
 
-class SteganoScenario extends AuthClass {
+class UsersScenario extends AuthClass {
   constructor() {
     super();
   }
@@ -49,4 +49,4 @@ class SteganoScenario extends AuthClass {
   }
 }
 
-module.exports = new SteganoScenario;
+module.exports = new UsersScenario;
