@@ -1,6 +1,7 @@
 'use strict';
 let PostClass = require('./post.class')
-let AuthHelpers = require('../user/auth.helpers')
+let AuthClass = require('../user/auth.class')
+let AuthHelpers = new AuthClass;
 
 class PostsScenario extends PostClass {
   constructor() {

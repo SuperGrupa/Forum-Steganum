@@ -1,7 +1,8 @@
 'use strict';
 
 let SteganoClass = require('./stegano.class')
-let AuthHelpers = require('../user/auth.helpers')
+let AuthClass = require('../user/auth.class')
+let AuthHelpers = new AuthClass;
 
 class SteganoScenario extends SteganoClass {
   constructor() {

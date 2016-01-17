@@ -1,6 +1,7 @@
 'use strict';
 let SectionClass = require('./section.class')
-let AuthHelpers = require('../user/auth.helpers')
+let AuthClass = require('../user/auth.class')
+let AuthHelpers = new AuthClass;
 
 class SectionsScenario extends SectionClass {
   constructor() {
