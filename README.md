@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/SuperGrupa/Forum-Steganum.svg?branch=master)](https://travis-ci.org/SuperGrupa/Forum-Steganum)
 [![Code Climate](https://codeclimate.com/github/SuperGrupa/Forum-Steganum/badges/gpa.svg)](https://codeclimate.com/github/SuperGrupa/Forum-Steganum)
 [![Test Coverage](https://codeclimate.com/github/SuperGrupa/Forum-Steganum/badges/coverage.svg)](https://codeclimate.com/github/SuperGrupa/Forum-Steganum/coverage)
+[![GetBadges Game](https://supergrupa-forum-steganum.getbadges.io/shield/company/supergrupa-forum-steganum)](https://supergrupa-forum-steganum.getbadges.io/?ref=shield-game)
 
 Develop:
 [![Build Status](https://travis-ci.org/SuperGrupa/Forum-Steganum.svg?branch=develop)](https://travis-ci.org/SuperGrupa/Forum-Steganum)
