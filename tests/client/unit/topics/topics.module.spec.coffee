@@ -30,7 +30,7 @@ describe 'Topics module', ->
 
     describe 'topic.posts state', ->
         beforeEach (done) ->
-            $state.go 'topic.posts'
+            $state.go 'topic.show'
             $rootScope.$digest()
             done()
 
