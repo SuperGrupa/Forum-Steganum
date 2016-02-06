@@ -15,7 +15,6 @@ describe 'Topics Service', ->
                     first: name
                     second: topicId
                     third: pageNumber
-                    fourth: postsPerPage
     mockedState =
         go: angular.noop
         goBack: angular.noop
@@ -51,21 +50,21 @@ describe 'Topics Service', ->
     describe 'getPostsWithImages method', ->
         topic_id = 1
         page_number = 2
-        posts_per_page = 10
 
         beforeEach ->
-            topicsServ.getPostsWithImages(topic_id, page_number, posts_per_page)
+            topicsServ.getPostsWithImages(topic_id, page_number)
             collectionCallBack()
 
         it 'should call by method on Filter.Posts with proper arguments', ->
-            expect(Filter.Posts.by).toHaveBeenCalledWith(topic_id, page_number, posts_per_page)
+            expect(Filter.Posts.by).toHaveBeenCalledWith topic_id,
+                sort: createdAt: -1
+                limit: 10*page_number
 
         it 'should call subscribe method on $meteor.collection object with proper arguments', ->
             expect(subscribeArguments).toEqual
                 first: 'postsOfTopic'
                 second: topic_id
                 third: page_number
-                fourth: posts_per_page
 
     describe 'getTopicById method', ->
         beforeEach ->
