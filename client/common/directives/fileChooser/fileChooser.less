@@ -1,5 +1,6 @@
 .file-chooser {
     display: inline-block;
+    margin-left: 10px;
 
     .upload-button {
         margin: 0;
@@ -14,8 +15,16 @@
         font-size: 0.8em;
     }
 
-    .icon-area .delete, .file-name {
-        position: static;
+    .icon-area {
+        // Aby wycentrować wertykalnie nazwę pliku z ikoną
         display: inline-block;
+        min-height: 36px;
+        line-height: 36px;
+        vertical-align: top;
+
+        .delete, .file-name {
+            position: static;
+            display: inline-block;
+        }
     }
 }

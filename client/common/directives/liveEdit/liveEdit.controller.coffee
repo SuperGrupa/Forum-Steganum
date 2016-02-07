@@ -1,6 +1,7 @@
 liveEditController = () ->
     vm = this
     vm.object = angular.copy vm.object
+    vm.updatePermission = vm.updateWhen
 
     vm.save = ->
         vm.reverseEditEnabled()

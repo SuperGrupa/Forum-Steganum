@@ -12,6 +12,7 @@
   "dependencies": {
     "coffee-script": "^1.7.1",
     "gulp": "~3.9.0",
+    "gulp-angular-protractor": "0.0.6",
     "gulp-clean": "~0.3.0",
     "gulp-coffee": "~2.3.0",
     "gulp-concat": "~2.5.0",
@@ -32,9 +33,13 @@
     "karma-phantomjs-launcher": "^0.1.2",
     "karma-ubuntu-reporter": "0.0.3",
     "phantomjs": "^1.9.11",
-    "run-sequence": "~1.0.0"
+    "protractor": "^3.0.0",
+    "run-sequence": "~1.0.0",
+    "yargs": "^3.27.0"
   },
   "devDependencies": {
-    "angular-unit-testing-helpers": "0.0.2"
+    "angular-unit-testing-helpers": "0.0.2",
+    "concat-files": "0.1.0",
+    "gulp-uglify": "1.5.1"
   }
 }

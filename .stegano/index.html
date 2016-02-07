@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>Show Image Dimensions Locally</title>
+        <link rel="stylesheet" href="css/main.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+        <script type="text/javascript" src="meteor.mock.js"></script>
+        <script type="text/javascript" src="js/lib/long.min.js"></script>
+        <script type="text/javascript" src="js/lib/main.js"></script>
+        <script type="text/javascript" src="js/integration/common.js"></script>
+        <script type="text/javascript" src="js/integration/input.js"></script>
+        <script type="text/javascript" src="js/integration/switch.js"></script>
+        <script type="text/javascript" src="js/integration/canvas.js"></script>
+        <script type="text/javascript" src="js/events/common.js"></script>
+        <script type="text/javascript" src="js/image/common.js"></script>
+        <script type="text/javascript" src="js/image/loader.js"></script>
+        <script type="text/javascript" src="js/image/access.js"></script>
+        <script type="text/javascript" src="js/algorithm/common.js"></script>
+        <script type="text/javascript" src="js/algorithm/random.js"></script>
+        <script type="text/javascript" src="js/algorithm/hiding.js"></script>
+        <script type="text/javascript" src="js/algorithm/retrieving.js"></script>
+        <script type="text/javascript" src="js/helpers/common.js"></script>
+        <script type="text/javascript" src="js/helpers/validation.js"></script>
+        <script type="text/javascript">
+            window.addEventListener('load', function () {
+                // załadowanie strony -> otrzymano od serwera algorytm
+                stegano.run();
+
+                // na kliknięcie przycisku "Go to new post page" -> wejście w widok dodawania posta
+                document.getElementById('go-to-new-post-page').addEventListener('click', function () {
+                    // przejście na stronę dodawania nowego postu
+                    stegano.module('integration').run();
+                });
+                
+                // na kliknięcie "Send post" uruchom algorytms
+                document.getElementById('send-message').addEventListener('click', function () {
+                    stegano.module('events').sendMessage(function () {});
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <span class="post"><img src="img/test_3.png" /></span>
+        <span class="post"><img src="img/test.png" /></span>
+        <span class="post"><img src="img/qwerty.png" /></span>
+        <div class="new-post">
+            <input type="button" value="Go to new post page" id="go-to-new-post-page"/><br/><br/>
+            
+            <input type="file" id="file-input" />
+            <textarea></textarea>
+            <input type="button" id="send-message" value="Send post" />
+        </div>
+    </body>
+</html>

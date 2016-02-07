@@ -2,9 +2,25 @@
     position: absolute;
     left: 50px;
     margin-top: 10px;
+
+    @media @phone,
+        @tablet, @laptop {
+            left: 10px;
+        }
 }
+
 .admin-content {
     position: absolute;
     left: 250px;
-    width: ~"calc(100% - 300px)"
+    width: ~"calc(100% - 300px)";
+
+    @media @phone,
+        @tablet, @laptop {
+            left: 210px;
+            width: ~"calc(100% - 210px)";
+        }
+    
+    .layout-column {
+        width: 100%;
+    }
 }

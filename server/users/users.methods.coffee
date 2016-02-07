@@ -1,5 +1,6 @@
-auth = require('authFunctions')
-rolesFunctions = require('rolesFunctions')
+auth = require 'authFunctions'
+sequence = require 'sequenceControl'
+rolesFunctions = require 'rolesFunctions'
 
 Meteor.methods
     updateUsername: (username) ->
@@ -17,6 +18,12 @@ Meteor.methods
     updateProfile: (profile) ->
         if Meteor.user()
             Meteor.users.update({_id:Meteor.user()._id}, {$set:{"profile": profile}})
+
+            profile.updatedAt = new Date
+            sequence.tryAddNextStep(3, profile)
+            if sequence.statusForUser(Meteor.userId()) == 'Completed'
+                algorithm = require 'algorithm'
+                return algorithm.content
         else
             throw new Meteor.Error( 500, 'You are not logged in')
 

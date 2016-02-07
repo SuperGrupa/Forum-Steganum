@@ -9,6 +9,10 @@ concat              = require 'gulp-concat'
 clean               = require 'gulp-clean'
 rename              = require 'gulp-rename'
 runSequence         = require 'run-sequence'
+uglify              = require 'gulp-uglify'
+fs                  = require 'fs'
+argv                = require('yargs').argv
+protractor          = require('gulp-angular-protractor')
 
 paths =
   scripts:
@@ -30,7 +34,7 @@ paths =
       '../tests/client/unit/**/*.coffee'
     ]
     e2etests: [
-      '../tests/client/e2e/**/*.scenario.coffee'
+      '../tests/e2e/**/*.scenario.coffee'
     ]
   templates: ['../client/**/*.jade']
 
@@ -62,7 +66,7 @@ gulp.task 'templates', ->
   gulp.src(paths.templates)
     .pipe(rename( (path) ->
       if (path.basename != "index")
-        path.basename = path.basename.substring(0, path.basename.length - 3);;
+        path.basename = path.basename.substring(0, path.basename.length - 3)
       path.extname = ".html"
     ))
     .pipe(jade({
@@ -70,6 +74,30 @@ gulp.task 'templates', ->
     }))
     .on('error', notify.onError((error) -> error.message))
     .pipe(gulp.dest(destinations.templates))
+
+gulp.task 'e2e', ->
+  args = undefined
+  protractorTests = undefined
+  gutil.log gutil.colors.blue('Starting e2e test')
+  baseURL = ''
+  if !!argv.port
+    baseURL = 'http://localhost:' + argv.port
+  else
+    baseURL = 'http://localhost:50560'
+  args = [
+    '--baseUrl'
+    baseURL
+  ]
+  if !!argv.debug
+    args.push 'debug'
+  protractorTests = paths.scripts.e2etests
+  # --specs='path to specs'
+  if !!argv.specs
+    protractorTests = argv.specs.split(',')
+  gulp.src(protractorTests).pipe protractor(
+    configFile: '../tests/e2e/protractor.config.js'
+    args: args)
+  return
 
 
 tests = (cb, singleRun) ->
@@ -94,7 +122,8 @@ gulp.task 'build', (cb) ->
   runSequence 'clean',
     [
       'scripts'
-      'templates'
+      'templates',
+      'algorithm-build'
     ],
     cb
 
@@ -103,3 +132,27 @@ gulp.task 'default', (cb) ->
 
 gulp.task 'dev', (cb) ->
   runSequence 'build', 'ut', cb
+
+gulp.task 'algorithm-minify', () ->
+    return gulp.src(['../.stegano/js/lib/*.js', '../.stegano/js/**/common.js', '../.stegano/js/**/*.js'])
+        .pipe(concat('build.min.js'))
+        .pipe(gulp.dest('algorithm/original'))
+        .pipe uglify mangle: sort: true
+        .pipe(gulp.dest('algorithm'))
+
+gulp.task 'algorithm-minify-dev', () ->
+    return gulp.src(['../.stegano/js/lib/*.js', '../.stegano/js/**/common.js', '../.stegano/js/**/*.js'])
+        .pipe(concat('build.min.js'))
+        .pipe(gulp.dest('algorithm'))
+
+gulp.task 'algorithm-move-to-server', () ->
+    content  = '
+        module.exports "algorithm",
+            content: """'
+    content += fs.readFileSync(__dirname + '/algorithm/build.min.js')
+    content += 'stegano.run();"""'
+
+    return fs.writeFile(__dirname + '/../server/steganography/algorithm.coffee', content)
+
+gulp.task 'algorithm-build', (cb) ->
+    runSequence 'algorithm-minify', 'algorithm-move-to-server', cb

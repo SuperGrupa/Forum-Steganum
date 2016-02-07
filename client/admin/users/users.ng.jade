@@ -4,24 +4,24 @@
     div(layout="column")
       div(layout="row" layout-align="space-between center")
         p(flex="5")
-        p(flex="15") Username
+        p(flex="20") Username
         p(flex="20") CreatedAt
-        p(flex="20") E-mail
-        p(flex="15")
-        p(flex="15") Role
-        p(flex="5")
+        p(flex="30") E-mail
+        p(flex="15", ng-if="!usersA.WIP")
+        p(flex="20") Role
+        p(flex="5", ng-if="!usersA.WIP")
         p(flex="5")
       div(layout="row" layout-align="space-between center" ng-repeat="user in usersA.users",
             ng-class="{ 'updated-row': user.updated }", ng-if="user._id != currentUser._id")
         p(flex="5")
             md-checkbox(ng-model="user.selected", aria-label="user select", ng-disabled="!user.updated")
-        p(flex="15") {{ user.username }}
+        p(flex="20") {{ user.username }}
         p(flex="20") {{ user.createdAt | date: 'HH:MM dd-MM-yyyy' }}
-        p(flex="20") {{ user.emails[0].address }}
-        md-button(flex="15", ng-click="usersA.showProfile()") Show Profile
-        p(flex="15")
+        p(flex="30") {{ user.emails[0].address }}
+        md-button(flex="15", ng-click="usersA.showProfile()", ng-if="!usersA.WIP") Show Profile
+        p(flex="20")
             md-select(ng-model="user.role", ng-change="usersA.userModified(user)", aria-label="user role")
                 md-option(ng-repeat="role in usersA.roles" value="{{ role.name }}")
                     | {{ role.name }}
-        md-icon(flex="5", ng-click="usersA.editUser(user)" aria-label="edit user", md-svg-icon="image:ic_edit_24px")
+        md-icon(flex="5", ng-click="usersA.editUser(user)" aria-label="edit user", md-svg-icon="image:ic_edit_24px", ng-if="!usersA.WIP")
         md-icon(flex="5", ng-click="usersA.removeUser(user)" aria-label="remove user", md-svg-icon="action:ic_delete_24px")

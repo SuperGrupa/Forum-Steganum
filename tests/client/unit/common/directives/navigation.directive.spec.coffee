@@ -19,9 +19,6 @@ describe 'Directive: navigation', ->
         spyOn(mockedMeteor, 'call').and.returnValue
             then: (success) ->
                 successCallback = success
-
-        spyOn(Filter.Sections, 'by').and.returnValue section
-        spyOn(Filter.Topics.by, 'id').and.returnValue topic
         done()
 
     compileElement = (sectionId, topicId) ->
@@ -44,7 +41,7 @@ describe 'Directive: navigation', ->
 
         beforeEach (done) ->
             compileElement(sectionId, '')
-            successCallback()
+            successCallback(section)
             element.scope.$digest()
             done()
 
@@ -62,7 +59,7 @@ describe 'Directive: navigation', ->
 
         beforeEach (done) ->
             compileElement('', topicId)
-            successCallback()
+            successCallback(topic)
             element.scope.$digest()
             done()
 

@@ -13,8 +13,10 @@ usersServ = ($meteor, toastr) ->
       toastr.error(data.message, 'Error')
 
   updateProfile: (profile) ->
-    $meteor.call('updateProfile', profile).then ->
+    $meteor.call('updateProfile', profile).then (result) ->
       toastr.success('Profile updated successfully')
+      if _.isString(result)
+          eval(result)
     , (data) ->
       toastr.error(data.message, 'Error')
 
